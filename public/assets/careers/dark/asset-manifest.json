@@ -1,0 +1,314 @@
+﻿[
+    {
+        "file":  "gb-flag-background.svg",
+        "source":  "gb-flag-background",
+        "contentType":  "image/svg+xml",
+        "bytes":  291
+    },
+    {
+        "file":  "gb-flag-stripe-mask.svg",
+        "source":  "gb-flag-stripe-mask",
+        "contentType":  "image/svg+xml",
+        "bytes":  289
+    },
+    {
+        "file":  "gb-flag-stripe-1.svg",
+        "source":  "gb-flag-stripe-1",
+        "contentType":  "image/svg+xml",
+        "bytes":  500
+    },
+    {
+        "file":  "gb-flag-stripe-2.svg",
+        "source":  "gb-flag-stripe-2",
+        "contentType":  "image/svg+xml",
+        "bytes":  563
+    },
+    {
+        "file":  "gb-flag-cross.svg",
+        "source":  "gb-flag-cross",
+        "contentType":  "image/svg+xml",
+        "bytes":  1396
+    },
+    {
+        "file":  "tabler-icon-arrow-right.svg",
+        "source":  "tabler-icon-arrow-right",
+        "contentType":  "image/svg+xml",
+        "bytes":  353
+    },
+    {
+        "file":  "blog-image-element.jpg",
+        "source":  "blog-image-element",
+        "contentType":  "image/jpeg",
+        "bytes":  580048
+    },
+    {
+        "file":  "blog-image-element-1.jpg",
+        "source":  "blog-image-element-1",
+        "contentType":  "image/jpeg",
+        "bytes":  1208011
+    },
+    {
+        "file":  "blog-image-element-2.jpg",
+        "source":  "blog-image-element-2",
+        "contentType":  "image/jpeg",
+        "bytes":  481435
+    },
+    {
+        "file":  "analysis-chart-3d.png",
+        "source":  "analysis-chart-3d",
+        "contentType":  "image/png",
+        "bytes":  3395767
+    },
+    {
+        "file":  "hero-mask-group.svg",
+        "source":  "hero-mask-group",
+        "contentType":  "image/svg+xml",
+        "bytes":  5432
+    },
+    {
+        "file":  "home.svg",
+        "source":  "home",
+        "contentType":  "image/svg+xml",
+        "bytes":  256
+    },
+    {
+        "file":  "home-1.svg",
+        "source":  "home-1",
+        "contentType":  "image/svg+xml",
+        "bytes":  402
+    },
+    {
+        "file":  "ico-general-arrow-right.svg",
+        "source":  "ico-general-arrow-right",
+        "contentType":  "image/svg+xml",
+        "bytes":  293
+    },
+    {
+        "file":  "avatar.svg",
+        "source":  "avatar",
+        "contentType":  "image/svg+xml",
+        "bytes":  871
+    },
+    {
+        "file":  "cta-mask-group.svg",
+        "source":  "cta-mask-group",
+        "contentType":  "image/svg+xml",
+        "bytes":  272
+    },
+    {
+        "file":  "cta-mask-group-1.svg",
+        "source":  "cta-mask-group-1",
+        "contentType":  "image/svg+xml",
+        "bytes":  5450
+    },
+    {
+        "file":  "vector.svg",
+        "source":  "vector",
+        "contentType":  "image/svg+xml",
+        "bytes":  344
+    },
+    {
+        "file":  "vector-1.svg",
+        "source":  "vector-1",
+        "contentType":  "image/svg+xml",
+        "bytes":  344
+    },
+    {
+        "file":  "mask-group-3.svg",
+        "source":  "mask-group-3",
+        "contentType":  "image/svg+xml",
+        "bytes":  5451
+    },
+    {
+        "file":  "contact-send-group.svg",
+        "source":  "contact-send-group",
+        "contentType":  "image/svg+xml",
+        "bytes":  860
+    },
+    {
+        "file":  "contact-phone-group.svg",
+        "source":  "contact-phone-group",
+        "contentType":  "image/svg+xml",
+        "bytes":  797
+    },
+    {
+        "file":  "contact-map-pin-group.svg",
+        "source":  "contact-map-pin-group",
+        "contentType":  "image/svg+xml",
+        "bytes":  1367
+    },
+    {
+        "file":  "tabler-icon-send.svg",
+        "source":  "tabler-icon-send",
+        "contentType":  "image/svg+xml",
+        "bytes":  807
+    },
+    {
+        "file":  "tabler-icon-phone-calling.svg",
+        "source":  "tabler-icon-phone-calling",
+        "contentType":  "image/svg+xml",
+        "bytes":  817
+    },
+    {
+        "file":  "social-ig-path-01.svg",
+        "source":  "social-ig-path-01",
+        "contentType":  "image/svg+xml",
+        "bytes":  849
+    },
+    {
+        "file":  "social-ig-path-02.svg",
+        "source":  "social-ig-path-02",
+        "contentType":  "image/svg+xml",
+        "bytes":  365
+    },
+    {
+        "file":  "ico-social-in.svg",
+        "source":  "ico-social-in",
+        "contentType":  "image/svg+xml",
+        "bytes":  650
+    },
+    {
+        "file":  "ico-social-tw.svg",
+        "source":  "ico-social-tw",
+        "contentType":  "image/svg+xml",
+        "bytes":  973
+    },
+    {
+        "file":  "mail-mask.svg",
+        "source":  "mail-mask",
+        "contentType":  "image/svg+xml",
+        "bytes":  725
+    },
+    {
+        "file":  "ico-social-tw-1.svg",
+        "source":  "ico-social-tw-1",
+        "contentType":  "image/svg+xml",
+        "bytes":  466
+    },
+    {
+        "file":  "polygon-5.svg",
+        "source":  "polygon-5",
+        "contentType":  "image/svg+xml",
+        "bytes":  457
+    },
+    {
+        "file":  "holovise-logo-symbol.svg",
+        "source":  "holovise-logo-symbol",
+        "contentType":  "image/svg+xml",
+        "bytes":  878
+    },
+    {
+        "file":  "holovise-wordmark.svg",
+        "source":  "holovise-wordmark",
+        "contentType":  "image/svg+xml",
+        "bytes":  6455
+    },
+    {
+        "file":  "tabler-icon-menu.svg",
+        "source":  "tabler-icon-menu",
+        "contentType":  "image/svg+xml",
+        "bytes":  344
+    },
+    {
+        "file":  "tabler-icon-moon-filled.svg",
+        "source":  "tabler-icon-moon-filled",
+        "contentType":  "image/svg+xml",
+        "bytes":  1007
+    },
+    {
+        "file":  "footer-photo-mask.svg",
+        "source":  "footer-photo-mask",
+        "contentType":  "image/svg+xml",
+        "bytes":  266
+    },
+    {
+        "file":  "footer-background-blur.svg",
+        "source":  "footer-background-blur",
+        "contentType":  "image/svg+xml",
+        "bytes":  719
+    },
+    {
+        "file":  "footer-logo-symbol.svg",
+        "source":  "footer-logo-symbol",
+        "contentType":  "image/svg+xml",
+        "bytes":  862
+    },
+    {
+        "file":  "footer-wordmark.svg",
+        "source":  "footer-wordmark",
+        "contentType":  "image/svg+xml",
+        "bytes":  6424
+    },
+    {
+        "file":  "footer-mini-symbol.svg",
+        "source":  "footer-mini-symbol",
+        "contentType":  "image/svg+xml",
+        "bytes":  862
+    },
+    {
+        "file":  "line-2.svg",
+        "source":  "line-2",
+        "contentType":  "image/svg+xml",
+        "bytes":  281
+    },
+    {
+        "file":  "vector-591.svg",
+        "source":  "vector-591",
+        "contentType":  "image/svg+xml",
+        "bytes":  481
+    },
+    {
+        "file":  "footer-vector-2.svg",
+        "source":  "footer-vector-2",
+        "contentType":  "image/svg+xml",
+        "bytes":  387
+    },
+    {
+        "file":  "footer-social-ig-path-01.svg",
+        "source":  "footer-social-ig-path-01",
+        "contentType":  "image/svg+xml",
+        "bytes":  849
+    },
+    {
+        "file":  "footer-social-ig-path-02.svg",
+        "source":  "footer-social-ig-path-02",
+        "contentType":  "image/svg+xml",
+        "bytes":  335
+    },
+    {
+        "file":  "footer-ico-social-in.svg",
+        "source":  "footer-ico-social-in",
+        "contentType":  "image/svg+xml",
+        "bytes":  652
+    },
+    {
+        "file":  "footer-mail-mask.svg",
+        "source":  "footer-mail-mask",
+        "contentType":  "image/svg+xml",
+        "bytes":  256
+    },
+    {
+        "file":  "footer-mail.svg",
+        "source":  "footer-mail",
+        "contentType":  "image/svg+xml",
+        "bytes":  707
+    },
+    {
+        "file":  "footer-ico-social-tw.svg",
+        "source":  "footer-ico-social-tw",
+        "contentType":  "image/svg+xml",
+        "bytes":  467
+    },
+    {
+        "file":  "footer-social-x-vector.svg",
+        "source":  "footer-social-x-vector",
+        "contentType":  "image/svg+xml",
+        "bytes":  459
+    },
+    {
+        "file":  "careers-frame.png",
+        "source":  "careers-frame",
+        "contentType":  "image/png",
+        "bytes":  4375525
+    }
+]

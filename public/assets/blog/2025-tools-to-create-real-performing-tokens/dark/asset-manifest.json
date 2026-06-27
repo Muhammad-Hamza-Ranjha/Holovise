@@ -1,0 +1,32 @@
+{
+  "name": "Blog - 2025 Tools to Create Real-Performing Tokens - details",
+  "nodeId": "414:7204",
+  "width": 1440,
+  "height": 8037,
+  "frameAsset": "blog-2025-tools-details-frame.png",
+  "assets": [
+    {
+      "filename": "token-tools-illustration.png",
+      "figmaLayer": "image",
+      "nodeId": "414:7775"
+    },
+    {
+      "filename": "token-market-dashboard.png",
+      "figmaLayer": "image",
+      "nodeId": "414:7840"
+    }
+  ],
+  "tokens": {
+    "Grey/60": "#98989A",
+    "Dark/40": "#666666",
+    "Neutrals/Light": "#FFFFFF",
+    "Link/Button": {
+      "fontFamily": "Inter",
+      "fontStyle": "Extra Bold",
+      "fontSize": 16,
+      "fontWeight": 800,
+      "lineHeight": 24,
+      "letterSpacing": 0
+    }
+  }
+}

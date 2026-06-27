@@ -1,26 +1,102 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
+@config "../tailwind.config.ts";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f7fb;
+  --foreground: #11111a;
+}
+
+.dark {
+  --background: #050014;
+  --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sora), Arial, Helvetica, sans-serif;
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(124, 60, 255, 0.38);
+}
+
+.holo-shell {
+  background:
+    radial-gradient(circle at 84% 8%, rgba(87, 82, 255, 0.36), transparent 28%),
+    radial-gradient(circle at 72% 22%, rgba(8, 168, 255, 0.25), transparent 30%),
+    linear-gradient(180deg, #090314 0%, #050014 100%);
+}
+
+.light .holo-shell,
+:root:not(.dark) .holo-shell {
+  background:
+    radial-gradient(circle at 84% 8%, rgba(124, 60, 255, 0.22), transparent 28%),
+    radial-gradient(circle at 72% 22%, rgba(8, 168, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f7f7fb 100%);
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+}
+
+:root:not(.dark) .glass-panel,
+.light .glass-panel {
+  border-color: rgba(22, 20, 44, 0.1);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.device-mock {
+  position: relative;
+  border: 10px solid #171323;
+  border-radius: 42px;
+  background: linear-gradient(160deg, #f7fbff, #dce5ff 48%, #915dff);
+  box-shadow: 0 24px 90px rgba(12, 9, 40, 0.32);
+}
+
+.device-mock::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 78px;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #171323;
+}
+@keyframes figma-state-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

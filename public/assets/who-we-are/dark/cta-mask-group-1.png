@@ -1,0 +1,35 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1440 715.161" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_408" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="716">
+<rect id="Rectangle 1078" width="1440" height="715.161" transform="matrix(-1 0 0 1 1440 0)" fill="url(#paint0_linear_0_408)"/>
+</mask>
+<g mask="url(#mask0_0_408)">
+<rect id="Rectangle 1079" width="1440" height="715.161" transform="matrix(-1 0 0 1 1440 0)" fill="url(#paint1_linear_0_408)"/>
+<g id="Photo">
+<g clip-path="url(#paint2_angular_0_408_clip_path)" data-figma-skip-parse="true"><g transform="matrix(-0.463199 -0.39823 -0.728416 0.560237 1633.95 299.897)"><foreignObject x="-1541.53" y="-1541.53" width="3083.07" height="3083.07"><div xmlns="http://www.w3.org/1999/xhtml" style="background:conic-gradient(from 90deg,rgba(52, 167, 255, 1) 0deg,rgba(78, 115, 238, 1) 360deg);height:100%;width:100%;opacity:1"></div></foreignObject></g></g><rect width="1118.17" height="1731.81" transform="matrix(-0.686254 -0.727362 -0.962558 0.271077 2829.32 435.314)" data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_ANGULAR&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.20652212202548981,&#34;g&#34;:0.65615952014923096,&#34;b&#34;:1.0,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.30802088975906372,&#34;g&#34;:0.45185643434524536,&#34;b&#34;:0.93663597106933594,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.20652212202548981,&#34;g&#34;:0.65615952014923096,&#34;b&#34;:1.0,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.30802088975906372,&#34;g&#34;:0.45185643434524536,&#34;b&#34;:0.93663597106933594,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;transform&#34;:{&#34;m00&#34;:-926.39898681640625,&#34;m01&#34;:-1456.8312988281250,&#34;m02&#34;:2825.56347656250,&#34;m10&#34;:-796.45910644531250,&#34;m11&#34;:1120.47363281250,&#34;m12&#34;:137.88943481445312},&#34;opacity&#34;:1.0,&#34;blendMode&#34;:&#34;HARD_LIGHT&#34;,&#34;visible&#34;:true}" style="mix-blend-mode:hard-light"/>
+</g>
+<g id="Rectangle 1077" filter="url(#filter0_f_0_408)">
+<path d="M554.26 -211.215L1300.01 823.051L758.275 1039.83L12.5284 5.55964L554.26 -211.215Z" fill="url(#paint3_linear_0_408)"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="paint2_angular_0_408_clip_path"><rect width="1118.17" height="1731.81" transform="matrix(-0.686254 -0.727362 -0.962558 0.271077 2829.32 435.314)"/></clipPath><filter id="filter0_f_0_408" x="-237.472" y="-461.215" width="1787.48" height="1751.04" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="125" result="effect1_foregroundBlur_0_408"/>
+</filter>
+<linearGradient id="paint0_linear_0_408" x1="-414.9" y1="367.862" x2="1870.42" y2="367.862" gradientUnits="userSpaceOnUse">
+<stop stop-color="#011625"/>
+<stop offset="0.836492" stop-color="#893EFF"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_408" x1="-414.9" y1="367.862" x2="1870.42" y2="367.862" gradientUnits="userSpaceOnUse">
+<stop stop-color="#011625"/>
+<stop offset="0.836492" stop-color="#893EFF"/>
+</linearGradient>
+<linearGradient id="paint3_linear_0_408" x1="893.913" y1="667.877" x2="-216.702" y2="454.638" gradientUnits="userSpaceOnUse">
+<stop stop-color="#7A12EA"/>
+<stop offset="1" stop-color="#893EFF"/>
+</linearGradient>
+</defs>
+</svg>
