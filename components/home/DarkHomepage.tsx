@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
+import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
 import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { LanguageMenu } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
@@ -232,7 +233,7 @@ function Hero() {
       >
         <div className="absolute left-0 top-[460px] h-[914px] w-[1440px] bg-[linear-gradient(180deg,rgba(8,13,25,0)_0%,#080d19_78%)]" />
         <div className="absolute left-0 top-[520px] h-[799px] w-[344px] bg-[#35a7ff]/72 [clip-path:polygon(0_0,0_100%,100%_100%)]" />
-        <Img name="world-vector.svg" alt="World map illustration" className="absolute left-[1130px] top-[107px] h-[809px] w-[730px] max-w-none object-contain opacity-95" eager />
+        <Img name="world-vector.svg" alt="World map illustration" className="absolute left-[865px] top-[107px] h-[809px] w-[730px] max-w-none object-contain" eager />
       </Box>
       <Header />
       <Box left={130} top={279} width={340} height={22} className="text-[18px] leading-[20px] text-white">
@@ -250,7 +251,14 @@ function Hero() {
         <p className="text-[24px] leading-9 text-white">Developing Apps for Startups, Scaling Solutions for SMEs, and Modernizing Systems for Established Firms</p>
       </Box>
       <Box left={130} top={667} width={297} height={60}>
-        <Button className="w-[297px]">Schedule Intro Call</Button>
+        <Link
+          href="/contact-us"
+          prefetch={false}
+          className="flex h-[60px] w-[297px] items-center gap-[14px] rounded-[10px] bg-white px-[21px] text-[20px] font-semibold leading-[24px] text-black"
+        >
+          <span>Schedule an Intro Call</span>
+          <Img name="tabler-icon-arrow-down-right.svg" className="h-7 w-7 scale-x-[-1]" />
+        </Link>
       </Box>
       <Link
         href="/contact-us"
@@ -258,7 +266,12 @@ function Hero() {
         aria-label="Get Started"
         className="absolute left-[1390px] top-[403px] z-20 flex h-[200px] w-[50px] items-center justify-center rounded-l-[8px] bg-[#3871f2] text-white"
       >
-        <span className="rotate-90 whitespace-nowrap text-[16px] font-extrabold">Get Started</span>
+        <span aria-hidden="true" className="absolute left-[13px] top-[16px] h-[18px] w-[24px] text-[18px] leading-[24px]">
+          🚀
+        </span>
+        <span className="absolute left-[37px] top-[75px] origin-top-left rotate-90 whitespace-nowrap text-[18px] font-bold leading-[24px]">
+          Get Started
+        </span>
       </Link>
     </>
   );
@@ -266,17 +279,25 @@ function Hero() {
 
 function Services() {
   return (
-    <Box left={129} top={1297} width={1181} height={731} className="text-white" style={{ scrollMarginTop: 160 }} >
-      <div id="services" className="absolute -top-[160px]" />
-      <Eyebrow className="absolute left-0 top-0 w-full tracking-[10px]">Our Services</Eyebrow>
-      <h2 className="absolute left-[196px] top-[53px] w-[789px] text-center text-[36px] font-extrabold leading-10">
+    <>
+      <div id="services" className="absolute left-0 top-[814px]" />
+      <Box left={230} top={974} width={980} height={20}>
+        <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#00a7ff]">Our Services</p>
+      </Box>
+      <Box left={330} top={1026} width={780} height={118}>
+        <h2 className="text-center text-[48px] font-bold leading-[58px] text-white">
         Worried about project delays, data security, and tech overload?
-      </h2>
-      <p className="absolute left-[184px] top-[154px] w-[813px] text-center text-[17px] leading-7 text-white/70">
+        </h2>
+      </Box>
+      <Box left={230} top={1176} width={980} height={72}>
+        <p className="text-center text-[22px] leading-[36px] text-white">
         We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
-      </p>
-      <HomeServicesTabs />
-    </Box>
+        </p>
+      </Box>
+      <Box left={129} top={1297} width={1181} height={731}>
+        <HomeServicesTabs />
+      </Box>
+    </>
   );
 }
 
@@ -562,28 +583,19 @@ function Footer() {
 export function DarkHomepage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#080d19] font-sans text-white">
-      <div
-        className="relative w-full overflow-hidden bg-[#080d19]"
-        style={{ "--figma-scale": "calc(100vw / 1440px)", height: "calc(12496px * var(--figma-scale))" } as CSSProperties}
-      >
-        <div
-          className="relative h-[12496px] w-[1440px] origin-top-left overflow-hidden bg-[#080d19]"
-          style={{ transform: "scale(var(--figma-scale))" } as CSSProperties}
-          data-figma-node="192:5523"
-        >
-          <Hero />
-          <Services />
-          <CtaBand />
-          <Industries />
-          <Testimonials />
-          <Process />
-          <FitCta />
-          <WhyChoose />
-          <Blog />
-          <Contact />
-          <Footer />
-        </div>
-      </div>
+      <ResponsiveFigmaCanvas height={12496} background="#080d19" nodeId="192:5523">
+        <Hero />
+        <Services />
+        <CtaBand />
+        <Industries />
+        <Testimonials />
+        <Process />
+        <FitCta />
+        <WhyChoose />
+        <Blog />
+        <Contact />
+        <Footer />
+      </ResponsiveFigmaCanvas>
     </main>
   );
 }

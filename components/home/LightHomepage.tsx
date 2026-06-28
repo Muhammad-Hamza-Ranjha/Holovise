@@ -1,4 +1,5 @@
 import { commonFrameLinks, StaticFigmaPage, type StaticFrameLink } from "@/components/figma/StaticFigmaPage";
+import { HomeServicesTabs } from "@/components/home/HomeServicesTabs";
 
 const height = 12496;
 
@@ -30,6 +31,11 @@ export function LightHomepage() {
       lightNodeId="204:6497"
       lightHeight={height}
       links={[...commonFrameLinks(height), ...homepageLinks]}
-    />
+      renderChildrenInLight
+    >
+      <div className="absolute left-[129px] top-[1297px] z-20 h-[1143px] w-[1181px] bg-[#eaf0fe]">
+        <HomeServicesTabs theme="light" />
+      </div>
+    </StaticFigmaPage>
   );
 }
