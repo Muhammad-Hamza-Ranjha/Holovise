@@ -126,6 +126,14 @@ function Img({ name, alt = "", className = "", eager = false }: { name: string; 
   return <img src={a(name)} alt={alt} className={className} loading={eager ? "eager" : "lazy"} />;
 }
 
+function ArrowRightIcon({ stroke = "#fff", className = "" }: { stroke?: string; className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className={className}>
+      <path d="M8 15L13 10L8 5" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function Button({
   children,
   href = "/contact-us",
@@ -146,7 +154,7 @@ function Button({
       } ${className}`}
     >
       {children}
-      <Img name={outline ? "tabler-icon-arrow-down-right-blue.svg" : "tabler-icon-arrow-right-white.svg"} className="h-5 w-5" />
+      <ArrowRightIcon stroke={outline ? "#3871f2" : "#fff"} className="h-5 w-5" />
     </Link>
   );
 }
@@ -260,7 +268,7 @@ function Hero() {
           className="flex h-[60px] w-[297px] items-center gap-[14px] rounded-[10px] bg-white px-[21px] text-[20px] font-semibold leading-[24px] text-black"
         >
           <span>Schedule an Intro Call</span>
-          <Img name="tabler-icon-arrow-down-right.svg" className="h-7 w-7 scale-x-[-1]" />
+          <Img name="tabler-icon-arrow-down-right.svg" className="h-7 w-7" />
         </Link>
       </Box>
       <Link
@@ -288,13 +296,13 @@ function Services() {
         <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#3871f2]">Our Services</p>
       </Box>
       <Box left={330} top={1026} width={780} height={118}>
-        <h2 className="text-center text-[48px] font-bold leading-[58px] text-[#141824]">
-          Worried about project delays, data security, and tech overload?
+        <h2 className="text-center text-[48px] font-bold leading-[58px] text-[#FFFFFF]">
+          Worried about project delays, data security, and tech overload? 
         </h2>
       </Box>
-      <Box left={230} top={1176} width={980} height={72}>
-        <p className="text-center text-[22px] leading-[36px] text-[#4b5565]">
-          We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
+      <Box left={230} top={1150} width={980} height={72}>
+        <p className="text-center text-[22px] leading-[36px] text-[#FFFFFF]">
+          <br/> <br/>We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
         </p>
       </Box>
       <Box left={129} top={1297} width={1181} height={731}>
@@ -306,17 +314,34 @@ function Services() {
 
 function CtaBand() {
   return (
-    <Box left={0} top={2571} width={1440} height={320} className="overflow-hidden rounded-[24px] bg-[linear-gradient(106deg,#8b44ff_0%,#3871f2_50%,#141cc9_100%)] text-white">
-      <div className="absolute left-0 top-0 h-full w-full [clip-path:polygon(0_0,38%_0,0_100%)] bg-[#3871f2]" />
-      <div className="absolute left-[382px] top-0 h-[318px] w-[1058px] bg-[radial-gradient(circle_at_70%_50%,rgba(255,80,220,0.55),transparent_55%)]" />
-      <h2 className="absolute left-1/2 top-[80px] w-[680px] -translate-x-1/2 text-center text-[40px] font-extrabold leading-[44px]">Ready to Get Started?</h2>
-      <p className="absolute left-1/2 top-[150px] w-[680px] -translate-x-1/2 text-center text-[20px] leading-8">Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.</p>
+    <Box
+      left={129}
+      top={2558}
+      width={1181}
+      height={413}
+      className="z-10 overflow-hidden rounded-[24px] text-white"
+      style={{
+        background: "linear-gradient(100deg, #7c3aed 0%, #5b21d6 40%, #3b82f6 100%)",
+        backgroundImage: [
+          "linear-gradient(135deg, rgba(1,16,37,0.72) 0%, transparent 42%)",
+          "linear-gradient(315deg, rgba(139,68,255,0.55) 0%, transparent 38%)",
+          "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
+        ].join(", "),
+      }}
+    >
+      <h2 className="absolute left-1/2 top-[107px] w-[607px] -translate-x-1/2 text-center text-[36px] font-extrabold leading-10">
+        Ready to Get Started?
+      </h2>
+      <p className="absolute left-1/2 top-[161px] w-[607px] -translate-x-1/2 text-center text-[22px] leading-8">
+        Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.
+      </p>
       <Link
         href="/contact-us"
         prefetch={true}
-        className="absolute left-1/2 top-[235px] flex h-[60px] w-[220px] -translate-x-1/2 items-center justify-center rounded-[10px] bg-white text-[16px] font-extrabold text-[#141824]"
+        className="absolute left-1/2 top-[247px] flex h-[60px] w-[272px] -translate-x-1/2 items-center justify-center gap-[10px] rounded-[10px] bg-white px-6 text-[16px] font-extrabold text-[#141824]"
       >
-        Get In Touch!
+        <span>Get In Touch!</span>
+        <ArrowRightIcon stroke="#141824" className="h-5 w-5" />
       </Link>
     </Box>
   );
@@ -343,7 +368,7 @@ function Industries() {
           {[
             ["300+", "Projects Delivered."],
             ["20+", "Technical Experts."],
-            ["50+", "Business Partners."],
+            ["50+", "Products Developed."],
           ].map(([value, label]) => (
             <div key={label}>
               <p className="text-[40px] font-extrabold leading-10">{value}</p>
@@ -428,21 +453,42 @@ function Process() {
 
 function FitCta() {
   return (
-    <Box left={0} top={7585} width={1440} height={413} className="overflow-hidden rounded-[24px] bg-[linear-gradient(104deg,#8b44ff_0%,#3871f2_55%,#141cc9_100%)] text-white">
-      <div className="absolute left-[650px] top-[-210px] h-[760px] w-[860px] rounded-full bg-[#35a7ff]/35 blur-[80px]" />
-      <div className="absolute left-[130px] top-[103px] w-[580px]">
-        <h2 className="text-[36px] font-extrabold leading-10">Find Us a Great Fit?</h2>
-        <p className="mt-[14px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.</p>
-        <Link
-          href="/contact-us"
-          prefetch={false}
-          className="mt-[31px] flex h-[60px] w-[272px] items-center justify-center rounded-[10px] bg-white text-[16px] font-extrabold text-[#141824]"
-        >
-          Book a Free Session!
-        </Link>
-      </div>
-      <Img name="dollar-rocket-3d.png" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain" />
-    </Box>
+    <>
+      <Box
+        left={129}
+        top={7585}
+        width={1181}
+        height={413}
+        className="overflow-hidden rounded-[24px] text-white"
+        style={{
+          background: "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
+          backgroundImage: [
+            "linear-gradient(135deg, rgba(1,16,37,0.72) 0%, transparent 42%)",
+            "linear-gradient(315deg, rgba(139,68,255,0.55) 0%, transparent 38%)",
+            "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
+          ].join(", "),
+        }}
+      >
+        <div className="absolute left-[101px] top-[86px] w-[480px]">
+          <h2 className="text-[36px] font-extrabold leading-10">Find Us a Great Fit?</h2>
+          <p className="mt-[14px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.</p>
+          <Link
+            href="/contact-us"
+            prefetch={false}
+            className="absolute left-0 top-[182px] flex h-[60px] w-[272px] items-center justify-center gap-[10px] rounded-[10px] border border-white px-6 text-[16px] font-extrabold text-white"
+          >
+            <span>Book a Free Session!</span>
+            <ArrowRightIcon stroke="#ffffff" className="h-5 w-5" />
+          </Link>
+        </div>
+      </Box>
+
+      <Img
+        name="image.svg"
+        alt="Coins"
+        className="absolute left-[720px] top-[7480px] z-10 h-[641px] w-[650px] rotate-[3deg] object-contain animate-float"
+      />
+    </>
   );
 }
 

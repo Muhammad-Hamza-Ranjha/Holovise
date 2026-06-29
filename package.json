@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:mcp": "esbuild node_modules/figma-mcp-server/mcpServer.ts --bundle --platform=node --format=esm --packages=external --outfile=node_modules/figma-mcp-server/mcpServer.js"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",

@@ -432,7 +432,7 @@ function FitCta() {
         <p className="mt-[14px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges & keep everything running smoothly.</p>
         <Button href="/contact-us" dark className="mt-[31px] w-[272px]">Book a Free Session!</Button>
       </div>
-      <Img name="dollar-rocket-3d.png" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain" />
+      <Img name="dollar-rocket-3d.png" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain animate-float" />
     </Box>
   );
 } 

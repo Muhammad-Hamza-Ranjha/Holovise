@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const iconSprite = "/assets/homepage/home-services-icons.svg";
-const arrowAsset = "/assets/homepage/dark/services-arrow-down-right.svg";
-
 const serviceGroups = {
   development: [
     ["Mobile App Development", "device-mobile", "/services/mobile-app-development", true],
@@ -132,6 +130,9 @@ export function HomeServicesTabs({
   const services = serviceGroups[active];
   const light = theme === "light";
   const tabMotion = light ? lightTabMotion : darkTabMotion;
+  const arrowAsset = light
+    ? "/assets/homepage/light/services-arrow-down-right.svg"
+    : "/assets/homepage/dark/services-arrow-down-right.svg";
 
   return (
     <div className={`relative h-[731px] w-[1181px] ${coverBackground ? (light ? "bg-[#eaf0fe]" : "bg-[#080d19]") : ""}`}>
