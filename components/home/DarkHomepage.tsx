@@ -238,7 +238,9 @@ function Hero() {
       <Header />
       <Box left={130} top={279} width={340} height={22} className="text-[18px] leading-[20px] text-white">
         <span>Welcome to the </span>
-        <span className="font-extrabold uppercase">Holovise</span>
+        <span className="font-extrabold uppercase">
+          Holovise
+        </span>
       </Box>
       <Box left={130} top={323} width={1180} height={235}>
         <h1 className="text-[74px] font-extrabold leading-[78px] text-white">
@@ -291,6 +293,7 @@ function Services() {
       </Box>
       <Box left={230} top={1176} width={980} height={72}>
         <p className="text-center text-[22px] leading-[36px] text-white">
+          <br/>
         We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
         </p>
       </Box>
@@ -431,34 +434,79 @@ function FitCta() {
       <Img name="dollar-rocket-3d.png" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain" />
     </Box>
   );
-}
+} 
 
 function WhyChoose() {
   return (
     <Box left={130} top={8280} width={1180} height={760} className="text-white">
-      <Eyebrow className="tracking-[8px]">Our Reason</Eyebrow>
+      <Eyebrow className="tracking-[8px]">Our Impact</Eyebrow>
       <h2 className="mt-[22px] text-center text-[36px] font-extrabold leading-10">Why We are The Right Fit for You!</h2>
       <p className="mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-white/70">
-        We get your tech delays, understand your staffing needs, and deliver on time. Let&apos;s make tech work for you.
+        We get your industry, understand your unique needs, and deliver the results that make a real difference.
       </p>
-      <div className="mt-[70px] grid grid-cols-2 gap-x-[70px] gap-y-[42px]">
+      <p className="mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-white/70">
+        Here&apos;s what we bring to the table while working for you.
+      </p>
+<div className="mt-[70px] grid grid-cols-2 gap-x-[70px] gap-y-[42px]">
         {[
-          ["Deep Technical Knowledge", "icon-box.svg"],
-          ["Your Talent", "icon-flag.svg"],
-          ["Flexible Engagement Models", "icon-lightning-bolt.svg"],
-          ["Reliable Delivery", "icon-share-1.svg"],
-        ].map(([title, icon]) => (
-          <article key={title} className="min-h-[210px] rounded-[8px] border border-white/10 bg-[#111729]/40 p-8">
+          {
+            title: "Deep Industry Knowledge",
+            icon: "animated-emojies-512px-220.gif",
+            description: (
+              <>
+                We are experts in your sector in addition to <br />
+                technology. <br /> <br />Our team&apos;s extensive experience and industry
+                <br />knowledge enable us to provide solutions that are<br />  properly
+                matched to your particular requirements <br /> and standards.
+              </>
+            ),
+          },
+          {
+            title: "Tier Talent",
+            icon: "animated-emojies-512px-508.gif",
+            description: (
+              <>
+                Our experts aren&apos;t just skilled-they&apos;re exceptional. <br /> <br />
+                We&apos;ve assembled a team of professionals who<br />constantly  focus on quality and new ideas,so every<br /> project will benefit from their knowledge and <br /> enthusiasm.
+              </>
+            ),
+          },
+          {
+            title:(
+            <>
+            Flexible Engagement <br /> Models</>), 
+            icon: "animated-emojies-512px-26.gif",
+            description: (
+              <>
+                We provide a range of recruiting alternatives,<br/>depending on your needs: hourly rates, fixed-price <br /> projects, or committed team. <br/> <br />With this versatility, you may get excellent value<br/>and select the model that fits your needs.
+              </>
+            ),
+          },
+          {
+            title: "Reliable Delivery",
+            icon: "animated-emojies-512px-44.gif",
+            description: (
+              <>
+              Timeliness is core value. <br /> <br />
+              We commit to delivering high-quality solutions on <br/>schedule, keeping your project moving forward <br/> without sacrificing precision or attention to detail.
+              </>
+            ),
+          },
+        ].map(({ title, icon, description }) => (
+          <article
+            key={title}
+            className="min-h-[210px] rounded-[8px] border border-white/10 bg-[#111729]/40 p-8"
+          >
             <div className="flex items-center gap-5">
               <Img name={icon} className="h-12 w-12" />
               <h3 className="text-[24px] font-extrabold leading-8">{title}</h3>
             </div>
             <p className="mt-6 text-[16px] leading-7 text-white/64">
-              Our team combines technical depth, flexible collaboration, and practical product judgment to keep your project moving.
+              {description}
             </p>
           </article>
         ))}
-      </div>
+      </div> 
     </Box>
   );
 }
@@ -525,10 +573,15 @@ function Contact() {
           <input className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none" placeholder="Phone" />
         </div>
         <textarea className="mt-4 h-[135px] w-[510px] resize-none rounded-[6px] border border-white/12 bg-[#080d19] p-5 text-white outline-none" placeholder="Message" />
-        <label className="mt-4 flex items-center gap-2 text-[14px] leading-5 text-white/70">
-          <span className="h-[22px] w-[22px] rounded-[4px] border border-white/20" />
+        <label className="mt-4 flex items-center gap-2 text-[14px] leading-5 text-white/70 cursor-pointer">
+        <input
+        type="radio"
+        name="newsletter"
+        value="yes"
+        className="h-[22px] w-[22px] rounded-full border border-white/20 bg-transparent accent-white"
+      />
           Sign me up for the newsletter
-        </label>
+      </label>
         <button type="button" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold">
           Send Message
         </button>
