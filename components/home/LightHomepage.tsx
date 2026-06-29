@@ -313,7 +313,7 @@ function CtaBand() {
       <p className="absolute left-1/2 top-[150px] w-[680px] -translate-x-1/2 text-center text-[20px] leading-8">Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.</p>
       <Link
         href="/contact-us"
-        prefetch={false}
+        prefetch={true}
         className="absolute left-1/2 top-[235px] flex h-[60px] w-[220px] -translate-x-1/2 items-center justify-center rounded-[10px] bg-white text-[16px] font-extrabold text-[#141824]"
       >
         Get In Touch!
