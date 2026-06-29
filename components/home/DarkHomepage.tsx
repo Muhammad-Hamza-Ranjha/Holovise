@@ -494,7 +494,7 @@ function WhyChoose() {
           },
         ].map(({ title, icon, description }) => (
           <article
-            key={title}
+            key={icon}
             className="min-h-[210px] rounded-[8px] border border-white/10 bg-[#111729]/40 p-8"
           >
             <div className="flex items-center gap-5">
