@@ -122,6 +122,7 @@ function Box({ left, top, width, height, id, className = "", style, children }: 
 }
 
 function Img({ name, alt = "", className = "", eager = false }: { name: string; alt?: string; className?: string; eager?: boolean }) {
+  // eslint-disable-next-line @next/next/no-img-element
   return <img src={a(name)} alt={alt} className={className} loading={eager ? "eager" : "lazy"} />;
 }
 
