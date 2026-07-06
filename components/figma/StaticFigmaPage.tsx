@@ -21,6 +21,7 @@ export type StaticFigmaPageProps = {
   disableAutoContactForm?: boolean;
   contactFormTop?: number;
   lightContactFormTop?: number;
+  disableGeneratedLightFilter?: boolean;
 };
 
 export function StaticFigmaPage(props: StaticFigmaPageProps) {

@@ -17,7 +17,7 @@ export function commonFrameLinks(_height: number): StaticFrameLink[] {
     { href: "/career", label: "Careers", left: 903, top: 76, width: 92, height: 28 },
     { href: "/contact-us", label: "Get in Touch", left: 1022, top: 68, width: 152, height: 44 },
     { href: "/side-drawer", label: "Open menu", left: 1344, top: 78, width: 41, height: 24 },
-    { href: "/contact-us", label: "Get Started", left: 1390, top: 403, width: 50, height: 200 },
+    { href: "/contact-us", label: "Get Started", left: 1390, top: 203, width: 50, height: 200 },
   ];
 }
 

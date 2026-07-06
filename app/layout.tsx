@@ -2,7 +2,6 @@
 import { Sora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { FixedGetStarted } from "@/components/navigation/FixedGetStarted";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -21,7 +20,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <ThemeProvider>
           {children}
-          <FixedGetStarted />
         </ThemeProvider>
       </body>
     </html>

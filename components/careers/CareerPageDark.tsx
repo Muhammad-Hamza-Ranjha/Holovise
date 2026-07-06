@@ -21,6 +21,8 @@ export function CareerPageDark() {
         { href: "/careers/full-stack-developer", label: "Lead Fullstack Developer", left: 530, top: 1998, width: 380, height: 375 },
         { href: "/careers/full-stack-developer", label: "Senior Product Architect", left: 930, top: 1998, width: 380, height: 375 },
         { href: "/careers", label: "Explore All Jobs", left: 439, top: 2409, width: 272, height: 60 },
+        { href: "https://www.linkedin.com/company/holovise/", label: "Join our LinkedIn", left: 230, top: 1053, width: 272, height: 60 },
+        { href: "/careers#open-vacancies", label: "Explore Vacancies", left: 520, top: 1053, width: 272, height: 60 },
         { href: "/careers/full-stack-developer", label: "Apply in Talent Pool", left: 583, top: 3234, width: 272, height: 60 },
         {
           href: "/blog/2025-tools-to-create-real-performing-tokens",
@@ -33,6 +35,8 @@ export function CareerPageDark() {
         { href: "/blog", label: "Explore All News", left: 584, top: 5514, width: 272, height: 60 },
         { href: "/", label: "Home", left: 571, top: 6500, width: 299, height: 229 },
       ]}
-    />
+    >
+      <div id="open-vacancies" className="pointer-events-none absolute left-0 top-[1450px]" />
+    </StaticFigmaPage>
   );
 }

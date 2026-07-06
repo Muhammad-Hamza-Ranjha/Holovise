@@ -29,6 +29,7 @@ export function ThemeAwareStaticFigmaPage({
   disableAutoContactForm = false,
   contactFormTop,
   lightContactFormTop,
+  disableGeneratedLightFilter = false,
 }: StaticFigmaPageProps) {
   const { theme, resolvedTheme } = useTheme();
   const pathname = usePathname();
@@ -60,6 +61,10 @@ export function ThemeAwareStaticFigmaPage({
       : activeLinks;
   const background = wantsLightTheme ? "#eaf0fe" : "#080d19";
   const needsGeneratedLightSurface = wantsLightTheme && !lightAsset;
+  const pageImageFilter =
+    needsGeneratedLightSurface && !disableGeneratedLightFilter
+      ? { filter: "invert(1) hue-rotate(180deg)" }
+      : undefined;
   const shouldRenderContactForm =
     !disableAutoContactForm && (pageHeight > 4000 || contactFormTop !== undefined);
   const activeContactFormTop = usesLightAsset
@@ -73,7 +78,7 @@ export function ThemeAwareStaticFigmaPage({
           src={pageAsset}
           alt={alt}
           className="absolute inset-0 h-full w-full select-none object-fill"
-          style={needsGeneratedLightSurface ? { filter: "invert(1) hue-rotate(180deg)" } : undefined}
+          style={pageImageFilter}
           draggable={false}
         />
         {pageLinks.map((link) => (

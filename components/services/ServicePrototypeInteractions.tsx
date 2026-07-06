@@ -149,6 +149,12 @@ const serviceInteractions: Partial<Record<ServiceDetailSlug, OverlayConfig[]>> =
         ["blockchain-web", "Show Blockchain Web Development"],
         ["crypto", "Show Cryptocurrency Development"],
       ]),
+      preserveColorRegion: {
+        left: 401,
+        top: 0,
+        width: 783,
+        height: 358,
+      },
     },
   ],
   "ui-ux-design": [
@@ -203,6 +209,12 @@ const serviceInteractions: Partial<Record<ServiceDetailSlug, OverlayConfig[]>> =
         ["scalable", "Show Scalable Solutions"],
         ["setup", "Show Faster Swift Setup"],
       ]),
+      preserveColorRegion: {
+        left: 401,
+        top: 0,
+        width: 783,
+        height: 309,
+      },
     },
   ],
   "game-development": [
@@ -233,6 +245,12 @@ const serviceInteractions: Partial<Record<ServiceDetailSlug, OverlayConfig[]>> =
         ["systems", "Show Easy-to-Use Game Systems"],
         ["testing", "Show Thorough Testing"],
       ]),
+      preserveColorRegion: {
+        left: 401,
+        top: 0,
+        width: 783,
+        height: 320,
+      },
     },
   ],
   "product-strategy-consulting": [

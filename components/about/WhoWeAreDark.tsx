@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
 import { FigmaContactForm } from "@/components/forms/FigmaContactForm";
 
@@ -71,7 +72,7 @@ export function WhoWeAreDark() {
       renderChildrenInLight
       disableAutoContactForm
       links={[
-        ...commonFrameLinks(9807),
+        ...commonFrameLinks(9807).filter((link) => link.label !== "Get Started"),
         { href: "/", label: "Home breadcrumb", left: 579, top: 295, width: 95, height: 22 },
         {
           href: "/about/who-we-are",
@@ -84,7 +85,6 @@ export function WhoWeAreDark() {
         { href: "/contact-us", label: "Contact Us", left: 130, top: 847, width: 272, height: 60 },
         { href: "/contact-us", label: "Book a Free Session", left: 130, top: 3049, width: 272, height: 60 },
         { href: "/contact-us", label: "Let's Chat", left: 583, top: 5890, width: 272, height: 60 },
-        { href: "/contact-us", label: "Get Started", left: 1390, top: 603, width: 50, height: 200 },
         {
           href: "/blog/2025-tools-to-create-real-performing-tokens",
           label: "Read 2025 Tools to Create Real-Performing Tokens",
@@ -97,7 +97,7 @@ export function WhoWeAreDark() {
         { href: "/", label: "Home", left: 571, top: 8456, width: 299, height: 229 },
       ]}
       lightLinks={[
-        ...commonFrameLinks(9317),
+        ...commonFrameLinks(9317).filter((link) => link.label !== "Get Started"),
         { href: "/", label: "Home breadcrumb", left: 614, top: 295, width: 105, height: 22 },
         {
           href: "/about/who-we-are",
@@ -123,6 +123,22 @@ export function WhoWeAreDark() {
       ]}
     >
       <WhoWeAreMotion />
+      <Link
+        href="/contact-us"
+        prefetch={false}
+        aria-label="Get Started"
+        className="absolute left-[1390px] top-[403px] z-[80] flex h-[200px] w-[50px] cursor-pointer flex-col items-center rounded-l-[8px] bg-[#3871f2] pt-[17px] text-white shadow-[0_8px_24px_rgba(8,13,25,0.24)] hover:bg-[#285fda] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+      >
+        <span aria-hidden="true" className="h-[24px] text-[18px] leading-[24px]">
+          🚀
+        </span>
+        <span
+          className="mt-[16px] whitespace-nowrap text-[16px] font-bold leading-[20px]"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          Get Started
+        </span>
+      </Link>
       <div className="hidden dark:block">
         <FigmaContactForm
           ariaLabel="Who We Are contact form"

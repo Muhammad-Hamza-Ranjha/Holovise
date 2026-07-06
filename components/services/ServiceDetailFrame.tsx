@@ -176,6 +176,7 @@ type ServiceCtaSpec = {
   textTop: number;
   width?: number;
   href?: string;
+  height?: number;
 };
 
 const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
@@ -186,7 +187,7 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Let's Chat", left: 830, textTop: 4516, width: 220 },
     { label: "Know More", left: 1070, textTop: 4516, width: 220, href: "/about/who-we-are" },
     { label: "Let's Chat", left: 584, textTop: 9100 },
-    { label: "Get a Quote", left: 130, textTop: 12135 },
+    { label: "Get a Quote", left: 130, textTop: 12135, href: "/contact-us", height: 80 },
   ],
   devsecops: [
     { label: "Get Started", left: 730, textTop: 983 },
@@ -202,12 +203,17 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Get Free Consulting", left: 530, textTop: 3052 },
     { label: "Let's Chat", left: 830, textTop: 5121, width: 220 },
     { label: "Know More", left: 1070, textTop: 5121, width: 220, href: "/about/who-we-are" },
+    { label: "Book a Meeting", left: 584, textTop: 11210, href: "/contact-us", height: 80 },
+    { label: "Get a Quote", left: 130, textTop: 14650, href: "/contact-us", height: 80 },
   ],
   "web-3-development": [
+    { label: "Explore Domains", left: 129, textTop: 870, width: 245 },
     { label: "Get Started", left: 730, textTop: 1344 },
     { label: "Get Free Consulting", left: 530, textTop: 4415 },
     { label: "Let's Chat", left: 830, textTop: 4892, width: 220 },
     { label: "Know More", left: 1070, textTop: 4892, width: 220, href: "/about/who-we-are" },
+    { label: "Book a Meeting", left: 584, textTop: 9315, href: "/contact-us", height: 80 },
+    { label: "Get a Quote", left: 130, textTop: 12395, href: "/contact-us", height: 80 },
   ],
   "metaverse-ar-vr": [
     { label: "Get in Touch", left: 597, textTop: 836, width: 245 },
@@ -215,6 +221,7 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Let's Chat", left: 830, textTop: 3331, width: 220 },
     { label: "Know More", left: 1070, textTop: 3331, width: 220, href: "/about/who-we-are" },
     { label: "Contact Us", left: 130, textTop: 11692 },
+    { label: "Book a Meeting", left: 584, textTop: 7885, href: "/contact-us", height: 80 },
   ],
   "ui-ux-design": [
     { label: "Get in Touch", left: 129, textTop: 795 },
@@ -225,6 +232,7 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Let's Chat", left: 830, textTop: 9479, width: 220 },
     { label: "Know More", left: 1070, textTop: 9479, width: 220, href: "/about/who-we-are" },
     { label: "Contact Us", left: 130, textTop: 13028 },
+    { label: "Book a Meeting", left: 584, textTop: 7870, href: "/contact-us", height: 80 },
   ],
   "software-security": [
     { label: "Get in Touch", left: 730, textTop: 973 },
@@ -232,6 +240,7 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Let's Chat", left: 830, textTop: 5113, width: 220 },
     { label: "Know More", left: 1070, textTop: 5113, width: 220, href: "/about/who-we-are" },
     { label: "Contact Us", left: 130, textTop: 12511 },
+    { label: "Book a Meeting", left: 584, textTop: 8385, href: "/contact-us", height: 80 },
   ],
   "blockchain-development": [
     { label: "Get in Touch", left: 730, textTop: 857 },
@@ -240,6 +249,7 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Let's Chat", left: 830, textTop: 5880, width: 220 },
     { label: "Know More", left: 1070, textTop: 5880, width: 220, href: "/about/who-we-are" },
     { label: "Contact Us", left: 130, textTop: 12866 },
+    { label: "Book a Meeting", left: 584, textTop: 11290, href: "/contact-us", height: 80 },
   ],
   "game-development": [
     { label: "Get in Touch", left: 129, textTop: 905 },
@@ -304,10 +314,19 @@ const serviceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Get Free Consulting", left: 546, textTop: 3288 },
     { label: "Let's Chat", left: 830, textTop: 4977, width: 220 },
     { label: "Know More", left: 1070, textTop: 4977, width: 220, href: "/about/who-we-are" },
+    { label: "Let's Work Together", left: 584, textTop: 11575 },
   ],
 };
 
 const lightServiceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
+  devsecops: [
+    { label: "Get Started", left: 730, textTop: 983 },
+    { label: "Book a Free Session", left: 130, textTop: 1491 },
+    { label: "Let's Chat", left: 810, textTop: 5125, width: 260, height: 130 },
+    { label: "Know More", left: 1060, textTop: 5125, width: 240, href: "/about/who-we-are" },
+    { label: "Let's Chat", left: 584, textTop: 9782 },
+    { label: "Schedule Your Call", left: 130, textTop: 12964 },
+  ],
   "desktop-app-development": [
     { label: "Get Started", left: 730, textTop: 810, width: 245 },
     { label: "Book a Free Session", left: 130, textTop: 1256 },
@@ -315,7 +334,7 @@ const lightServiceCtas: Partial<Record<ServiceDetailSlug, ServiceCtaSpec[]>> = {
     { label: "Let's Chat", left: 830, textTop: 4428, width: 220 },
     { label: "Know More", left: 1070, textTop: 4428, width: 220, href: "/about/who-we-are" },
     { label: "Let's Chat", left: 584, textTop: 8878 },
-    { label: "Get a Quote", left: 130, textTop: 12050 },
+    { label: "Get a Quote", left: 130, textTop: 12050, href: "/contact-us", height: 80 },
   ],
   "software-development-outsourcing": [
     { label: "Get in Touch", left: 129, textTop: 812, width: 245 },
@@ -343,7 +362,7 @@ function mappedServiceCtas(
     left: cta.left,
     top: cta.textTop - 18,
     width: cta.width ?? 272,
-    height: 60,
+    height: cta.height ?? 60,
   }));
 }
 
@@ -486,16 +505,6 @@ function serviceContentLinks(
       },
     );
 
-    if (theme === "dark") {
-      links.push({
-        href: "/contact-us",
-        label: "Get Started side rail",
-        left: 1390,
-        top: 205,
-        width: 50,
-        height: 200,
-      });
-    }
   }
 
   return links;
@@ -527,6 +536,7 @@ export function ServiceDetailFrame({ slug }: { slug: ServiceDetailSlug }) {
       lightAsset={"lightAsset" in frame ? frame.lightAsset : undefined}
       lightNodeId={"lightNodeId" in frame ? frame.lightNodeId : undefined}
       lightHeight={lightHeight}
+      disableGeneratedLightFilter={slug === "investment"}
       links={sharedPageLinks(frame.height, "dark")}
       lightLinks={lightHeight ? sharedPageLinks(lightHeight, "light") : undefined}
       renderChildrenInLight
