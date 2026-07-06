@@ -18,6 +18,9 @@ export type StaticFigmaPageProps = {
   children?: ReactNode;
   renderChildrenInLight?: boolean;
   showNavigationOverlays?: boolean;
+  disableAutoContactForm?: boolean;
+  contactFormTop?: number;
+  lightContactFormTop?: number;
 };
 
 export function StaticFigmaPage(props: StaticFigmaPageProps) {

@@ -212,8 +212,8 @@ function Header() {
           <Img name="tabler-icon-menu.svg" className="h-full w-full" />
         </Link>
       </Box>
-      <FigmaAboutDropdown />
-      <FigmaServicesDropdown />
+      <FigmaAboutDropdown theme="dark" />
+      <FigmaServicesDropdown theme="dark" />
     </>
   );
 }
@@ -267,7 +267,7 @@ function Hero() {
         href="/contact-us"
         prefetch={false}
         aria-label="Get Started"
-        className="absolute left-[1390px] top-[403px] z-20 flex h-[200px] w-[50px] items-center justify-center rounded-l-[8px] bg-[#3871f2] text-white"
+        className="hidden"
       >
         <span aria-hidden="true" className="absolute left-[13px] top-[16px] h-[18px] w-[24px] text-[18px] leading-[24px]">
           🚀
@@ -567,13 +567,43 @@ function Contact() {
           </div>
         ))}
       </div>
-      <form className="absolute left-[610px] top-0 h-[627px] w-[570px] rounded-[8px] bg-[#111729] p-[30px]">
-        <input className="h-[56px] w-[510px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none" placeholder="Name" />
+      <form
+        action="mailto:support@holovise.io?subject=Holovise%20website%20enquiry"
+        method="post"
+        encType="text/plain"
+        className="absolute left-[610px] top-0 h-[627px] w-[570px] rounded-[8px] bg-[#111729] p-[30px]"
+      >
+        <input
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+          className="h-[56px] w-[510px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none"
+          placeholder="Name"
+        />
         <div className="mt-4 flex gap-[10px]">
-          <input className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none" placeholder="Email" />
-          <input className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none" placeholder="Phone" />
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none"
+            placeholder="Email"
+          />
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none"
+            placeholder="Phone"
+          />
         </div>
-        <textarea className="mt-4 h-[135px] w-[510px] resize-none rounded-[6px] border border-white/12 bg-[#080d19] p-5 text-white outline-none" placeholder="Message" />
+        <textarea
+          name="message"
+          required
+          className="mt-4 h-[135px] w-[510px] resize-none rounded-[6px] border border-white/12 bg-[#080d19] p-5 text-white outline-none"
+          placeholder="Message"
+        />
         <label className="mt-4 flex items-center gap-2 text-[14px] leading-5 text-white/70 cursor-pointer">
         <input
         type="radio"
@@ -583,7 +613,7 @@ function Contact() {
       />
           Sign me up for the newsletter
       </label>
-        <button type="button" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold">
+        <button type="submit" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold">
           Send Message
         </button>
         <p className="mt-6 text-[13px] leading-5 text-white/45">Praesent in mauris eu tortor porttitor accumsan aliquam ornare wisi eu metus. Lorem ipsum dolor tortor porttitor accumsan aliquam.</p>

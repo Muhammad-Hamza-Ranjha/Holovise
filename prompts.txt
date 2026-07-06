@@ -1,7 +1,15 @@
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=1-12223&m=dev
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=1-12913&m=dev
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=1-13815&m=dev
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=1-14913&m=dev
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=1-16427&m=dev
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=1-17749&m=dev
-https://www.figma.com/design/j9VvnuQSl2xz7Lsd7yV94m/Holovise-Web-v3---TEL--Copy-?node-id=458-4760&m=dev
+In Ai/Ml page in both themes book a meetinfg and get a quote buttons are not working
+In software security in both themes Book a meeting button is not working
+in devsecops let's chat button is not working in light theme
+In blockchain development book a meeting button is not working in both themes also 
+in light theme the pictures in our capacity are inverted in colors
+In web 3 development the explore domain book a meeting and get a quote button is not working 
+and the images in our capacity section in light theme are inverted 
+In metavers ar vr book ameeting button is not working in both themes
+In ui/ux design book a meeting button is not working in both themes 
+In game development in what you will get sections the images are inverted in colors
+In investment page the background is inverted on most of the page in light theme fix it and Let's work together
+button is not working in both themes
+In blog page the background in inverted in colors in light theme also fix the inverted colors in light theme in full stack developr pages
+in carrers page join our linked in  and explore vacancies buttons are not working
+

@@ -3,6 +3,7 @@ import { commonFrameLinks, StaticFigmaPage, type StaticFrameLink } from "@/compo
 const height = 4671;
 
 const careerDetailLinks: StaticFrameLink[] = [
+  { href: "/", label: "Home", left: 540, top: 289, width: 84, height: 34 },
   { href: "/careers", label: "Careers", left: 645, top: 289, width: 80, height: 34 },
   { href: "/contact-us", label: "Apply Now", left: 986, top: 640, width: 324, height: 50 },
   { href: "/contact-us", label: "Apply Now", left: 130, top: 2139, width: 510, height: 60 },

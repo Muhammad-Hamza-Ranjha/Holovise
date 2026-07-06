@@ -1,4 +1,5 @@
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
+import { CookieConsentControls } from "@/components/legal/CookieConsentControls";
 
 export function CookieConsentDark() {
   return (
@@ -10,7 +11,10 @@ export function CookieConsentDark() {
       lightAsset="/assets/cookie-consent/light/cookie-consent-frame.png"
       lightNodeId="204:9919"
       lightHeight={960}
+      renderChildrenInLight
       links={commonFrameLinks(960)}
-    />
+    >
+      <CookieConsentControls />
+    </StaticFigmaPage>
   );
 }

@@ -1,4 +1,5 @@
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
+import { LightImageRestore } from "@/components/figma/LightImageRestore";
 
 const height = 8037;
 
@@ -15,6 +16,25 @@ export function BlogTokenToolsDetailsDark() {
         { href: "/blog", label: "Blog", left: 681, top: 288, width: 48, height: 36 },
         { href: "/", label: "Home", left: 571, top: 6686, width: 299, height: 229 },
       ]}
-    />
+    >
+      <LightImageRestore
+        src="/assets/blog/2025-tools-to-create-real-performing-tokens/dark/token-tools-illustration.png"
+        alt="Connected token ecosystem"
+        left={129}
+        top={968}
+        width={801}
+        height={326}
+        radius={20}
+      />
+      <LightImageRestore
+        src="/assets/blog/2025-tools-to-create-real-performing-tokens/dark/token-market-dashboard.png"
+        alt="Token market dashboard"
+        left={129}
+        top={3626}
+        width={801}
+        height={326}
+        radius={20}
+      />
+    </StaticFigmaPage>
   );
 }

@@ -1,6 +1,12 @@
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
+import { LightImageRestore } from "@/components/figma/LightImageRestore";
 
 const height = 5765;
+const blogImages = [
+  { src: "/assets/blog/shared/wireframes.png", alt: "Wireframing article", left: 130 },
+  { src: "/assets/blog/shared/token-tools.png", alt: "Token tools article", left: 533.333 },
+  { src: "/assets/blog/shared/solidity.png", alt: "Solidity article", left: 936.667 },
+] as const;
 
 export function BlogDark() {
   return (
@@ -35,6 +41,26 @@ export function BlogDark() {
         })),
         { href: "/", label: "Home", left: 571, top: 4414, width: 299, height: 229 },
       ]}
-    />
+    >
+      {[570, 1131, 2877].flatMap((top) =>
+        blogImages.map((image) => (
+          <LightImageRestore
+            key={`${image.src}-${top}`}
+            {...image}
+            top={top}
+            width={373.333}
+            height={270}
+          />
+        )),
+      )}
+      <LightImageRestore
+        src="/assets/blog/shared/product-line.png"
+        alt="Product line article"
+        left={739}
+        top={1762}
+        width={571}
+        height={388}
+      />
+    </StaticFigmaPage>
   );
 }

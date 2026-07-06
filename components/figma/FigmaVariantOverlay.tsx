@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export type FigmaVariantCrop = {
@@ -32,6 +33,12 @@ type FigmaVariantOverlayProps = {
   initialKey: string;
   variants: FigmaVariantCrop[];
   hotspots: FigmaVariantHotspot[];
+  preserveColorRegion?: {
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  };
 };
 
 export function FigmaVariantOverlay({
@@ -45,12 +52,16 @@ export function FigmaVariantOverlay({
   initialKey,
   variants,
   hotspots,
+  preserveColorRegion,
 }: FigmaVariantOverlayProps) {
   const [activeKey, setActiveKey] = useState(initialKey);
   const activeVariant = variants.find((variant) => variant.key === activeKey);
 
   return (
-    <div className="absolute z-20" style={{ left, top, width, height }}>
+    <div
+      className="pointer-events-none absolute z-20"
+      style={{ left, top, width, height }}
+    >
       {activeVariant && activeKey !== initialKey ? (
         <div
           key={activeKey}
@@ -61,9 +72,12 @@ export function FigmaVariantOverlay({
             animation: "figma-state-in 300ms ease-out",
           }}
         >
-          <img
+          <Image
             src={sprite}
             alt=""
+            width={spriteWidth}
+            height={spriteHeight}
+            unoptimized
             draggable={false}
             className="absolute max-w-none select-none"
             style={{
@@ -73,6 +87,28 @@ export function FigmaVariantOverlay({
               height: spriteHeight,
             }}
           />
+          {preserveColorRegion ? (
+            <div
+              className="pointer-events-none absolute block overflow-hidden [filter:invert(1)_hue-rotate(180deg)] dark:hidden"
+              style={preserveColorRegion}
+            >
+              <Image
+                src={sprite}
+                alt=""
+                width={spriteWidth}
+                height={spriteHeight}
+                unoptimized
+                draggable={false}
+                className="absolute max-w-none select-none"
+                style={{
+                  left: -(activeVariant.x + preserveColorRegion.left),
+                  top: -(activeVariant.y + preserveColorRegion.top),
+                  width: spriteWidth,
+                  height: spriteHeight,
+                }}
+              />
+            </div>
+          ) : null}
         </div>
       ) : null}
 
@@ -87,7 +123,7 @@ export function FigmaVariantOverlay({
               hotspot.toggle && currentKey === hotspot.key ? initialKey : hotspot.key,
             )
           }
-          className="absolute z-10 cursor-pointer bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3871f2]"
+          className="pointer-events-auto absolute z-10 cursor-pointer bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3871f2]"
           style={{
             left: hotspot.left,
             top: hotspot.top,

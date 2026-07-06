@@ -75,10 +75,43 @@ export const openCollaborativeServicesMenuFrameLinks = [
   { href: "/services/software-development-outsourcing", label: "Software Development Outsourcing", left: 569, top: 337, width: 300, height: 44 },
 ] as const;
 
-export function ServicesMenuPanel({ className = "" }: { className?: string }) {
+type MenuTheme = "dark" | "light";
+
+export function ServicesMenuPanel({
+  className = "",
+  theme,
+}: {
+  className?: string;
+  theme?: MenuTheme;
+}) {
+  const panelColors =
+    theme === "light"
+      ? "bg-[#eaf0fe] text-[#212121]"
+      : theme === "dark"
+        ? "bg-[#080d19] text-white"
+        : "bg-[#eaf0fe] text-[#212121] dark:bg-[#080d19] dark:text-white";
+  const inactiveFeatureColors =
+    theme === "light"
+      ? "text-[#3871f2]"
+      : theme === "dark"
+        ? "text-white"
+        : "text-[#3871f2] dark:text-white";
+  const inactiveDescriptionColors =
+    theme === "light"
+      ? "text-[#777] group-hover/item:text-white group-focus-visible/item:text-white"
+      : theme === "dark"
+        ? "text-white/50 group-hover/item:text-white group-focus-visible/item:text-white"
+        : "text-[#777] group-hover/item:text-white group-focus-visible/item:text-white dark:text-white/50";
+  const itemHoverColors =
+    theme === "light"
+      ? "hover:bg-[#3871f2]/10 focus-visible:bg-[#3871f2]/10"
+      : theme === "dark"
+        ? "hover:bg-white/8 focus-visible:bg-white/8"
+        : "hover:bg-[#3871f2]/10 focus-visible:bg-[#3871f2]/10 dark:hover:bg-white/8 dark:focus-visible:bg-white/8";
+
   return (
     <div
-      className={`grid h-[386px] w-[1055px] grid-cols-[300px_300px_300px] gap-x-[38px] rounded-b-[30px] bg-[#eaf0fe] px-[39px] py-[35px] text-left text-[#212121] dark:bg-[#080d19] dark:text-white ${className}`}
+      className={`grid h-[386px] w-[1055px] grid-cols-[300px_300px_300px] gap-x-[38px] rounded-b-[30px] px-[39px] py-[35px] text-left ${panelColors} ${className}`}
     >
       <div className="grid content-start gap-4">
         {serviceMenuGroups[0].map((item, index) => (
@@ -88,8 +121,14 @@ export function ServicesMenuPanel({ className = "" }: { className?: string }) {
             prefetch={false}
             className={`group/item flex w-[300px] rounded-[8px] px-5 py-[10px] transition-colors hover:bg-[#3871f2] hover:text-white focus-visible:bg-[#3871f2] focus-visible:text-white focus-visible:outline-none ${
               index === 0
-                ? "h-[104px] items-center justify-between bg-[#9a45ff] text-white dark:bg-[#3871f2]"
-                : "h-[90px] text-[#3871f2] dark:text-white"
+                ? `h-[104px] items-center justify-between text-white ${
+                    theme === "dark"
+                      ? "bg-[#3871f2]"
+                      : theme === "light"
+                        ? "bg-[#9a45ff]"
+                        : "bg-[#9a45ff] dark:bg-[#3871f2]"
+                  }`
+                : `h-[90px] ${inactiveFeatureColors}`
             }`}
           >
             <span className="block w-[246px]">
@@ -98,7 +137,7 @@ export function ServicesMenuPanel({ className = "" }: { className?: string }) {
                 className={`mt-[6px] block text-[14px] leading-5 ${
                   index === 0
                     ? "text-white"
-                    : "text-[#777] group-hover/item:text-white group-focus-visible/item:text-white dark:text-white/50"
+                    : inactiveDescriptionColors
                 }`}
               >
                 {item.description}
@@ -115,7 +154,7 @@ export function ServicesMenuPanel({ className = "" }: { className?: string }) {
             key={item.href}
             href={item.href}
             prefetch={false}
-            className={`w-[300px] rounded-[8px] p-[10px] text-[16px] leading-6 hover:bg-[#3871f2]/10 focus-visible:bg-[#3871f2]/10 focus-visible:outline-none dark:hover:bg-white/8 dark:focus-visible:bg-white/8 ${
+            className={`w-[300px] rounded-[8px] p-[10px] text-[16px] leading-6 focus-visible:outline-none ${itemHoverColors} ${
               item.label === "Software Security" ? "font-extrabold" : "font-bold"
             }`}
           >
@@ -130,7 +169,7 @@ export function ServicesMenuPanel({ className = "" }: { className?: string }) {
             key={item.href}
             href={item.href}
             prefetch={false}
-            className="w-[300px] rounded-[8px] p-[10px] text-[16px] font-bold leading-6 hover:bg-[#3871f2]/10 focus-visible:bg-[#3871f2]/10 focus-visible:outline-none dark:hover:bg-white/8 dark:focus-visible:bg-white/8"
+            className={`w-[300px] rounded-[8px] p-[10px] text-[16px] font-bold leading-6 focus-visible:outline-none ${itemHoverColors}`}
           >
             {item.label}
           </Link>
@@ -140,7 +179,7 @@ export function ServicesMenuPanel({ className = "" }: { className?: string }) {
   );
 }
 
-export function FigmaServicesDropdown() {
+export function FigmaServicesDropdown({ theme }: { theme?: MenuTheme }) {
   return (
     <div className="group absolute left-[663px] top-[70px] z-50 h-[70px] w-[124px]">
       <Link
@@ -151,7 +190,7 @@ export function FigmaServicesDropdown() {
         className="absolute left-0 top-0 h-[40px] w-[124px] cursor-pointer bg-transparent"
       />
       <div className="pointer-events-none invisible absolute left-[-471px] top-[70px] opacity-0 transition-opacity duration-300 ease-out group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
-        <ServicesMenuPanel />
+        <ServicesMenuPanel theme={theme} />
       </div>
     </div>
   );

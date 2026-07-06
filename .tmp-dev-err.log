@@ -1,0 +1,5 @@
+(node:24296) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///D:/Holovise/holovise_v1/tailwind.config.ts?id=1783322306375 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to D:\Holovise\holovise_v1\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior

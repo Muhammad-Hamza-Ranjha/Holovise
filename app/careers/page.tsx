@@ -1,5 +1,5 @@
-import { CareersListingDark } from "@/components/careers/CareersListingDark";
+import { CareerPageDark } from "@/components/careers/CareerPageDark";
 
 export default function Page() {
-  return <CareersListingDark />;
+  return <CareerPageDark />;
 }

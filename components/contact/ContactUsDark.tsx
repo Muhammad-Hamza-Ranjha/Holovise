@@ -12,6 +12,8 @@ export function ContactUsDark() {
       lightAsset="/assets/contact-us/light/contact-us-frame.png"
       lightNodeId="204:9680"
       lightHeight={3142}
+      contactFormTop={484}
+      lightContactFormTop={484}
       links={[
         ...commonFrameLinks(3142),
         { href: "/", label: "Home", left: 571, top: 1791, width: 299, height: 229 },

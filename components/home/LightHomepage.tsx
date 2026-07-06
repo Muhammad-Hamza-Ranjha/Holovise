@@ -1,5 +1,7 @@
-import type { CSSProperties, ReactNode } from "react";
+﻿import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import type { FormEvent } from "react";
 import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
 import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { LanguageMenu } from "@/components/navigation/LanguageMenu";
@@ -166,7 +168,7 @@ function Eyebrow({ children, className = "" }: { children: ReactNode; className?
 function Header() {
   return (
     <>
-      <Box left={0} top={0} width={1440} height={40} className="bg-[#3871f2] text-white">
+      <Box left={0} top={0} width={1440} height={40} className="bg-[linear-gradient(90deg,#3871f2_0%,#773cff_56%,#9a2fff_100%)] text-white">
         <p className="absolute left-[55px] top-[8px] text-[16px] leading-6 text-white">Vision Meets Technology</p>
         <div className="absolute left-[809px] top-[8px] flex h-6 items-center gap-[13px] text-[16px] leading-6 text-white">
           <Img name="tabler-icon-phone-calling.svg" className="h-[22px] w-[22px]" />
@@ -177,14 +179,14 @@ function Header() {
           <span>support@holovise.io</span>
         </div>
         <div className="absolute left-[1208px] top-[9px] flex gap-[16px] opacity-90">
-          {["social-fb-path-01.svg", "social-in.svg", "social-tw-1.svg", "social-mail-1.svg"].map((icon) => (
+          {["social-tw-1.svg", "social-in.svg", "social-tw.svg", "social-mail-1.svg", "social-fb-path-01.svg"].map((icon) => (
             <span key={icon} className="flex h-[22px] w-[22px] items-center justify-center">
               <Img name={icon} className="max-h-[22px] max-w-[22px]" />
             </span>
           ))}
         </div>
       </Box>
-      <Box left={0} top={40} width={1440} height={100} className="bg-[linear-gradient(110deg,#3871f2_0%,#8b44ff_48%,#1a1240_100%)] text-white">
+      <Box left={0} top={40} width={1440} height={100} className="bg-[linear-gradient(100deg,#28105b_0%,#5d16c8_49%,#25104d_100%)] text-white">
         <Link href="/" className="absolute left-[55px] top-[27px] flex h-[46px] w-[208px] items-center gap-[13px]" aria-label="Holovise home">
           <Img name="holovise-logo-header.svg" className="h-[45.8px] w-[39.7px]" eager />
           <Img name="holovise-logo-mark.svg" className="h-[16.4px] w-[152.6px]" eager />
@@ -205,7 +207,7 @@ function Header() {
             Careers
           </Link>
         </nav>
-        <Link href="/contact-us" className="absolute left-[1022px] top-[28px] flex h-11 w-[152px] items-center justify-center rounded-[8px] bg-[#8b44ff] text-[16px] font-extrabold leading-6">
+        <Link href="/contact-us" className="absolute left-[1022px] top-[28px] flex h-11 w-[152px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold leading-6">
           Get in Touch
         </Link>
         <LanguageMenu className="absolute left-[1191px] top-[28px]" />
@@ -220,8 +222,8 @@ function Header() {
           <Img name="tabler-icon-menu.svg" className="h-full w-full" />
         </Link>
       </Box>
-      <FigmaAboutDropdown />
-      <FigmaServicesDropdown />
+      <FigmaAboutDropdown theme="light" />
+      <FigmaServicesDropdown theme="light" />
     </>
   );
 }
@@ -233,15 +235,16 @@ function Hero() {
         left={0}
         top={0}
         width={1440}
-        height={1319}
+        height={960}
         className="overflow-hidden"
         style={{
           background:
-            "radial-gradient(circle at 46% 27%, rgba(153, 47, 255, 0.98) 0%, rgba(132, 52, 236, 0.94) 27%, rgba(51, 44, 152, 0.9) 52%, rgba(8, 13, 25, 1) 100%), linear-gradient(110deg, #3871f2 0%, #8b44ff 48%, #080d19 100%)",
+            "radial-gradient(circle at 45% 36%, rgba(190,61,255,0.88) 0%, rgba(131,38,247,0.64) 28%, rgba(85,28,215,0.16) 58%, rgba(56,23,164,0) 72%), linear-gradient(104deg,#2c3df6 0%,#4b1ae3 24%,#7011e8 58%,#6410dc 100%)",
         }}
       >
-        <div className="absolute left-0 top-[460px] h-[914px] w-[1440px] bg-[linear-gradient(180deg,rgba(8,13,25,0)_0%,#080d19_78%)]" />
-        <div className="absolute left-0 top-[520px] h-[799px] w-[344px] bg-[#35a7ff]/72 [clip-path:polygon(0_0,0_100%,100%_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[300px] bg-[linear-gradient(180deg,rgba(227,230,255,0)_0%,rgba(227,230,255,0.96)_100%)]" />
+        <div className="absolute left-0 top-[448px] h-[512px] w-[255px] bg-[linear-gradient(180deg,#4ca9ff_0%,#b8d5ff_100%)] [clip-path:polygon(0_0,0_100%,100%_100%)]" />
+        <div className="absolute right-0 top-[140px] h-[820px] w-[440px] bg-[linear-gradient(180deg,rgba(247,56,219,0.12)_0%,rgba(255,100,219,0.3)_58%,rgba(255,180,231,0.08)_100%)] [clip-path:polygon(0_0,100%_0,100%_100%,56%_100%)]" />
         <Img name="world-vector.svg" alt="World map illustration" className="absolute left-[865px] top-[107px] h-[809px] w-[730px] max-w-none object-contain" eager />
       </Box>
       <Header />
@@ -252,30 +255,30 @@ function Hero() {
         </span>
       </Box>
       <Box left={130} top={323} width={1180} height={235}>
-        <h1 className="text-[74px] font-extrabold leading-[78px] text-white">
+        <h1 className="text-[66px] font-extrabold leading-[78px] text-white">
           <span className="block">Your Partner for</span>
-          <span className="block whitespace-nowrap bg-[linear-gradient(90deg,#ffe96a_0%,#ff8428_100%)] bg-clip-text text-transparent">Comprehensive Software</span>
+          <span className="block whitespace-nowrap">Comprehensive Software</span>
           <span className="block">Solutions</span>
         </h1>
       </Box>
       <Box left={130} top={570} width={684} height={72}>
-        <p className="text-[24px] leading-9 text-white">Developing Apps for Startups, Scaling Solutions for SMEs, and Modernizing Systems for Established Firms</p>
+        <p className="text-[22px] leading-9 text-white">Developing Apps for Startups, Scaling Solutions for SMEs, and Modernizing Systems for Established Firms</p>
       </Box>
-      <Box left={130} top={667} width={297} height={60}>
+      <Box left={130} top={664} width={297} height={60}>
         <Link
           href="/contact-us"
           prefetch={false}
-          className="flex h-[60px] w-[297px] items-center gap-[14px] rounded-[10px] bg-white px-[21px] text-[20px] font-semibold leading-[24px] text-black"
+          className="flex h-[58px] w-[292px] items-center justify-between rounded-[10px] bg-[#3871f2] px-[21px] text-[18px] font-bold leading-[24px] text-white shadow-[0_12px_28px_rgba(56,113,242,0.35)]"
         >
           <span>Schedule an Intro Call</span>
-          <Img name="tabler-icon-arrow-down-right.svg" className="h-7 w-7" />
+          <ArrowUpRight aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} />
         </Link>
       </Box>
       <Link
         href="/contact-us"
         prefetch={false}
         aria-label="Get Started"
-        className="absolute left-[1390px] top-[403px] z-20 flex h-[200px] w-[50px] items-center justify-center rounded-l-[8px] bg-[#3871f2] text-white"
+        className="hidden"
       >
         <span aria-hidden="true" className="absolute left-[13px] top-[16px] h-[18px] w-[24px] text-[18px] leading-[24px]">
           🚀
@@ -296,13 +299,13 @@ function Services() {
         <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#3871f2]">Our Services</p>
       </Box>
       <Box left={330} top={1026} width={780} height={118}>
-        <h2 className="text-center text-[48px] font-bold leading-[58px] text-[#FFFFFF]">
-          Worried about project delays, data security, and tech overload? 
+        <h2 className="text-center text-[48px] font-bold leading-[58px] text-[#202126]">
+          Worried about project delays, data security, and tech overload?
         </h2>
       </Box>
-      <Box left={230} top={1150} width={980} height={72}>
-        <p className="text-center text-[22px] leading-[36px] text-[#FFFFFF]">
-          <br/> <br/>We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
+      <Box left={230} top={1176} width={980} height={72}>
+        <p className="text-center text-[22px] leading-[36px] text-[#202126]">
+          We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
         </p>
       </Box>
       <Box left={129} top={1297} width={1181} height={731}>
@@ -321,12 +324,15 @@ function CtaBand() {
       height={413}
       className="z-10 overflow-hidden rounded-[24px] text-white"
       style={{
-        background: "linear-gradient(100deg, #7c3aed 0%, #5b21d6 40%, #3b82f6 100%)",
+        background: "linear-gradient(100deg, #7f28f2 0%, #6c3cf4 36%, #3f86ff 100%)",
         backgroundImage: [
           "linear-gradient(135deg, rgba(1,16,37,0.72) 0%, transparent 42%)",
           "linear-gradient(315deg, rgba(139,68,255,0.55) 0%, transparent 38%)",
           "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
         ].join(", "),
+        backgroundPosition: "center, center, center",
+        backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+        backgroundSize: "cover, cover, cover",
       }}
     >
       <h2 className="absolute left-1/2 top-[107px] w-[607px] -translate-x-1/2 text-center text-[36px] font-extrabold leading-10">
@@ -461,12 +467,15 @@ function FitCta() {
         height={413}
         className="overflow-hidden rounded-[24px] text-white"
         style={{
-          background: "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
+          background: "linear-gradient(100deg, #7f28f2 0%, #6c3cf4 36%, #3f86ff 100%)",
           backgroundImage: [
             "linear-gradient(135deg, rgba(1,16,37,0.72) 0%, transparent 42%)",
             "linear-gradient(315deg, rgba(139,68,255,0.55) 0%, transparent 38%)",
             "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
           ].join(", "),
+        backgroundPosition: "center, center, center",
+        backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+        backgroundSize: "cover, cover, cover",
         }}
       >
         <div className="absolute left-[101px] top-[86px] w-[480px]">
@@ -604,6 +613,28 @@ function Blog() {
   );
 }
 
+function submitContactMessage(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+  const name = String(formData.get("name") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
+  const phone = String(formData.get("phone") ?? "").trim();
+  const message = String(formData.get("message") ?? "").trim();
+  const newsletter = formData.get("newsletter") === "yes" ? "Yes" : "No";
+  const subject = `Holovise website enquiry from ${name}`;
+  const body = [
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Phone: ${phone || "Not provided"}`,
+    `Newsletter signup: ${newsletter}`,
+    "",
+    message,
+  ].join("\n");
+
+  window.location.href = `mailto:support@holovise.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 function Contact() {
   return (
     <Box left={130} top={10368} width={1180} height={627} className="text-[#141824]" id="contact">
@@ -628,31 +659,56 @@ function Contact() {
           </div>
         ))}
       </div>
-      <form className="absolute left-[610px] top-0 h-[627px] w-[570px] rounded-[8px] bg-white p-[30px] shadow-sm">
-        <label className="text-[15px] text-[#141824]">*Name:</label>
-        <input className="mt-2 h-[56px] w-[510px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none placeholder:text-[#9aa1b5]" placeholder="" />
+      <form onSubmit={submitContactMessage} className="absolute left-[610px] top-0 h-[627px] w-[570px] rounded-[8px] bg-white p-[30px] shadow-sm">
+        <label htmlFor="light-contact-name" className="text-[15px] text-[#141824]">*Name:</label>
+        <input
+          id="light-contact-name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+          className="mt-2 h-[56px] w-[510px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none placeholder:text-[#9aa1b5]"
+        />
         <div className="mt-4 flex gap-[10px]">
           <div className="w-[250px]">
-            <label className="text-[15px] text-[#141824]">*Email:</label>
-            <input className="mt-2 h-[56px] w-[250px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none" />
+            <label htmlFor="light-contact-email" className="text-[15px] text-[#141824]">*Email:</label>
+            <input
+              id="light-contact-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="mt-2 h-[56px] w-[250px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none"
+            />
           </div>
           <div className="w-[250px]">
-            <label className="text-[15px] text-[#141824]">Phone:</label>
-            <input className="mt-2 h-[56px] w-[250px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none" />
+            <label htmlFor="light-contact-phone" className="text-[15px] text-[#141824]">Phone:</label>
+            <input
+              id="light-contact-phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              className="mt-2 h-[56px] w-[250px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none"
+            />
           </div>
         </div>
-        <label className="mt-4 block text-[15px] text-[#141824]">*Message:</label>
-        <textarea className="mt-2 h-[135px] w-[510px] resize-none rounded-[6px] border border-transparent bg-[#e7e9f4] p-5 text-[#141824] outline-none" />
+        <label htmlFor="light-contact-message" className="mt-4 block text-[15px] text-[#141824]">*Message:</label>
+        <textarea
+          id="light-contact-message"
+          name="message"
+          required
+          className="mt-2 h-[135px] w-[510px] resize-none rounded-[6px] border border-transparent bg-[#e7e9f4] p-5 text-[#141824] outline-none"
+        />
         <label className="mt-4 flex items-center gap-2 text-[14px] font-bold leading-5 text-[#141824] cursor-pointer">
           <input
-            type="radio"
+            type="checkbox"
             name="newsletter"
             value="yes"
             className="h-[22px] w-[22px] rounded-full border border-[#141824]/25 bg-transparent accent-[#3871f2]"
           />
           Sign me up for the newsletter
         </label>
-        <button type="button" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold text-white">
+        <button type="submit" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold text-white">
           Send Message!
         </button>
         <p className="mt-6 text-[13px] leading-5 text-[#8089a0]">Praesent in mauris eu tortor porttitor accumsan aliquam ornare wisi eu metus. Lorem ipsum dolor tortor porttitor accumsan aliquam.</p>
@@ -722,3 +778,4 @@ export function LightHomepage() {
     </main>
   );
 }
+   

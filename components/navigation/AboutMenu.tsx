@@ -25,10 +25,37 @@ export const aboutMenuItems = [
   },
 ] as const;
 
-export function AboutMenuPanel({ className = "" }: { className?: string }) {
+type MenuTheme = "dark" | "light";
+
+export function AboutMenuPanel({
+  className = "",
+  theme,
+}: {
+  className?: string;
+  theme?: MenuTheme;
+}) {
+  const panelColors =
+    theme === "light"
+      ? "bg-[#eaf0fe] text-[#212121]"
+      : theme === "dark"
+        ? "bg-[#080d19] text-white"
+        : "bg-[#eaf0fe] text-[#212121] dark:bg-[#080d19] dark:text-white";
+  const titleColors =
+    theme === "light"
+      ? "text-[#3871f2]"
+      : theme === "dark"
+        ? "text-white"
+        : "text-[#3871f2] dark:text-white";
+  const descriptionColors =
+    theme === "light"
+      ? "text-[#777]"
+      : theme === "dark"
+        ? "text-white/50"
+        : "text-[#777] dark:text-white/50";
+
   return (
     <div
-      className={`grid h-[386px] w-[1055px] grid-cols-[300px_300px_300px] gap-x-[38px] rounded-b-[30px] bg-[#eaf0fe] px-[39px] py-[41px] text-left text-[#212121] dark:bg-[#080d19] dark:text-white ${className}`}
+      className={`grid h-[386px] w-[1055px] grid-cols-[300px_300px_300px] gap-x-[38px] rounded-b-[30px] px-[39px] py-[41px] text-left ${panelColors} ${className}`}
     >
       {aboutMenuItems.map((item) => (
         <Link
@@ -50,10 +77,10 @@ export function AboutMenuPanel({ className = "" }: { className?: string }) {
               className="h-[150px] w-[280px] rounded-[8px] object-cover object-top"
             />
             <span className="mt-5 block">
-              <span className="block text-[18px] font-semibold leading-6 text-[#3871f2] transition-colors group-hover/item:text-[#8b44ff] group-focus-visible/item:text-[#8b44ff] dark:text-white">
+              <span className={`block text-[18px] font-semibold leading-6 transition-colors group-hover/item:text-[#8b44ff] group-focus-visible/item:text-[#8b44ff] ${titleColors}`}>
                 {item.title}
               </span>
-              <span className="mt-[6px] block text-[14px] leading-5 text-[#777] dark:text-white/50">
+              <span className={`mt-[6px] block text-[14px] leading-5 ${descriptionColors}`}>
                 {item.description}
               </span>
             </span>
@@ -64,7 +91,7 @@ export function AboutMenuPanel({ className = "" }: { className?: string }) {
   );
 }
 
-export function FigmaAboutDropdown() {
+export function FigmaAboutDropdown({ theme }: { theme?: MenuTheme }) {
   return (
     <div className="group absolute left-[521px] top-[70px] z-[60] h-[70px] w-[116px]">
       <Link
@@ -78,7 +105,7 @@ export function FigmaAboutDropdown() {
         <span className="h-0 w-0 border-x-[5px] border-b-[7px] border-x-transparent border-b-current" />
       </Link>
       <div className="pointer-events-none invisible absolute left-[-329px] top-[70px] opacity-0 transition-opacity duration-300 ease-out group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
-        <AboutMenuPanel />
+        <AboutMenuPanel theme={theme} />
       </div>
     </div>
   );

@@ -1,0 +1,44 @@
+
+> holovise_v1@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://169.254.232.14:3000
+✓ Ready in 970ms
+Creating turbopack project { dir: 'D:\\Holovise\\holovise_v1', testMode: true }
+
+○ Compiling /services/desktop-app-development ...
+ GET /services/desktop-app-development 200 in 7.3s (next.js: 6.6s, application-code: 641ms)
+ GET /services/desktop-app-development 200 in 208ms (next.js: 6ms, application-code: 201ms)
+ GET /services/desktop-app-development 200 in 120ms (next.js: 6ms, application-code: 114ms)
+ GET /services/ai-ml-development 200 in 718ms (next.js: 656ms, application-code: 63ms)
+✓ Compiled in 2.3s
+ GET /services/ai-ml-development 200 in 385ms (next.js: 133ms, application-code: 252ms)
+ GET /services/ai-ml-development 200 in 178ms (next.js: 8ms, application-code: 170ms)
+ GET /services/ai-ml-development 200 in 116ms (next.js: 7ms, application-code: 109ms)
+ GET /services/ai-ml-development 200 in 123ms (next.js: 46ms, application-code: 77ms)
+ GET /services/desktop-app-development 200 in 421ms (next.js: 99ms, application-code: 322ms)
+ GET /services/desktop-app-development 200 in 50ms (next.js: 6ms, application-code: 44ms)
+ GET /services/desktop-app-development 200 in 48ms (next.js: 3ms, application-code: 45ms)
+✓ Compiled in 434ms
+ GET /services/desktop-app-development 200 in 346ms (next.js: 160ms, application-code: 186ms)
+ GET /services/desktop-app-development 200 in 86ms (next.js: 8ms, application-code: 79ms)
+ GET /services/desktop-app-development 200 in 135ms (next.js: 5ms, application-code: 131ms)
+ GET /services/desktop-app-development 200 in 78ms (next.js: 7ms, application-code: 71ms)
+✓ Compiled in 450ms
+ GET /services/desktop-app-development 200 in 346ms (next.js: 248ms, application-code: 98ms)
+ GET /services/desktop-app-development 200 in 236ms (next.js: 3ms, application-code: 232ms)
+ GET /services/desktop-app-development 200 in 205ms (next.js: 5ms, application-code: 199ms)
+ GET /services/desktop-app-development 200 in 139ms (next.js: 4ms, application-code: 135ms)
+ GET /services/desktop-app-development 200 in 128ms (next.js: 4ms, application-code: 123ms)
+✓ Compiled in 417ms
+ GET /services/desktop-app-development 200 in 392ms (next.js: 182ms, application-code: 210ms)
+ GET /services/desktop-app-development 200 in 91ms (next.js: 7ms, application-code: 84ms)
+ GET /contact-us 200 in 682ms (next.js: 573ms, application-code: 109ms)
+ GET /contact-us 200 in 126ms (next.js: 11ms, application-code: 115ms)
+ GET /contact-us 200 in 76ms (next.js: 9ms, application-code: 67ms)
+ GET /contact-us 200 in 79ms (next.js: 36ms, application-code: 42ms)
+ GET /services/ai-ml-development 200 in 196ms (next.js: 84ms, application-code: 112ms)
+ GET /services/ai-ml-development 200 in 97ms (next.js: 5ms, application-code: 92ms)
+ GET /services/desktop-app-development 200 in 260ms (next.js: 5ms, application-code: 255ms)
