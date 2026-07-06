@@ -65,6 +65,27 @@ export function ThemeAwareStaticFigmaPage({
     needsGeneratedLightSurface && !disableGeneratedLightFilter
       ? { filter: "invert(1) hue-rotate(180deg)" }
       : undefined;
+  const lightFrameIncludesGetStarted =
+    pageAsset.includes("/blockchain-development/") ||
+    pageAsset.includes("/no-code-development/") ||
+    pageAsset.includes("/product-strategy-consulting/") ||
+    pageAsset.includes("/software-development-outsourcing/");
+  const hasCustomWhoWeAreRail =
+    pathname === "/about/who-we-are" || pathname === "/who-we-are";
+  const shouldGenerateLightRail =
+    wantsLightTheme &&
+    usesLightAsset &&
+    pageHeight > 2000 &&
+    pathname !== "/contact-us" &&
+    pathname !== "/contact" &&
+    !lightFrameIncludesGetStarted &&
+    !hasCustomWhoWeAreRail;
+  const generatedRailTop =
+    pathname === "/portfolio" ||
+    pathname === "/our-portfolio" ||
+    pathname === "/about"
+      ? 403
+      : 203;
   const shouldRenderContactForm =
     !disableAutoContactForm && (pageHeight > 4000 || contactFormTop !== undefined);
   const activeContactFormTop = usesLightAsset
@@ -81,6 +102,25 @@ export function ThemeAwareStaticFigmaPage({
           style={pageImageFilter}
           draggable={false}
         />
+        {shouldGenerateLightRail ? (
+          <Link
+            href="/contact-us"
+            prefetch={false}
+            aria-label="Get Started"
+            className="absolute left-[1390px] z-[70] flex h-[200px] w-[50px] flex-col items-center rounded-l-[8px] bg-[#3871f2] pt-[17px] text-white shadow-[0_8px_24px_rgba(8,13,25,0.24)] hover:bg-[#285fda] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            style={{ top: generatedRailTop }}
+          >
+            <span aria-hidden="true" className="h-[24px] text-[18px] leading-[24px]">
+              🚀
+            </span>
+            <span
+              className="mt-[16px] whitespace-nowrap text-[16px] font-bold leading-[20px]"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              Get Started
+            </span>
+          </Link>
+        ) : null}
         {pageLinks.map((link) => (
           <Link
             key={`${link.href}-${link.left}-${link.top}`}

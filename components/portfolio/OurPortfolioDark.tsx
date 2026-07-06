@@ -21,7 +21,7 @@ export function OurPortfolioDark() {
         ...commonFrameLinks(6315).filter((link) => link.label !== "Get Started"),
         { href: "/", label: "Home breadcrumb", left: 579, top: 295, width: 95, height: 22 },
         { href: "/contact-us", label: "Schedule a Free Call", left: 583, top: 3023, width: 272, height: 60 },
-        { href: "/contact-us", label: "Get Started", left: 1390, top: 603, width: 50, height: 200 },
+        { href: "/contact-us", label: "Get Started", left: 1390, top: 403, width: 50, height: 200 },
         {
           href: "/blog/2025-tools-to-create-real-performing-tokens",
           label: "Read 2025 Tools to Create Real-Performing Tokens",
@@ -37,7 +37,7 @@ export function OurPortfolioDark() {
         ...commonFrameLinks(6163).filter((link) => link.label !== "Get Started"),
         { href: "/", label: "Home breadcrumb", left: 612, top: 295, width: 109, height: 22 },
         { href: "/contact-us", label: "Schedule a Free Call", left: 583, top: 2806, width: 272, height: 60 },
-        { href: "/contact-us", label: "Get Started", left: 1390, top: 603, width: 50, height: 200 },
+        { href: "/contact-us", label: "Get Started", left: 1390, top: 403, width: 50, height: 200 },
         {
           href: "/blog/2025-tools-to-create-real-performing-tokens",
           label: "Read 2025 Tools to Create Real-Performing Tokens",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
 import { FigmaContactForm } from "@/components/forms/FigmaContactForm";
+import { WhoWeArePortfolioCarousel } from "@/components/about/WhoWeArePortfolioCarousel";
 
 const frameAsset = "/assets/who-we-are/dark/who-we-are-frame.png";
 
@@ -123,6 +124,7 @@ export function WhoWeAreDark() {
       ]}
     >
       <WhoWeAreMotion />
+      <WhoWeArePortfolioCarousel />
       <Link
         href="/contact-us"
         prefetch={false}
