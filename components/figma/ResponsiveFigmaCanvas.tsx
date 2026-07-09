@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useViewportWidth } from "@/components/hooks/useViewportWidth";
 
 type ResponsiveFigmaCanvasProps = {
   height: number;
@@ -16,23 +15,21 @@ export function ResponsiveFigmaCanvas({
   nodeId,
   children,
 }: ResponsiveFigmaCanvasProps) {
-  const viewportWidth = useViewportWidth();
-  const scale = viewportWidth / 1440;
-
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: height * scale, background }}
+      style={{
+        height: `calc(${height}px * (100vw / 1440))`,
+        background,
+      }}
       data-responsive-canvas
-      data-canvas-scale={scale}
     >
       <div
         className="relative w-[1440px] origin-top-left overflow-hidden"
         style={{
           height,
           background,
-          transform: `scale(${scale})`,
-          willChange: "transform",
+          transform: "scale(calc(100vw / 1440))",
         }}
         data-figma-node={nodeId}
       >
