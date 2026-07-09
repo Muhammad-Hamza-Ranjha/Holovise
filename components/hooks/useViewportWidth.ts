@@ -13,7 +13,12 @@ function subscribe(onStoreChange: () => void) {
 }
 
 function getSnapshot() {
-  return document.documentElement.clientWidth || 1440;
+  return Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0,
+    Math.floor(window.visualViewport?.width ?? 0),
+    1,
+  );
 }
 
 function getServerSnapshot() {
