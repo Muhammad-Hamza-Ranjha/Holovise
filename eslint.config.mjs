@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    ".chrome-audit/**",
+    ".chrome-audit-2/**",
+    ".edge-audit/**",
+    ".tmp/**",
   ]),
 ]);
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const photos = [
@@ -32,9 +33,12 @@ export function GalleryPhotos() {
           className="group absolute z-10 h-[375px] overflow-hidden rounded-[30px]"
           style={{ left, top, width }}
         >
-          <img
+          <Image
             src={`/assets/gallery/dark/${file}`}
             alt=""
+            width={width}
+            height={375}
+            sizes={`${width}px`}
             aria-hidden="true"
             draggable={false}
             className="h-full w-full select-none object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]"

@@ -1,10 +1,5 @@
 import { commonFrameLinks, StaticFigmaPage, type StaticFrameLink } from "@/components/figma/StaticFigmaPage";
-import { ServicePrototypeInteractions } from "@/components/services/ServicePrototypeInteractions";
-import { MobileAppInteractions } from "@/components/services/MobileAppInteractions";
-import { ServiceCapacityInteractions } from "@/components/services/ServiceCapacityInteractions";
-import { WebAppInteractions } from "@/components/services/WebAppInteractions";
-import { DesktopBenefitsCarousel } from "@/components/services/DesktopBenefitsCarousel";
-import { DesktopIndustryTabs } from "@/components/services/DesktopIndustryTabs";
+import { ServiceInteractionLayers } from "@/components/services/ServiceInteractionLayers";
 
 export const serviceDetailFrames = {
   "mobile-app-development": {
@@ -541,17 +536,7 @@ export function ServiceDetailFrame({ slug }: { slug: ServiceDetailSlug }) {
       lightLinks={lightHeight ? sharedPageLinks(lightHeight, "light") : undefined}
       renderChildrenInLight
     >
-      <div className="hidden dark:block">
-        <ServicePrototypeInteractions slug={slug} />
-      </div>
-      <div className="block dark:hidden [filter:invert(1)_hue-rotate(180deg)]">
-        <ServicePrototypeInteractions slug={slug} />
-      </div>
-      {slug === "mobile-app-development" ? <MobileAppInteractions /> : null}
-      {slug === "web-app-development" ? <WebAppInteractions /> : null}
-      {slug === "desktop-app-development" ? <DesktopBenefitsCarousel /> : null}
-      {slug === "desktop-app-development" ? <DesktopIndustryTabs /> : null}
-      <ServiceCapacityInteractions slug={slug} />
+      <ServiceInteractionLayers slug={slug} />
     </StaticFigmaPage>
   );
 }

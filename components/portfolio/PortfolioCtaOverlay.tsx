@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
 
 const ctaBackground = "/assets/portfolio/dark/mask-group-2.svg";
 
-function CtaContent({
+const CtaContent = memo(function CtaContent({
   buttonLeft,
   buttonTop,
   descriptionTop,
@@ -39,24 +41,28 @@ function CtaContent({
       </Link>
     </>
   );
-}
+});
 
-function CtaBand({ left, top }: { left: number; top: number }) {
+const CtaBand = memo(function CtaBand({ left, top }: { left: number; top: number }) {
   return (
     <div
       aria-hidden="true"
       className="absolute z-10 h-[413px] w-[1181px] overflow-hidden rounded-[30px]"
       style={{ left, top }}
     >
-      <img
+      <Image
         src={ctaBackground}
         alt=""
+        width={1181}
+        height={715}
+        sizes="1181px"
+        unoptimized
         draggable={false}
         className="pointer-events-none absolute left-0 top-[-168px] h-[715px] w-[1181px] max-w-none select-none"
       />
     </div>
   );
-}
+});
 
 export function PortfolioCtaOverlay() {
   return (
@@ -75,9 +81,12 @@ export function PortfolioCtaOverlay() {
           buttonTop={1684}
         />
         <div className="pointer-events-auto absolute left-[757px] top-[1351px] z-20 h-[448px] w-[448px] animate-[portfolio-art-float_4s_ease-in-out_infinite]">
-          <img
+          <Image
             src="/assets/portfolio/dark/idea-3d.png"
             alt=""
+            width={448}
+            height={448}
+            sizes="448px"
             draggable={false}
             className="h-full w-full select-none object-contain transition-transform duration-300 ease-out group-hover/portfolio-cta:scale-[1.04]"
           />
@@ -99,9 +108,12 @@ export function PortfolioCtaOverlay() {
         />
         <div className="pointer-events-auto absolute left-[710px] top-[1345px] z-20 h-[650px] w-[641px] animate-[portfolio-art-float_4s_ease-in-out_infinite]">
           <div className="h-full w-full scale-x-[-1] overflow-hidden transition-transform duration-300 ease-out group-hover/portfolio-cta:scale-x-[-1.04] group-hover/portfolio-cta:scale-y-[1.04]">
-            <img
+            <Image
               src="/assets/portfolio/shared/portfolio-cta-coins.png"
               alt=""
+              width={1216}
+              height={650}
+              sizes="641px"
               draggable={false}
               className="h-[650px] w-[1216px] max-w-none select-none"
             />

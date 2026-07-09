@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { memo } from "react";
+
 type LightImageRestoreProps = {
   src: string;
   alt: string;
@@ -8,7 +11,7 @@ type LightImageRestoreProps = {
   radius?: number;
 };
 
-export function LightImageRestore({
+function LightImageRestoreComponent({
   src,
   alt,
   left,
@@ -18,9 +21,12 @@ export function LightImageRestore({
   radius = 30,
 }: LightImageRestoreProps) {
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
+      width={width}
+      height={height}
+      sizes={`${width}px`}
       className="pointer-events-none absolute z-10 object-cover dark:hidden"
       style={{
         left,
@@ -33,3 +39,5 @@ export function LightImageRestore({
     />
   );
 }
+
+export const LightImageRestore = memo(LightImageRestoreComponent);

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
 import { FigmaContactForm } from "@/components/forms/FigmaContactForm";
@@ -16,16 +17,22 @@ function WhoWeAreMotion() {
 
   return (
     <>
-      <img
+      <Image
         src="/assets/who-we-are/dark/chart-1.png"
         alt=""
+        width={626}
+        height={626}
+        sizes="626px"
         aria-hidden="true"
         className="pointer-events-none absolute left-[910px] top-[406px] z-30 h-[626px] w-[626px] origin-center animate-[figma-object-breathe_5.5s_ease-in-out_infinite] object-contain motion-reduce:animate-none"
       />
       <div className="pointer-events-none absolute inset-0 z-30 hidden dark:block">
-        <img
+        <Image
           src="/assets/who-we-are/dark/message-3d.png"
           alt=""
+          width={448}
+          height={448}
+          sizes="448px"
           aria-hidden="true"
           className="absolute left-[844px] top-[2696px] h-[448px] w-[448px] origin-center animate-[figma-object-breathe_4.5s_ease-in-out_infinite] object-contain motion-reduce:animate-none"
         />
@@ -35,9 +42,12 @@ function WhoWeAreMotion() {
             className="absolute h-[75px] w-[75px] bg-[#080d19]"
             style={{ left, top }}
           >
-            <img
+            <Image
               src={`/assets/who-we-are/dark/${src}`}
               alt=""
+              fill
+              sizes="75px"
+              unoptimized
               aria-hidden="true"
               className="h-full w-full object-contain"
             />
@@ -47,9 +57,12 @@ function WhoWeAreMotion() {
       <div className="pointer-events-none absolute inset-0 z-30 block dark:hidden">
         <div className="absolute left-[710px] top-[2663px] h-[650px] w-[641px] origin-center animate-[figma-object-breathe_4.5s_ease-in-out_infinite] motion-reduce:animate-none">
           <div className="h-full w-full scale-x-[-1] overflow-hidden">
-            <img
+            <Image
               src="/assets/portfolio/shared/portfolio-cta-coins.png"
               alt=""
+              width={1216}
+              height={650}
+              sizes="641px"
               aria-hidden="true"
               className="h-[650px] w-[1216px] max-w-none select-none"
             />

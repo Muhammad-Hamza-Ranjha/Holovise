@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -95,10 +96,13 @@ export function ThemeAwareStaticFigmaPage({
   return (
     <main className="min-h-screen overflow-x-hidden font-sans" style={{ background }}>
       <ResponsiveFigmaCanvas height={pageHeight} background={background} nodeId={pageNodeId}>
-        <img
+        <Image
           src={pageAsset}
           alt={alt}
-          className="absolute inset-0 h-full w-full select-none object-fill"
+          fill
+          sizes="100vw"
+          quality={85}
+          className="select-none object-fill"
           style={pageImageFilter}
           draggable={false}
         />
