@@ -1,11 +1,9 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function SideDrawerControls() {
-  const router = useRouter();
-
   function sendEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -18,10 +16,10 @@ export function SideDrawerControls() {
 
   return (
     <>
-      <button
-        type="button"
+      <Link
+        href="/"
+        prefetch={false}
         aria-label="Close menu"
-        onClick={() => router.back()}
         className="absolute left-[1346px] top-[32px] z-40 h-[36px] w-[36px] cursor-pointer bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
       />
       <form

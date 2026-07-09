@@ -1,11 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    sri: {
-      algorithm: "sha256",
-    },
-  },
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],

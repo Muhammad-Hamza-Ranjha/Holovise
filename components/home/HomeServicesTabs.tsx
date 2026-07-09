@@ -127,7 +127,6 @@ export function HomeServicesTabs({
   theme?: "dark" | "light";
 }) {
   const [active, setActive] = useState<ServiceGroup>("development");
-  const services = serviceGroups[active];
   const light = theme === "light";
   const tabMotion = light ? lightTabMotion : darkTabMotion;
   const arrowAsset = light
@@ -135,7 +134,12 @@ export function HomeServicesTabs({
     : "/assets/homepage/dark/services-arrow-down-right.svg";
 
   return (
-    <div className={`relative h-[731px] w-[1181px] ${coverBackground ? (light ? "bg-[#eaf0fe]" : "bg-[#080d19]") : ""}`}>
+    <div
+      className={`relative h-[731px] w-[1181px] ${coverBackground ? (light ? "bg-[#eaf0fe]" : "bg-[#080d19]") : ""}`}
+      data-home-services-tabs
+      data-active-tab={active}
+      data-services-theme={theme}
+    >
       <div
         className={`absolute left-[263px] top-0 z-10 h-[65px] w-[655px] overflow-hidden rounded-[30px] shadow-[inset_0_0_0_1.5px_#253050] ${
           light ? "bg-[#f5f8ff]" : "bg-[#111729]"
@@ -145,6 +149,7 @@ export function HomeServicesTabs({
       >
         <span
           aria-hidden="true"
+          data-service-pill
           className="absolute top-[9px] h-[47px] rounded-full bg-[#3871f2] transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
           style={tabMotion[active].pill}
         />
@@ -155,6 +160,7 @@ export function HomeServicesTabs({
             <button
               key={tab.key}
               type="button"
+              data-service-tab={tab.key}
               role="tab"
               aria-selected={selected}
               aria-controls={`home-services-panel-${theme}`}
@@ -170,49 +176,58 @@ export function HomeServicesTabs({
         })}
       </div>
 
-      <div
-        key={active}
-        id={`home-services-panel-${theme}`}
-        role="tabpanel"
-        className="pointer-events-none absolute inset-0 animate-[figma-state-in_300ms_ease-out]"
-      >
-        {services.map(([title, icon, href, compact], index) => {
-          const column = index % 4;
-          const row = Math.floor(index / 4);
+      {tabs.map((tab) => {
+        const tabServices = serviceGroups[tab.key];
+        const visible = active === tab.key;
 
-          return (
-            <Link
-              key={title}
-              href={href}
-              prefetch={false}
-              className={`group pointer-events-auto absolute h-[187px] w-[275px] overflow-hidden rounded-[15px] border-b transition-colors duration-300 ease-out hover:bg-[#3871f2] hover:text-white focus-visible:bg-[#3871f2] focus-visible:text-white focus-visible:outline-none ${
-                light ? "border-[#9aa4b2] text-[#222]" : "border-[#646464] text-white"
-              }`}
-              style={{ left: column * 302, top: 132 + row * 206 }}
-            >
-              <span className="absolute left-[31px] top-[28px]">
-                <ServiceIcon name={icon} light={light} />
-              </span>
-              <Image
-                src={arrowAsset}
-                alt=""
-                width={29}
-                height={29}
-                className={`absolute left-[234px] top-[13px] h-[29px] w-[29px] rotate-180 scale-x-[-1] opacity-50 transition-[filter,opacity] duration-300 group-hover:opacity-100 ${
-                  light ? "group-hover:brightness-0 group-hover:invert" : ""
-                }`}
-              />
-              <h3
-                className={`absolute left-[31px] top-[100px] w-[229px] tracking-[-0.1px] ${
-                  compact ? "text-[20px] font-semibold leading-[27px]" : "text-[22px] font-bold leading-[30px]"
-                }`}
-              >
-                {title}
-              </h3>
-            </Link>
-          );
-        })}
-      </div>
+        return (
+          <div
+            key={tab.key}
+            id={`home-services-panel-${theme}-${tab.key}`}
+            role="tabpanel"
+            data-service-panel={tab.key}
+            className={`pointer-events-none absolute inset-0 animate-[figma-state-in_300ms_ease-out] ${visible ? "" : "hidden"}`}
+            aria-hidden={!visible}
+          >
+            {tabServices.map(([title, icon, href, compact], index) => {
+              const column = index % 4;
+              const row = Math.floor(index / 4);
+
+              return (
+                <Link
+                  key={title}
+                  href={href}
+                  prefetch={false}
+                  className={`group pointer-events-auto absolute h-[187px] w-[275px] overflow-hidden rounded-[15px] border-b transition-colors duration-300 ease-out hover:bg-[#3871f2] hover:text-white focus-visible:bg-[#3871f2] focus-visible:text-white focus-visible:outline-none ${
+                    light ? "border-[#9aa4b2] text-[#222]" : "border-[#646464] text-white"
+                  }`}
+                  style={{ left: column * 302, top: 132 + row * 206 }}
+                >
+                  <span className="absolute left-[31px] top-[28px]">
+                    <ServiceIcon name={icon} light={light} />
+                  </span>
+                  <Image
+                    src={arrowAsset}
+                    alt=""
+                    width={29}
+                    height={29}
+                    className={`absolute left-[234px] top-[13px] h-[29px] w-[29px] rotate-180 scale-x-[-1] opacity-50 transition-[filter,opacity] duration-300 group-hover:opacity-100 ${
+                      light ? "group-hover:brightness-0 group-hover:invert" : ""
+                    }`}
+                  />
+                  <h3
+                    className={`absolute left-[31px] top-[100px] w-[229px] tracking-[-0.1px] ${
+                      compact ? "text-[20px] font-semibold leading-[27px]" : "text-[22px] font-bold leading-[30px]"
+                    }`}
+                  >
+                    {title}
+                  </h3>
+                </Link>
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 }

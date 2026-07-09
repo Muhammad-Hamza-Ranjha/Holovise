@@ -12,6 +12,7 @@ export function ThemeToggleButton({ className = "" }: { className?: string }) {
   return (
     <button
       type="button"
+      data-theme-toggle
       aria-label={`Switch to ${isLight ? "dark" : "light"} theme`}
       onClick={() => setTheme(isLight ? "dark" : "light")}
       className={`cursor-pointer bg-transparent ${className}`}
