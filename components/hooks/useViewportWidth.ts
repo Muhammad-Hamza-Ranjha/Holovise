@@ -1,30 +1,36 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
-function subscribe(onStoreChange: () => void) {
-  window.addEventListener("resize", onStoreChange);
-  window.visualViewport?.addEventListener("resize", onStoreChange);
-
-  return () => {
-    window.removeEventListener("resize", onStoreChange);
-    window.visualViewport?.removeEventListener("resize", onStoreChange);
-  };
-}
-
-function getSnapshot() {
+function measureViewportWidth() {
   return Math.max(
     document.documentElement.clientWidth || 0,
     window.innerWidth || 0,
     Math.floor(window.visualViewport?.width ?? 0),
+    window.screen?.width || 0,
     1,
   );
 }
 
-function getServerSnapshot() {
-  return 1440;
-}
-
 export function useViewportWidth() {
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const [viewportWidth, setViewportWidth] = useState(1440);
+
+  useEffect(() => {
+    function updateViewportWidth() {
+      setViewportWidth(measureViewportWidth());
+    }
+
+    updateViewportWidth();
+    window.addEventListener("resize", updateViewportWidth);
+    window.addEventListener("orientationchange", updateViewportWidth);
+    window.visualViewport?.addEventListener("resize", updateViewportWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateViewportWidth);
+      window.removeEventListener("orientationchange", updateViewportWidth);
+      window.visualViewport?.removeEventListener("resize", updateViewportWidth);
+    };
+  }, []);
+
+  return viewportWidth;
 }
