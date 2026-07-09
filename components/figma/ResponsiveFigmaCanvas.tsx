@@ -21,7 +21,7 @@ export function ResponsiveFigmaCanvas({
 
   return (
     <div
-      className="relative w-full overflow-hidden"
+      className="figma-responsive-canvas relative w-full overflow-hidden"
       style={{
         height: height * scale,
         background,
@@ -30,7 +30,7 @@ export function ResponsiveFigmaCanvas({
       data-canvas-scale={scale}
     >
       <div
-        className="relative w-[1440px] origin-top-left overflow-hidden"
+        className="figma-responsive-stage relative w-[1440px] origin-top-left overflow-hidden"
         style={{
           height,
           background,
