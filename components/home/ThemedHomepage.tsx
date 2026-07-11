@@ -1,11 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 import { useMounted } from "@/components/hooks/useMounted";
 import { useViewportWidth } from "@/components/hooks/useViewportWidth";
-import { DarkHomepage } from "@/components/home/DarkHomepage";
-import { LightHomepage } from "@/components/home/LightHomepage";
-import { MobileHomepage } from "@/components/home/MobileHomepage";
+
+const DarkHomepage = dynamic(() =>
+  import("@/components/home/DarkHomepage").then((module) => module.DarkHomepage),
+);
+const LightHomepage = dynamic(() =>
+  import("@/components/home/LightHomepage").then((module) => module.LightHomepage),
+);
+const MobileHomepage = dynamic(() =>
+  import("@/components/home/MobileHomepage").then((module) => module.MobileHomepage),
+);
 
 export function ThemedHomepage() {
   const { theme, resolvedTheme } = useTheme();

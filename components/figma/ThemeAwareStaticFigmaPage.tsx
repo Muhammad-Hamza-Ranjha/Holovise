@@ -102,6 +102,8 @@ export function ThemeAwareStaticFigmaPage({
           fill
           sizes="100vw"
           quality={85}
+          priority
+          fetchPriority="high"
           className="select-none object-fill"
           style={pageImageFilter}
           draggable={false}

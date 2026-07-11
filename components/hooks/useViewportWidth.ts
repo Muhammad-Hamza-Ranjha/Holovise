@@ -13,7 +13,7 @@ function measureViewportWidth() {
 }
 
 export function useViewportWidth() {
-  const [viewportWidth, setViewportWidth] = useState(1920);
+  const [viewportWidth, setViewportWidth] = useState(1440);
 
   useEffect(() => {
     function updateViewportWidth() {

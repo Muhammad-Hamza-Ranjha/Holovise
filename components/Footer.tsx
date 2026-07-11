@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Mail } from "lucide-react";
 import { FacebookIcon, InstagramIcon, LinkedinIcon, TwitterIcon } from "./SocialIcons";
+import { socialLinks } from "./config/socialLinks";
 
 const columns = [
   {
@@ -57,7 +58,23 @@ export function Footer() {
         <div className="flex flex-col items-center gap-8 pb-24 text-center">
           <Image src="/assets/holovise-logo.png" alt="Holovise" width={299} height={66} />
           <p className="text-sm uppercase tracking-[0.22em] text-white/55">Follow us</p>
-          <div className="flex gap-7"><InstagramIcon /><LinkedinIcon /><TwitterIcon /><Mail /><FacebookIcon /></div>
+          <div className="flex flex-wrap justify-center gap-7">
+            <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Open Holovise on Instagram">
+              <InstagramIcon />
+            </a>
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Open Holovise on LinkedIn">
+              <LinkedinIcon />
+            </a>
+            <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Open Holovise on X">
+              <TwitterIcon />
+            </a>
+            <Link href="/contact-us" aria-label="Contact Holovise by email">
+              <Mail />
+            </Link>
+            <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Open Holovise on Facebook">
+              <FacebookIcon />
+            </a>
+          </div>
         </div>
         <div className="grid gap-10 border-y border-white/10 py-14 md:grid-cols-2 lg:grid-cols-4">
           {columns.map((col) => (
@@ -71,7 +88,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col justify-between gap-4 pt-9 text-sm text-white/62 md:flex-row">
           <p>© 2024 all rights reserved by Holovise.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <Link href="/">Sitemap</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/cookie-consent">Cookies</Link>

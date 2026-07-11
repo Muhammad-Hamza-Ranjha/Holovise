@@ -53,9 +53,9 @@ const processSteps = [
 ];
 
 const blogCards = [
-  ["blog-image-element-1.jpg", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
-  ["blog-image-element-2.jpg", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
-  ["blog-image-element-3.jpg", "Understanding MVP: Why startups might matter with the right MVP", "AI Systems"],
+  ["blog-image-element-1.webp", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
+  ["blog-image-element-2.webp", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
+  ["blog-image-element-3.webp", "Understanding MVP: Why startups might matter with the right MVP", "AI Systems"],
 ];
 
 const footerColumns = [
@@ -110,11 +110,16 @@ function a(name: string) {
 }
 
 function Box({ left, top, width, height, id, className = "", style, children }: BoxProps) {
+  const deferredRenderStyle: CSSProperties =
+    top > 1200 && height !== undefined
+      ? { contentVisibility: "auto", containIntrinsicSize: `${height}px` }
+      : {};
+
   return (
     <div
       id={id}
       className={`absolute ${className}`}
-      style={{ left, top, width, ...(height === undefined ? {} : { height }), ...style }}
+      style={{ left, top, width, ...(height === undefined ? {} : { height }), ...deferredRenderStyle, ...style }}
     >
       {children}
     </div>
@@ -122,8 +127,17 @@ function Box({ left, top, width, height, id, className = "", style, children }: 
 }
 
 function Img({ name, alt = "", className = "", eager = false }: { name: string; alt?: string; className?: string; eager?: boolean }) {
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={a(name)} alt={alt} className={className} loading={eager ? "eager" : "lazy"} />;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={a(name)}
+      alt={alt}
+      className={className}
+      loading={eager ? "eager" : "lazy"}
+      decoding={eager ? "sync" : "async"}
+      fetchPriority={eager ? "high" : "low"}
+    />
+  );
 }
 
 function Button({
@@ -324,7 +338,7 @@ function Industries() {
         <div className="absolute left-[830px] top-[670px] h-[900px] w-[900px] rounded-full bg-[#8b44ff]/35 blur-[145px]" />
         <div className="absolute left-[-360px] top-[1110px] h-[900px] w-[900px] rounded-full bg-[#144ee3]/25 blur-[145px]" />
       </Box>
-      <Img name="chart-1.png" alt="Market chart" className="absolute left-[910px] top-[3089px] h-[626px] w-[626px] max-w-none object-contain" />
+      <Img name="chart-1.webp" alt="Market chart" className="absolute left-[910px] top-[3089px] h-[626px] w-[626px] max-w-none object-contain" />
       <Box left={130} top={3175} width={680} height={470} className="text-white">
         <Eyebrow className="text-left tracking-[7px]">Industries</Eyebrow>
         <h2 className="mt-[22px] w-[680px] text-[56px] font-extrabold leading-[58px]">
@@ -432,7 +446,7 @@ function FitCta() {
         <p className="mt-[14px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges & keep everything running smoothly.</p>
         <Button href="/contact-us" dark className="mt-[31px] w-[272px]">Book a Free Session!</Button>
       </div>
-      <Img name="dollar-rocket-3d.png" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain animate-float" />
+      <Img name="dollar-rocket-3d.webp" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain animate-float" />
     </Box>
   );
 } 
