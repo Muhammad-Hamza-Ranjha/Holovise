@@ -8,6 +8,7 @@ import { LanguageMenu } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
 import { HomeServicesTabs } from "@/components/home/HomeServicesTabs";
 import { ThemeToggleButton } from "@/components/navigation/ThemeToggleButton";
+import { socialLinks } from "@/components/config/socialLinks";
 
 const assetRoot = "/assets/homepage/light";
 
@@ -107,6 +108,21 @@ const footerColumns = [
   },
 ] as const;
 
+const topSocialLinks = [
+  { icon: "social-tw-1.svg", href: socialLinks.instagram, label: "Open Holovise on Instagram" },
+  { icon: "social-in.svg", href: socialLinks.linkedin, label: "Open Holovise on LinkedIn" },
+  { icon: "social-tw.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
+  { icon: "social-mail-1.svg", href: "/contact-us", label: "Contact Holovise by email" },
+  { icon: "social-fb-path-01.svg", href: socialLinks.twitter, label: "Open Holovise on X" },
+] as const;
+
+const footerSocialLinks = [
+  { icon: "footer-social-in.svg", href: socialLinks.linkedin, label: "Open Holovise on LinkedIn" },
+  { icon: "footer-social-tw.svg", href: socialLinks.twitter, label: "Open Holovise on X" },
+  { icon: "footer-social-mail-1.svg", href: "/contact-us", label: "Contact Holovise by email" },
+  { icon: "footer-social-fb-path-1.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
+] as const;
+
 function a(name: string) {
   return `${assetRoot}/${name}`;
 }
@@ -193,10 +209,18 @@ function Header() {
           <span>support@holovise.io</span>
         </div>
         <div className="absolute left-[1208px] top-[9px] flex gap-[16px] opacity-90">
-          {["social-tw-1.svg", "social-in.svg", "social-tw.svg", "social-mail-1.svg", "social-fb-path-01.svg"].map((icon) => (
-            <span key={icon} className="flex h-[22px] w-[22px] items-center justify-center">
+          {topSocialLinks.map(({ icon, href, label }) => (
+            <Link
+              key={icon}
+              href={href}
+              prefetch={false}
+              aria-label={label}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="flex h-[22px] w-[22px] items-center justify-center"
+            >
               <Img name={icon} className="max-h-[22px] max-w-[22px]" />
-            </span>
+            </Link>
           ))}
         </div>
       </Box>
@@ -264,7 +288,7 @@ function Hero() {
       <Header />
       <Box left={130} top={279} width={340} height={22} className="text-[18px] leading-[20px] text-white">
         <span>Welcome to the </span>
-        <span className="font-extrabold uppercase">
+        <span className="font-extrabold uppercase text-[#141824]">
           Holovise
         </span>
       </Box>
@@ -742,10 +766,18 @@ function Footer() {
       </div>
       <p className="absolute left-[435px] top-[460px] w-[570px] text-center text-[16px] leading-5 tracking-[8px] text-[#4b5565]">Follow us</p>
       <div className="absolute left-[585px] top-[508px] flex h-8 gap-[27px]">
-        {["footer-social-in.svg", "footer-social-tw.svg", "footer-social-mail-1.svg", "footer-social-fb-path-1.svg"].map((icon) => (
-          <span key={icon} className="flex h-8 w-8 items-center justify-center">
+        {footerSocialLinks.map(({ icon, href, label }) => (
+          <Link
+            key={icon}
+            href={href}
+            prefetch={false}
+            aria-label={label}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="flex h-8 w-8 items-center justify-center"
+          >
             <Img name={icon} className="max-h-8 max-w-8" />
-          </span>
+          </Link>
         ))}
       </div>
       <div className="absolute left-[130px] top-[664px] grid w-[1180px] grid-cols-4 gap-[85px]">

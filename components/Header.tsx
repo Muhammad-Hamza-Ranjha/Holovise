@@ -30,6 +30,14 @@ export function Header() {
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted ? resolvedTheme !== "light" : true;
+  const toggleTheme = () => {
+    const nextTheme = isDark ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", nextTheme === "dark");
+    document.documentElement.classList.toggle("light", nextTheme === "light");
+    localStorage.setItem("theme", nextTheme);
+    setTheme(nextTheme);
+    window.dispatchEvent(new CustomEvent("holovise-theme-change", { detail: nextTheme }));
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur-xl dark:border-white/10 dark:bg-holo-night/88">
@@ -81,7 +89,7 @@ export function Header() {
           <div className="relative h-11 w-[86px]">
             <LanguageMenu className="absolute inset-0" />
           </div>
-          <button aria-label="Toggle theme" onClick={() => setTheme(isDark ? "light" : "dark")} className="grid size-11 place-items-center rounded-full border border-black/10 dark:border-white/15">
+          <button data-theme-toggle aria-label="Toggle theme" onClick={toggleTheme} className="grid size-11 place-items-center rounded-full border border-black/10 dark:border-white/15">
             {isDark ? <Moon size={22} /> : <Sun size={22} />}
           </button>
         </div>
@@ -174,7 +182,7 @@ export function Header() {
           </nav>
           <div className="mt-12 flex gap-3">
             <Button href="/contact-us">Get In Touch</Button>
-            <button onClick={() => setTheme(isDark ? "light" : "dark")} className="grid size-[60px] place-items-center rounded-full border border-white/20">{isDark ? <Moon /> : <Sun />}</button>
+            <button data-theme-toggle onClick={toggleTheme} className="grid size-[60px] place-items-center rounded-full border border-white/20">{isDark ? <Moon /> : <Sun />}</button>
           </div>
         </div>
       )}

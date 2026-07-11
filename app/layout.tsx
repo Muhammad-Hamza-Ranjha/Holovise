@@ -43,14 +43,6 @@ const hydrationFallbackScript = `
   };
 
   document.addEventListener('click', function (event) {
-    var themeToggle = event.target && event.target.closest && event.target.closest('[data-theme-toggle]');
-    if (themeToggle) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      setTheme(currentTheme() === 'light' ? 'dark' : 'light');
-      return;
-    }
-
     var tab = event.target && event.target.closest && event.target.closest('[data-service-tab]');
     if (!tab) return;
 
