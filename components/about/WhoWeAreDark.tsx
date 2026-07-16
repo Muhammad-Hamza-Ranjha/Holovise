@@ -85,6 +85,7 @@ export function WhoWeAreDark() {
       lightHeight={9317}
       renderChildrenInLight
       disableAutoContactForm
+      showFloatingGetStarted={false}
       links={[
         ...commonFrameLinks(9807).filter((link) => link.label !== "Get Started"),
         { href: "/", label: "Home breadcrumb", left: 579, top: 295, width: 95, height: 22 },

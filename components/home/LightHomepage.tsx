@@ -1,12 +1,12 @@
 ﻿import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { FormEvent } from "react";
 import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
 import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { LanguageMenu } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
 import { HomeServicesTabs } from "@/components/home/HomeServicesTabs";
+import { MeasuredContact, MeasuredTestimonials, MeasuredWhyChoose } from "@/components/home/MeasuredHomepageSections";
 import { ThemeToggleButton } from "@/components/navigation/ThemeToggleButton";
 import { socialLinks } from "@/components/config/socialLinks";
 
@@ -17,6 +17,7 @@ type BoxProps = {
   top: number;
   width: number;
   height?: number;
+  fullBleed?: boolean;
   id?: string;
   className?: string;
   style?: CSSProperties;
@@ -24,41 +25,32 @@ type BoxProps = {
 };
 
 const industries = [
-  ["Health Tech", "icon-heart-2.svg", "We build healthcare platforms, patient tools, and secure digital workflows for modern care teams."],
-  ["Ed Tech", "icon-pencil.svg", "Learning platforms, assessment tools, and education products that support teachers and students."],
-  ["Retail", "icon-shopping-bag.svg", "Commerce tools, order flows, and customer experiences for modern retail operations."],
-  ["FinTech", "icon-lightning-bolt.svg", "Secure fintech products, dashboards, payments, and financial workflow systems."],
-  ["Green Tech", "icon-share-1.svg", "Technology for sustainability teams, environmental data, and energy-focused products."],
-  ["IoT", "icon-filter-2.svg", "Connected device dashboards, monitoring, automation, and real-time data systems."],
-  ["E-Commerce", "icon-cart-1.svg", "Online storefronts, marketplaces, logistics flows, and personalized buying experiences."],
-  ["On-Demand Services", "icon-flag.svg", "Booking, dispatch, mobile workflows, and service marketplaces built to scale."],
-  ["Blockchain", "icon-box.svg", "Practical blockchain products with clear workflows, wallets, and secure transactions."],
-  ["Game Development", "icon-gaming-controller.svg", "Game platforms, mechanics, progression systems, and immersive digital experiences."],
-];
-
-const tweets = [
-  ["testimonial-avatar-1.png", "Sean Rose", "@seanrose", "Really, really liking Holovise so far. It is just the right amount of simple and fast for a product team that needs momentum."],
-  ["testimonial-avatar-q-f9bd42b4.png", "Ryan Delk", "@delk", "Do not take it from me: this team is magic."],
-  ["testimonial-avatar-q-5b9ee7a6.png", "Demetria Giles", "@drosewritings", "Playing around with the platform. So far, it is a knowledge worker's dream come true."],
-  ["testimonial-avatar-2.png", "Jeremy McPeak", "@jwmcpeak", "It is well thought out, and I can see this being our software partner going forward. Well done."],
-  ["testimonial-avatar-q-63640e93.png", "Fabrizio Rinaldi", "@linuz90", "Holovise stays open all the time for us now. It is rare to see one team work so well across both strategy and build."],
-  ["testimonial-avatar-3.png", "Jonathan Simcoe", "@jdsimcoe", "The speed, focus, and attention to detail have already made this a daily-driver partnership for our team."],
+  ["Health Tech", "icon-heart-2.svg", "We build intuitive tools that make your job easier and enhance patient care with precision."],
+  ["Ed Tech", "icon-pencil.svg", "Our solutions make learning interactive and impactful and help educators truly connect with their students."],
+  ["Retail", "icon-shopping-bag.svg", "We transform shopping into a smooth, enjoyable experience that keeps customers returning."],
+  ["FinTech", "icon-filter-2.svg", "We simplify your financial processes and secure transactions, easing the stress of managing money."],
+  ["Green Tech", "icon-lightning-bolt.svg", "Our tech makes sustainable practices easy and impactful, reducing your environmental footprint while saving costs."],
+  ["IoT", "icon-share-1.svg", "We connect your devices seamlessly, offering real-time insights that streamline your operations."],
+  ["E-Commerce", "icon-cart-1.svg", "We design user-friendly e-commerce systems that make online shopping effortless and enjoyable for your customers."],
+  ["On-Demand Services", "icon-flag.svg", "Our solutions guarantee timely and efficient service delivery, meeting customer needs with ease."],
+  ["Blockchain", "icon-box.svg", "We provide secure, transparent blockchain solutions that protect your data and build user trust."],
+  ["Game Development", "icon-gaming-controller.svg", "We build games that connect with players on a personal level, creating memorable experiences that keep them coming back for more."],
 ];
 
 const processSteps = [
-  ["01", "Market Research", "We analyze your market, users, and competitors to identify where the product should win."],
-  ["02", "Audit/Gathering Technologies", "We audit current systems and select the right technical foundation before build begins."],
-  ["03", "Interactive Prototyping", "Clickable flows make decisions visible and help teams validate direction early."],
-  ["04", "Agile Transparency", "Clear sprints, visible progress, and practical communication keep delivery moving."],
-  ["05", "Result-Driven Testing", "We test the product against business outcomes, reliability, and usability goals."],
-  ["06", "Continuous Launch Execution", "Launch is planned, measured, and supported with the right deployment discipline."],
-  ["07", "Continuous Improvement", "After release, we refine the product around feedback, analytics, and growth needs."],
+  ["01.", "Market\nImmersion", "We start by thoroughly exploring your market.\n\nOur research covers industry trends, competitor strategies, and customer behaviors to build a solid foundation that directs our approach."],
+  ["02.", "Joint Visioning Workshops", "We organize workshops with your team to develop strategic plans and technical outlines collaboratively.\n\nThese sessions align our development work with your long-term business goals and market positioning."],
+  ["03.", "Interactive\nPrototyping", "We create interactive prototypes to test real-world scenarios.\n\nFeedback from these prototypes allows us to refine features and make necessary improvements before proceeding to full development."],
+  ["04.", "Agile\nTransparency", "We keep our development process transparent.\n\nWith regular updates, live project dashboards, and direct feedback channels, we keep the project aligned with your needs and make adjustments as needed."],
+  ["05.", "Real-World\nTesting", "Before the final release, we conduct thorough testing with actual users.\n\nThis helps us verify that the product performs well under real conditions and identifies areas for enhancement based on user feedback."],
+  ["06.", "Coordinated\nLaunch Execution", "We plan and execute the launch in alignment with your marketing strategies and operational schedules.\n\nOur team collaborates closely with yours to ensure a smooth rollout and manage any challenges that may arise."],
+  ["07.", "Continuous Improvement", "Post-launch, we continuously monitor the product’s performance and make enhancements.\n\nMeasure user data and feedback, we optimize the product to meet your evolving business needs and market demands."],
 ];
 
 const blogCards = [
-  ["blog-image-element-1.webp", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
-  ["blog-image-element-2.webp", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
-  ["blog-image-element-3.webp", "Understanding MVP: Why startups might matter with the right MVP", "AI Systems"],
+  ["blog-image-element-1.webp", "6 ways to improve your wirefrimes with Master Wire tool for Figma"],
+  ["blog-image-element-2.webp", "6 ways to improve your wirefrimes with Master Wire tool for Figma"],
+  ["blog-image-element-3.webp", "6 ways to improve your wirefrimes with Master Wire tool for Figma"],
 ];
 
 const footerColumns = [
@@ -117,27 +109,36 @@ const topSocialLinks = [
 ] as const;
 
 const footerSocialLinks = [
+  { icon: "footer-social-fb-path-1.svg", href: socialLinks.instagram, label: "Open Holovise on Instagram" },
   { icon: "footer-social-in.svg", href: socialLinks.linkedin, label: "Open Holovise on LinkedIn" },
-  { icon: "footer-social-tw.svg", href: socialLinks.twitter, label: "Open Holovise on X" },
+  { icon: "__x__", href: socialLinks.twitter, label: "Open Holovise on X" },
   { icon: "footer-social-mail-1.svg", href: "/contact-us", label: "Contact Holovise by email" },
-  { icon: "footer-social-fb-path-1.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
+  { icon: "footer-social-tw.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
 ] as const;
 
 function a(name: string) {
   return `${assetRoot}/${name}`;
 }
 
-function Box({ left, top, width, height, id, className = "", style, children }: BoxProps) {
-  const deferredRenderStyle: CSSProperties =
-    top > 1200 && height !== undefined
-      ? { contentVisibility: "auto", containIntrinsicSize: `${height}px` }
-      : {};
+function Box({ left, top, width, height, fullBleed = false, id, className = "", style, children }: BoxProps) {
+  if (fullBleed) {
+    return (
+      <div
+        id={id}
+        className={`absolute ${className}`}
+        style={{ left: "calc((1440px - 100vw) / 2)", top, width: "100vw", ...(height === undefined ? {} : { height }), ...style }}
+        data-home-full-bleed
+      >
+        <div className="relative mx-auto h-full w-[1440px]">{children}</div>
+      </div>
+    );
+  }
 
   return (
     <div
       id={id}
       className={`absolute ${className}`}
-      style={{ left, top, width, ...(height === undefined ? {} : { height }), ...deferredRenderStyle, ...style }}
+      style={{ left, top, width, ...(height === undefined ? {} : { height }), ...style }}
     >
       {children}
     </div>
@@ -158,47 +159,10 @@ function Img({ name, alt = "", className = "", eager = false }: { name: string; 
   );
 }
 
-function ArrowRightIcon({ stroke = "#fff", className = "" }: { stroke?: string; className?: string }) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className={className}>
-      <path d="M8 15L13 10L8 5" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function Button({
-  children,
-  href = "/contact-us",
-  outline = false,
-  className = "",
-}: {
-  children: ReactNode;
-  href?: string;
-  outline?: boolean;
-  className?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      prefetch={false}
-      className={`inline-flex h-[60px] items-center justify-center gap-3 rounded-[10px] px-6 text-[16px] font-extrabold leading-6 ${
-        outline ? "border border-[#3871f2] text-[#3871f2]" : "bg-[#3871f2] text-white"
-      } ${className}`}
-    >
-      {children}
-      <ArrowRightIcon stroke={outline ? "#3871f2" : "#fff"} className="h-5 w-5" />
-    </Link>
-  );
-}
-
-function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <p className={`text-center text-[13px] font-extrabold uppercase leading-5 text-[#3871f2] ${className}`}>{children}</p>;
-}
-
 function Header() {
   return (
     <>
-      <Box left={0} top={0} width={1440} height={40} className="bg-[linear-gradient(90deg,#3871f2_0%,#773cff_56%,#9a2fff_100%)] text-white">
+      <Box left={0} top={0} width={1440} height={40} fullBleed className="bg-[linear-gradient(90deg,#3871f2_0%,#773cff_56%,#9a2fff_100%)] text-white">
         <p className="absolute left-[55px] top-[8px] text-[16px] leading-6 text-white">Vision Meets Technology</p>
         <div className="absolute left-[809px] top-[8px] flex h-6 items-center gap-[13px] text-[16px] leading-6 text-white">
           <Img name="tabler-icon-phone-calling.svg" className="h-[22px] w-[22px]" />
@@ -224,7 +188,7 @@ function Header() {
           ))}
         </div>
       </Box>
-      <Box left={0} top={40} width={1440} height={100} className="bg-[linear-gradient(100deg,#28105b_0%,#5d16c8_49%,#25104d_100%)] text-white">
+      <Box left={0} top={40} width={1440} height={100} fullBleed className="bg-[linear-gradient(100deg,#28105b_0%,#5d16c8_49%,#25104d_100%)] text-white">
         <Link href="/" className="absolute left-[55px] top-[27px] flex h-[46px] w-[208px] items-center gap-[13px]" aria-label="Holovise home">
           <Img name="holovise-logo-header.svg" className="h-[45.8px] w-[39.7px]" eager />
           <Img name="holovise-logo-mark.svg" className="h-[16.4px] w-[152.6px]" eager />
@@ -269,31 +233,28 @@ function Header() {
 function Hero() {
   return (
     <>
-      <Box
-        left={0}
-        top={0}
-        width={1440}
-        height={960}
-        className="overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(circle at 45% 36%, rgba(190,61,255,0.88) 0%, rgba(131,38,247,0.64) 28%, rgba(85,28,215,0.16) 58%, rgba(56,23,164,0) 72%), linear-gradient(104deg,#2c3df6 0%,#4b1ae3 24%,#7011e8 58%,#6410dc 100%)",
-        }}
-      >
-        <div className="absolute inset-x-0 bottom-0 h-[300px] bg-[linear-gradient(180deg,rgba(227,230,255,0)_0%,rgba(227,230,255,0.96)_100%)]" />
-        <div className="absolute left-0 top-[448px] h-[512px] w-[255px] bg-[linear-gradient(180deg,#4ca9ff_0%,#b8d5ff_100%)] [clip-path:polygon(0_0,0_100%,100%_100%)]" />
-        <div className="absolute right-0 top-[140px] h-[820px] w-[440px] bg-[linear-gradient(180deg,rgba(247,56,219,0.12)_0%,rgba(255,100,219,0.3)_58%,rgba(255,180,231,0.08)_100%)] [clip-path:polygon(0_0,100%_0,100%_100%,56%_100%)]" />
+      <Box left={0} top={0} width={1440} height={1372} fullBleed className="overflow-hidden bg-[#eaf0fe]">
+        {/* Decorative artwork exported from Figma's hero background group. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/homepage/shared/hero-artwork.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/2 top-0 h-[1319px] w-screen max-w-none -translate-x-1/2"
+          fetchPriority="high"
+        />
+        <div className="absolute left-1/2 top-[458px] h-[914px] w-screen -translate-x-1/2 bg-[linear-gradient(180deg,rgba(234,240,254,0)_0%,#eaf0fe_57%)]" />
         <Img name="world-vector.svg" alt="World map illustration" className="absolute left-[865px] top-[107px] h-[809px] w-[730px] max-w-none object-contain" eager />
       </Box>
       <Header />
       <Box left={130} top={279} width={340} height={22} className="text-[18px] leading-[20px] text-white">
         <span>Welcome to the </span>
-        <span className="font-extrabold uppercase text-[#141824]">
+        <span className="font-extrabold uppercase text-white">
           Holovise
         </span>
       </Box>
       <Box left={130} top={323} width={1180} height={235}>
-        <h1 className="text-[66px] font-extrabold leading-[78px] text-white">
+        <h1 className="text-[72px] font-extrabold leading-[78px] tracking-[-3.5px] text-white">
           <span className="block">Your Partner for</span>
           <span className="block whitespace-nowrap">Comprehensive Software</span>
           <span className="block">Solutions</span>
@@ -302,29 +263,16 @@ function Hero() {
       <Box left={130} top={570} width={684} height={72}>
         <p className="text-[22px] leading-9 text-white">Developing Apps for Startups, Scaling Solutions for SMEs, and Modernizing Systems for Established Firms</p>
       </Box>
-      <Box left={130} top={664} width={297} height={60}>
+      <Box left={130} top={667} width={297} height={60}>
         <Link
           href="/contact-us"
           prefetch={false}
-          className="flex h-[58px] w-[292px] items-center justify-between rounded-[10px] bg-[#3871f2] px-[21px] text-[18px] font-bold leading-[24px] text-white shadow-[0_12px_28px_rgba(56,113,242,0.35)]"
+          className="flex h-[60px] w-[297px] items-center justify-between rounded-[10px] bg-[#3871f2] px-[21px] text-[20px] font-semibold leading-[24px] text-white"
         >
           <span>Schedule an Intro Call</span>
           <ArrowUpRight aria-hidden="true" className="h-5 w-5" strokeWidth={1.8} />
         </Link>
       </Box>
-      <Link
-        href="/contact-us"
-        prefetch={false}
-        aria-label="Get Started"
-        className="hidden"
-      >
-        <span aria-hidden="true" className="absolute left-[13px] top-[16px] h-[18px] w-[24px] text-[18px] leading-[24px]">
-          🚀
-        </span>
-        <span className="absolute left-[37px] top-[75px] origin-top-left rotate-90 whitespace-nowrap text-[18px] font-bold leading-[24px]">
-          Get Started
-        </span>
-      </Link>
     </>
   );
 }
@@ -337,8 +285,8 @@ function Services() {
         <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#3871f2]">Our Services</p>
       </Box>
       <Box left={330} top={1026} width={780} height={118}>
-        <h2 className="text-center text-[48px] font-bold leading-[58px] text-[#202126]">
-          Worried about project delays, data security, and tech overload?
+        <h2 className="text-center text-[48px] font-bold leading-[58px] tracking-[-1.5px] text-[#222222]">
+          Worried about project delays,<br /> data security, and tech overload?
         </h2>
       </Box>
       <Box left={230} top={1176} width={980} height={72}>
@@ -360,32 +308,23 @@ function CtaBand() {
       top={2558}
       width={1181}
       height={413}
-      className="z-10 overflow-hidden rounded-[24px] text-white"
-      style={{
-        background: "linear-gradient(100deg, #7f28f2 0%, #6c3cf4 36%, #3f86ff 100%)",
-        backgroundImage: [
-          "linear-gradient(135deg, rgba(1,16,37,0.72) 0%, transparent 42%)",
-          "linear-gradient(315deg, rgba(139,68,255,0.55) 0%, transparent 38%)",
-          "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
-        ].join(", "),
-        backgroundPosition: "center, center, center",
-        backgroundRepeat: "no-repeat, no-repeat, no-repeat",
-        backgroundSize: "cover, cover, cover",
-      }}
+      className="z-10 overflow-visible text-white"
     >
-      <h2 className="absolute left-1/2 top-[107px] w-[607px] -translate-x-1/2 text-center text-[36px] font-extrabold leading-10">
+      {/* Figma CTA artwork includes its exact gradient, clipping and shadow. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/assets/homepage/dark/Mask.png" alt="" aria-hidden="true" className="absolute left-[-120px] top-[-120px] h-[713px] w-[1431px] max-w-none" />
+      <h2 className="absolute left-[287px] top-[107px] w-[607px] text-center text-[36px] font-extrabold leading-10 tracking-[-0.72px]">
         Ready to Get Started?
       </h2>
-      <p className="absolute left-1/2 top-[161px] w-[607px] -translate-x-1/2 text-center text-[22px] leading-8">
+      <p className="absolute left-[287px] top-[161px] w-[607px] text-center text-[22px] leading-8">
         Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.
       </p>
       <Link
         href="/contact-us"
         prefetch={true}
-        className="absolute left-1/2 top-[247px] flex h-[60px] w-[272px] -translate-x-1/2 items-center justify-center gap-[10px] rounded-[10px] bg-white px-6 text-[16px] font-extrabold text-[#141824]"
+        className="absolute left-[454px] top-[247px] flex h-[60px] w-[272px] items-center justify-center rounded-[8px] bg-white px-6 text-[20px] font-semibold leading-6 text-black"
       >
         <span>Get In Touch!</span>
-        <ArrowRightIcon stroke="#141824" className="h-5 w-5" />
       </Link>
     </Box>
   );
@@ -394,29 +333,30 @@ function CtaBand() {
 function Industries() {
   return (
     <>
-      <Box left={0} top={2446} width={1440} height={2540} className="pointer-events-none overflow-hidden bg-[linear-gradient(160deg,#eef1fd_0%,#e9ecfc_45%,#dcd6f7_100%)]">
-        <div className="absolute left-[830px] top-[670px] h-[900px] w-[900px] rounded-full bg-[#8b44ff]/12 blur-[145px]" />
-        <div className="absolute left-[-360px] top-[1110px] h-[900px] w-[900px] rounded-full bg-[#3871f2]/12 blur-[145px]" />
+      <Box left={0} top={2446} width={1440} height={2540} fullBleed className="pointer-events-none overflow-hidden bg-[#eaf0fe]">
+        <Img name="industries-glow.png" className="absolute left-1/2 top-[-250px] h-[2243px] w-screen max-w-none -translate-x-1/2" eager />
       </Box>
-      <Img name="chart-1.webp" alt="Market chart" className="absolute left-[910px] top-[3089px] h-[626px] w-[626px] max-w-none object-contain" />
+      <Img name="chart-1.webp" alt="Market chart" eager className="absolute left-[910px] top-[3089px] h-[626px] w-[626px] max-w-none object-contain" />
+      <Box left={130} top={3131} width={380} height={20}>
+        <p className="text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#3871f2]">Market Share</p>
+      </Box>
       <Box left={130} top={3175} width={680} height={470} className="text-[#141824]">
-        <Eyebrow className="text-left tracking-[7px]">Industries</Eyebrow>
-        <h2 className="mt-[22px] w-[680px] text-[56px] font-extrabold leading-[58px]">
+        <h2 className="absolute inset-x-0 top-0 text-[48px] font-bold leading-[58px] tracking-[-1.5px] text-[#222222]">
           Industries we empower with our software solutions!
         </h2>
-        <p className="mt-7 w-[680px] text-[22px] leading-9 text-[#4b5565]">
+        <p className="absolute inset-x-0 top-[144px] text-[22px] leading-9 text-[#222222]">
           Helping businesses in every field solve tough problems and grow with the right tech solutions, made just for them.
         </p>
-        <Button href="/about/who-we-are" outline className="mt-[54px] w-[272px]">How it Works?</Button>
-        <div className="mt-[36px] grid w-[680px] grid-cols-3 border-t border-[#141824]/12 pt-[30px]">
+        <Link href="/about/who-we-are" prefetch={false} className="absolute left-0 top-[251px] flex h-[60px] w-[272px] items-center justify-center rounded-[8px] border-[1.5px] border-[#3871f2] text-[20px] font-semibold leading-6 text-[#3871f2]">How it Works?</Link>
+        <div className="absolute inset-x-0 top-[358px] grid grid-cols-3 border-t border-[#262626]/50 pt-[35px]">
           {[
             ["300+", "Projects Delivered."],
             ["20+", "Technical Experts."],
             ["50+", "Products Developed."],
           ].map(([value, label]) => (
-            <div key={label}>
-              <p className="text-[40px] font-extrabold leading-10">{value}</p>
-              <p className="mt-[13px] text-[18px] leading-6 text-[#4b5565]">{label}</p>
+            <div key={label} className="text-center">
+              <p className="font-inter text-[36px] font-extrabold leading-10 tracking-[-0.72px]">{value}</p>
+              <p className="mt-[13px] text-[16px] leading-6 tracking-[-0.24px]">{label}</p>
             </div>
           ))}
         </div>
@@ -425,14 +365,14 @@ function Industries() {
         {industries.map(([title, icon, copy], index) => {
           const tall = index === 9;
           return (
-            <article key={title} className={`relative w-[394px] border-r border-b border-[#141824]/8 px-12 pt-9 ${tall ? "h-[332px]" : "h-[304px]"}`}>
+            <article key={title} className={`relative w-[394px] border-r border-b border-[#262626]/50 px-12 pt-8 ${tall ? "h-[332px]" : "h-[304px]"}`}>
               <div className="flex h-[88px] items-center gap-5">
-                <span className="flex h-[88px] w-[88px] items-center justify-center rounded-[8px] bg-[#f1ecff]">
-                  <Img name={icon} className="h-10 w-10" />
+                <span className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-[15px] bg-white/50">
+                  <Img name={icon} className="h-12 w-12" />
                 </span>
-                <h3 className="text-[28px] font-extrabold leading-[30px]">{title}</h3>
+                <h3 className="text-[22px] font-bold leading-[30px] tracking-[-0.1px]">{title}</h3>
               </div>
-              <p className="mt-8 text-[16px] leading-7 text-[#4b5565]">{copy}</p>
+              <p className="mt-9 text-[18px] leading-7 text-[#222222]">{copy}</p>
             </article>
           );
         })}
@@ -442,56 +382,36 @@ function Industries() {
 }
 
 function Testimonials() {
-  return (
-    <>
-      <Box left={0} top={5275} width={1440} height={460} className="bg-[#e9edfc] text-[#141824]">
-        <Eyebrow className="tracking-[8px]">Testimonials</Eyebrow>
-        <h2 className="mt-[26px] text-center text-[30px] font-extrabold leading-10">Check out what our clients are saying!</h2>
-        <div className="mt-[48px] grid grid-cols-3 gap-x-6 gap-y-6 px-[28px]">
-          {tweets.map(([avatar, name, handle, quote]) => (
-            <article key={name} className="h-[150px] rounded-[8px] border border-[#141824]/8 bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-4">
-                <Img name={avatar} className="h-11 w-11 rounded-full object-cover" />
-                <div>
-                  <h3 className="text-[18px] font-bold leading-6">{name}</h3>
-                  <p className="text-[14px] leading-5 text-[#8089a0]">{handle}</p>
-                </div>
-              </div>
-              <p className="mt-5 text-[15px] leading-6 text-[#4b5565]">{quote}</p>
-            </article>
-          ))}
-        </div>
-      </Box>
-      <Box left={0} top={5723} width={1440} height={132} className="flex items-center gap-5 border-b border-[#141824]/8 bg-[#e9edfc] py-[30px]">
-        {["partner-logo-1.svg", "partner-logo-2.svg", "partner-logo-3.svg", "partner-logo-4.svg", "partner-logo-5.svg", "partner-logo-6.svg"].map((logo, index) => (
-          <div key={logo} className={`flex h-[72px] w-[223.333px] items-center justify-center px-[30px] ${index === 3 ? "opacity-100" : "opacity-35"}`}>
-            <Img name={logo} className="max-h-10 max-w-[118px]" />
-          </div>
-        ))}
-      </Box>
-    </>
-  );
+  return <MeasuredTestimonials theme="light" />;
 }
 
 function Process() {
   return (
-    <Box left={0} top={6015} width={1440} height={1260} className="overflow-hidden bg-[linear-gradient(170deg,#eef1fd_0%,#e7e6fb_50%,#dcd3f6_100%)] text-[#141824]">
-      <div className="absolute left-[260px] top-[200px] h-[1140px] w-[1180px] rounded-full bg-[#8b44ff]/10 blur-[150px]" />
-      <Eyebrow className="relative tracking-[8px]">How We Do It?</Eyebrow>
-      <h2 className="relative mx-auto mt-[24px] w-[680px] text-center text-[36px] font-extrabold leading-10">Our Step-by-Step Approach to Execute Your Vision.</h2>
-      <p className="relative mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-[#4b5565]">
-        Our process is all about getting to the heart of your needs, working closely with you, and turning each idea into a product that grows.
-      </p>
-      <div className="relative mx-auto mt-[70px] grid w-[1180px] grid-cols-3 gap-6">
-        {processSteps.map(([num, title, copy]) => (
-          <article key={num} className="min-h-[214px] rounded-[8px] bg-transparent p-7">
-            <span className="flex h-[60px] w-[60px] items-center justify-center rounded-[10px] bg-white text-[24px] font-extrabold text-[#141824] shadow-sm">{num}.</span>
-            <h3 className="mt-5 text-[21px] font-extrabold leading-7">{title}</h3>
-            <p className="mt-4 text-[15px] leading-7 text-[#4b5565]">{copy}</p>
-          </article>
-        ))}
-      </div>
-    </Box>
+    <>
+      <Img name="process-glow.png" className="pointer-events-none absolute left-1/2 top-[5703px] h-[2890px] w-screen max-w-none -translate-x-1/2" eager />
+      <Box left={530} top={5965} width={380} height={20}>
+        <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#3871f2]">How We Do It?</p>
+      </Box>
+      <Box left={410} top={6007} width={620} height={118}>
+        <h2 className="text-center text-[36px] font-bold leading-[58px] tracking-[-1.5px] text-[#222222]">Our Step-by-Step Approach to Execute Your Vision.</h2>
+      </Box>
+      <Box left={330} top={6136} width={780} height={72}>
+        <p className="text-center text-[22px] leading-9 text-[#222222]">Our process is all about getting to the heart of your needs, working closely with you, and creating solutions that fit perfectly.</p>
+      </Box>
+      {processSteps.map(([num, title, copy], index) => {
+        const column = index % 3;
+        const row = Math.floor(index / 3);
+        const left = 130 + column * 400;
+        const top = [6278, 6647, 7058][row];
+        return (
+          <Box key={num} left={left} top={top} width={380} height={row === 2 ? 340 : 330} className="text-[#222222]">
+            <span className="absolute left-0 top-0 flex h-[88px] w-[88px] items-center justify-center rounded-[15px] bg-white/50 text-[32px] font-light leading-[30px] tracking-[-0.1px]">{num}</span>
+            <h3 className="absolute left-[108px] top-[14px] w-[272px] whitespace-pre-line text-[22px] font-bold leading-[30px] tracking-[-0.1px]">{title}</h3>
+            <p className="absolute left-0 top-[116px] w-[380px] whitespace-pre-line text-[18px] leading-7">{copy}</p>
+          </Box>
+        );
+      })}
+    </>
   );
 }
 
@@ -503,29 +423,19 @@ function FitCta() {
         top={7585}
         width={1181}
         height={413}
-        className="overflow-hidden rounded-[24px] text-white"
-        style={{
-          background: "linear-gradient(100deg, #7f28f2 0%, #6c3cf4 36%, #3f86ff 100%)",
-          backgroundImage: [
-            "linear-gradient(135deg, rgba(1,16,37,0.72) 0%, transparent 42%)",
-            "linear-gradient(315deg, rgba(139,68,255,0.55) 0%, transparent 38%)",
-            "linear-gradient(100deg, #7a12ea 0%, #6d28d9 38%, #3871f2 100%)",
-          ].join(", "),
-        backgroundPosition: "center, center, center",
-        backgroundRepeat: "no-repeat, no-repeat, no-repeat",
-        backgroundSize: "cover, cover, cover",
-        }}
+        className="overflow-visible text-white"
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/assets/homepage/dark/Mask.png" alt="" aria-hidden="true" className="absolute left-[-120px] top-[-120px] h-[713px] w-[1431px] max-w-none" />
         <div className="absolute left-[101px] top-[86px] w-[480px]">
-          <h2 className="text-[36px] font-extrabold leading-10">Find Us a Great Fit?</h2>
+          <h2 className="text-[36px] font-extrabold leading-10 tracking-[-0.72px]">Find Us a Great Fit?</h2>
           <p className="mt-[14px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges &amp; keep everything running smoothly.</p>
           <Link
             href="/contact-us"
             prefetch={false}
-            className="absolute left-0 top-[182px] flex h-[60px] w-[272px] items-center justify-center gap-[10px] rounded-[10px] border border-white px-6 text-[16px] font-extrabold text-white"
+            className="absolute left-0 top-[182px] flex h-[60px] w-[272px] items-center justify-center rounded-[10px] border border-white px-6 text-[20px] font-semibold leading-6 text-white"
           >
             <span>Book a Free Session!</span>
-            <ArrowRightIcon stroke="#ffffff" className="h-5 w-5" />
           </Link>
         </div>
       </Box>
@@ -533,109 +443,44 @@ function FitCta() {
       <Img
         name="image.svg"
         alt="Coins"
-        className="absolute left-[720px] top-[7480px] z-10 h-[641px] w-[650px] rotate-[3deg] object-contain animate-float"
+        className="absolute left-[710px] top-[7455px] z-10 h-[650px] w-[641px] object-contain"
       />
     </>
   );
 }
 
 function WhyChoose() {
-  const items = [
-    {
-      title: "Deep Industry Knowledge",
-      icon: "animated-emojies-512px-220.gif",
-      description: (
-        <>
-          We are experts in your sector in addition to <br />
-          technology. <br /> <br />Our team&apos;s extensive experience and industry
-          <br />knowledge enable us to provide solutions that are<br /> properly
-          matched to your particular requirements <br /> and standards.
-        </>
-      ),
-    },
-    {
-      title: "Tier Talent",
-      icon: "animated-emojies-512px-508.gif",
-      description: (
-        <>
-          Our experts aren&apos;t just skilled—they&apos;re exceptional. <br /> <br />
-          We&apos;ve assembled a team of professionals who<br />constantly focus on quality and new ideas, so every<br /> project will benefit from their knowledge and <br /> enthusiasm.
-        </>
-      ),
-    },
-    {
-      title: (
-        <>
-          Flexible Engagement <br /> Models
-        </>
-      ),
-      icon: "animated-emojies-512px-26.gif",
-      description: (
-        <>
-          We provide a range of recruiting alternatives,<br />depending on your needs: hourly rates, fixed-price <br /> projects, or committed team. <br /> <br />With this versatility, you may get excellent value<br />and select the model that fits your needs.
-        </>
-      ),
-    },
-    {
-      title: "Reliable Delivery",
-      icon: "animated-emojies-512px-44.gif",
-      description: (
-        <>
-          Timeliness is core value. <br /> <br />
-          We commit to delivering high-quality solutions on <br />schedule, keeping your project moving forward <br /> without sacrificing precision or attention to detail.
-        </>
-      ),
-    },
-  ];
-
-  return (
-    <Box left={130} top={8280} width={1180} height={760} className="text-[#141824]">
-      <Eyebrow className="tracking-[8px]">Our Impact</Eyebrow>
-      <h2 className="mt-[22px] text-center text-[36px] font-extrabold leading-10">Why We are The Right Fit for You!</h2>
-      <p className="mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-[#4b5565]">
-        We get your industry, understand your unique needs, and deliver the results that make a real difference.
-      </p>
-      <p className="mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-[#4b5565]">
-        Here&apos;s what we bring to the table while working for you.
-      </p>
-      <div className="mt-[70px] grid grid-cols-2 gap-x-[70px] gap-y-[42px]">
-        {items.map(({ title, icon, description }) => (
-          <article key={icon} className="min-h-[210px] rounded-[8px] border border-[#141824]/10 bg-white/60 p-8">
-            <div className="flex items-center gap-5">
-              <Img name={icon} className="h-12 w-12" />
-              <h3 className="text-[24px] font-extrabold leading-8">{title}</h3>
-            </div>
-            <p className="mt-6 text-[16px] leading-7 text-[#4b5565]">{description}</p>
-          </article>
-        ))}
-      </div>
-    </Box>
-  );
+  return <MeasuredWhyChoose theme="light" />;
 }
 
 function Blog() {
   return (
-    <Box left={130} top={9360} width={1180} height={720} className="text-[#141824]">
-      <h2 className="text-center text-[36px] font-extrabold leading-10">What&apos;s happening in IT?</h2>
-      <div className="mt-[58px] grid grid-cols-3 gap-[30px]">
-        {blogCards.map(([image, title, badge]) => (
+    <Box left={0} top={9490} width={1440} height={729} className="text-[#222]">
+      <p className="absolute left-[530px] top-0 w-[380px] text-center text-[20px] font-medium uppercase leading-[20px] tracking-[10px] text-[#3871f2]">
+        Latest News
+      </p>
+      <h2 className="absolute left-[410px] top-[42px] w-[620px] text-center text-[36px] font-bold leading-[58px] tracking-[-1.5px]">
+        What&apos;s happening in IT?
+      </h2>
+      <div className="absolute left-[130px] top-[163px] grid grid-cols-[360px_360px_360px] gap-[50px]">
+        {blogCards.map(([image, title]) => (
           <Link
             key={image}
             href="/blog/2025-tools-to-create-real-performing-tokens"
             prefetch={false}
-            className="overflow-hidden rounded-[12px] border border-[#141824]/8 bg-white shadow-sm"
+            className="relative h-[442px] w-[360px]"
           >
-            <div className="relative h-[220px]">
-              <Img name={image} className="h-full w-full object-cover" />
-              <span className="absolute left-5 top-5 rounded-full bg-[#3871f2] px-4 py-1 text-[13px] font-bold text-white">{badge}</span>
+            <div className="relative h-[270px] overflow-hidden rounded-[30px]">
+              <Img name={image} eager className="h-full w-full object-cover" />
+              <span className="absolute left-5 top-5 flex h-6 min-w-[51px] items-center justify-center rounded-2xl bg-[#3871f2] px-[9px] font-sans text-[12px] font-semibold leading-5 tracking-[1.2px] text-white">
+                NEW
+              </span>
             </div>
-            <div className="p-6">
-              <h3 className="text-[21px] font-extrabold leading-7">{title}</h3>
-              <div className="mt-5 flex items-center gap-3 text-[14px] text-[#8089a0]">
-                <Img name="blog-author-avatar.svg" className="h-6 w-6 rounded-full" />
-                <span>Chloe Williams</span>
-                <span>Oct 26, 2124</span>
-              </div>
+            <h3 className="mt-5 h-[108px] font-inter text-[24px] font-bold leading-9 tracking-[-0.48px]">{title}</h3>
+            <div className="mt-2 flex h-6 items-center text-[#222]/50">
+              <Img name="blog-author-avatar.svg" eager className="h-6 w-6 rounded-lg" />
+              <span className="ml-[10px] text-[16px] font-medium leading-6">Chloe Williams</span>
+              <span className="ml-auto text-[12px] font-semibold leading-5">Oct 26, 2124</span>
             </div>
           </Link>
         ))}
@@ -643,7 +488,7 @@ function Blog() {
       <Link
         href="/blog"
         prefetch={false}
-        className="absolute left-[454px] top-[640px] flex h-[60px] w-[272px] items-center justify-center rounded-[10px] bg-[#3871f2] text-[16px] font-extrabold text-white"
+        className="absolute left-[584px] top-[669px] flex h-[60px] w-[272px] items-center justify-center rounded-[10px] bg-[#3871f2] text-[20px] font-semibold leading-6 text-white"
       >
         Explore All News
       </Link>
@@ -651,121 +496,21 @@ function Blog() {
   );
 }
 
-function submitContactMessage(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
-
-  const formData = new FormData(event.currentTarget);
-  const name = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
-  const phone = String(formData.get("phone") ?? "").trim();
-  const message = String(formData.get("message") ?? "").trim();
-  const newsletter = formData.get("newsletter") === "yes" ? "Yes" : "No";
-  const subject = `Holovise website enquiry from ${name}`;
-  const body = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Phone: ${phone || "Not provided"}`,
-    `Newsletter signup: ${newsletter}`,
-    "",
-    message,
-  ].join("\n");
-
-  window.location.href = `mailto:support@holovise.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
 function Contact() {
-  return (
-    <Box left={130} top={10368} width={1180} height={627} className="text-[#141824]" id="contact">
-      <div className="absolute left-0 top-[83px] w-[459px]">
-        <h2 className="text-[56px] font-extrabold leading-[56px]">Let&apos;s Make IT* [Things] Happen</h2>
-        <p className="mt-[19px] text-[22px] leading-7 text-[#4b5565]">Connect with us to explore how?</p>
-      </div>
-      <div className="absolute left-0 top-[321px] grid gap-[26px]">
-        {[
-          ["contact-send-group.svg", "Send us an email", "support@holovise.io"],
-          ["contact-phone-group.svg", "Give us a call", "+64 29 045 50469"],
-          ["contact-map-pin-group.svg", "Visit us in person", "5 Newland Grove, Henderson, Auckland 0610, New Zealand"],
-        ].map(([icon, label, value]) => (
-          <div key={label} className="flex min-h-[52px] w-[570px] gap-6">
-            <span className="flex h-[45px] w-[45px] shrink-0 items-center justify-center rounded-full bg-[#3871f2]">
-              <Img name={icon} className="h-6 w-6" />
-            </span>
-            <div>
-              <p className="text-[16px] leading-5 text-[#8089a0]">{label}</p>
-              <p className="mt-2 max-w-[501px] text-[20px] font-bold leading-6">{value}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <form onSubmit={submitContactMessage} className="absolute left-[610px] top-0 h-[627px] w-[570px] rounded-[8px] bg-white p-[30px] shadow-sm">
-        <label htmlFor="light-contact-name" className="text-[15px] text-[#141824]">*Name:</label>
-        <input
-          id="light-contact-name"
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          className="mt-2 h-[56px] w-[510px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none placeholder:text-[#9aa1b5]"
-        />
-        <div className="mt-4 flex gap-[10px]">
-          <div className="w-[250px]">
-            <label htmlFor="light-contact-email" className="text-[15px] text-[#141824]">*Email:</label>
-            <input
-              id="light-contact-email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              className="mt-2 h-[56px] w-[250px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none"
-            />
-          </div>
-          <div className="w-[250px]">
-            <label htmlFor="light-contact-phone" className="text-[15px] text-[#141824]">Phone:</label>
-            <input
-              id="light-contact-phone"
-              name="phone"
-              type="tel"
-              autoComplete="tel"
-              className="mt-2 h-[56px] w-[250px] rounded-[6px] border border-transparent bg-[#e7e9f4] px-5 text-[#141824] outline-none"
-            />
-          </div>
-        </div>
-        <label htmlFor="light-contact-message" className="mt-4 block text-[15px] text-[#141824]">*Message:</label>
-        <textarea
-          id="light-contact-message"
-          name="message"
-          required
-          className="mt-2 h-[135px] w-[510px] resize-none rounded-[6px] border border-transparent bg-[#e7e9f4] p-5 text-[#141824] outline-none"
-        />
-        <label className="mt-4 flex items-center gap-2 text-[14px] font-bold leading-5 text-[#141824] cursor-pointer">
-          <input
-            type="checkbox"
-            name="newsletter"
-            value="yes"
-            className="h-[22px] w-[22px] rounded-full border border-[#141824]/25 bg-transparent accent-[#3871f2]"
-          />
-          Sign me up for the newsletter
-        </label>
-        <button type="submit" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold text-white">
-          Send Message!
-        </button>
-        <p className="mt-6 text-[13px] leading-5 text-[#8089a0]">Praesent in mauris eu tortor porttitor accumsan aliquam ornare wisi eu metus. Lorem ipsum dolor tortor porttitor accumsan aliquam.</p>
-      </form>
-    </Box>
-  );
+  return <MeasuredContact theme="light" />;
 }
 
 function Footer() {
   return (
-    <Box left={0} top={10995} width={1440} height={1501} className="overflow-hidden bg-white text-[#141824]">
-      <div className="absolute left-[-492px] top-[1256px] h-[900px] w-[2000px] rounded-full bg-[#3871f2]/10 blur-[160px]" />
-      <div className="absolute left-[700px] top-[30px] h-[900px] w-[1100px] rounded-full bg-[#8b44ff]/8 blur-[150px]" />
-      <div className="absolute left-[571px] top-[150px] flex w-[299px] flex-col items-center gap-9">
+    <Box left={0} top={10995} width={1440} height={1501} fullBleed className="overflow-hidden bg-[#eaf0fe] text-[#1f2948]">
+      <Img name="footer-purple.png" eager className="pointer-events-none absolute left-1/2 top-[-50px] h-[1552px] w-screen max-w-none -translate-x-1/2" />
+      <Img name="footer-blue.png" eager className="pointer-events-none absolute left-1/2 top-[50px] h-[1438px] w-screen max-w-none -translate-x-1/2" />
+      <div className="absolute left-[571px] top-[150px] flex w-[299px] flex-col items-center gap-10">
         <Img name="footer-logo-group-1.svg" className="h-[156px] w-[135px]" />
         <Img name="footer-logo-group-2.svg" className="h-[32px] w-[299px]" />
       </div>
       <p className="absolute left-[435px] top-[460px] w-[570px] text-center text-[16px] leading-5 tracking-[8px] text-[#4b5565]">Follow us</p>
-      <div className="absolute left-[585px] top-[508px] flex h-8 gap-[27px]">
+      <div className="absolute left-[563px] top-[505px] flex h-[39px] gap-[30px]">
         {footerSocialLinks.map(({ icon, href, label }) => (
           <Link
             key={icon}
@@ -774,18 +519,18 @@ function Footer() {
             aria-label={label}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="flex h-8 w-8 items-center justify-center"
+            className="flex h-[39px] w-[39px] items-center justify-center"
           >
-            <Img name={icon} className="max-h-8 max-w-8" />
+            {icon === "__x__" ? <span className="text-[34px] font-light leading-[39px] text-[#3871f2]">𝕏</span> : <Img name={icon} className="max-h-[39px] max-w-[39px]" />}
           </Link>
         ))}
       </div>
-      <div className="absolute left-[130px] top-[664px] grid w-[1180px] grid-cols-4 gap-[85px]">
+      <div className="absolute left-[130px] top-[664px] grid grid-cols-[215px_215px_215px_215px] gap-[85px]">
         {footerColumns.map((column) => (
           <div key={column.heading}>
-            <h3 className="text-[20px] font-extrabold leading-6">{column.heading}</h3>
+            <h3 className="text-[16px] font-semibold leading-6 tracking-[-0.16px]">{column.heading}</h3>
             <div className="mt-5 h-px w-[50px] bg-[#3871f2]" />
-            <div className="mt-4 grid gap-[15px] text-[16px] leading-5 text-[#4b5565]">
+            <div className="mt-4 grid gap-[18px] text-[16px] leading-5 text-[#1f2948]/75">
               {column.items.map(([label, href]) => (
                 <Link href={href} prefetch={false} key={label}>{label}</Link>
               ))}
@@ -794,9 +539,13 @@ function Footer() {
         ))}
       </div>
       <div className="absolute left-[55px] top-[1391px] h-px w-[1330px] bg-[#141824]/12" />
-      <p className="absolute left-[55px] top-[1431px] text-[14px] leading-5 text-[#8089a0]">&copy; 2024 all rights reserved by Holovise.</p>
-      <div className="absolute left-[1013px] top-[1427px] flex gap-6 text-[14px] leading-5 text-[#8089a0]">
-        <span>Sitemap</span>
+      <div className="absolute left-[55px] top-[1427px] flex h-[28px] items-center gap-2 text-[12px] leading-5 text-[#1f2948]">
+        <span>&copy; 2024 all rights reserved by</span>
+        <Img name="footer-logo-group-1.svg" className="h-[21px] w-[18px]" />
+        <Img name="footer-logo-group-2.svg" className="h-[12px] w-[112px]" />
+      </div>
+      <div className="absolute left-[1013px] top-[1427px] flex gap-6 text-[12px] leading-5 text-[#8089a0]">
+        <Link href="/sitemap.xml" prefetch={false}>Sitemap</Link>
         <Link href="/privacy-policy" prefetch={false}>Privacy Policy</Link>
         <Link href="/cookie-consent" prefetch={false}>Cookies</Link>
         <Link href="/terms-and-conditions" prefetch={false}>Terms &amp; Conditions</Link>
@@ -807,19 +556,19 @@ function Footer() {
 
 export function LightHomepage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#eef1fd] font-sans text-[#141824]">
-      <ResponsiveFigmaCanvas height={12496} background="#eef1fd" nodeId="204:6497">
-        <Hero />
-        <Services />
-        <CtaBand />
-        <Industries />
-        <Testimonials />
-        <Process />
-        <FitCta />
-        <WhyChoose />
-        <Blog />
-        <Contact />
-        <Footer />
+    <main className="w-full min-h-screen overflow-x-hidden bg-[#eaf0fe] font-sans text-[#141824]">
+      <ResponsiveFigmaCanvas height={12496} background="#eaf0fe" nodeId="204:6497" mode="responsive">
+          <Hero />
+          <Services />
+          <CtaBand />
+          <Industries />
+          <Testimonials />
+          <Process />
+          <FitCta />
+          <WhyChoose />
+          <Blog />
+          <Contact />
+          <Footer />
       </ResponsiveFigmaCanvas>
     </main>
   );

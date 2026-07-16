@@ -3,12 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { aboutMenuItems, AboutMenuPanel } from "./navigation/AboutMenu";
 import { LanguageMenu } from "./navigation/LanguageMenu";
 import { serviceMenuItems, ServicesMenuPanel } from "./navigation/ServicesMenu";
+import { useHoloviseThemeToggle } from "./navigation/useHoloviseThemeToggle";
 
 const nav = ["About", "Services", "Blog", "Careers"];
 
@@ -20,24 +20,32 @@ function navHref(item: string) {
 }
 
 export function Header() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { isDark, isLight, toggleTheme } = useHoloviseThemeToggle();
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    if (!open) return;
 
-  const isDark = mounted ? resolvedTheme !== "light" : true;
-  const toggleTheme = () => {
-    const nextTheme = isDark ? "light" : "dark";
-    document.documentElement.classList.toggle("dark", nextTheme === "dark");
-    document.documentElement.classList.toggle("light", nextTheme === "light");
-    localStorage.setItem("theme", nextTheme);
-    setTheme(nextTheme);
-    window.dispatchEvent(new CustomEvent("holovise-theme-change", { detail: nextTheme }));
-  };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        setAboutOpen(false);
+        setServicesOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur-xl dark:border-white/10 dark:bg-holo-night/88">
@@ -89,7 +97,7 @@ export function Header() {
           <div className="relative h-11 w-[86px]">
             <LanguageMenu className="absolute inset-0" />
           </div>
-          <button data-theme-toggle aria-label="Toggle theme" onClick={toggleTheme} className="grid size-11 place-items-center rounded-full border border-black/10 dark:border-white/15">
+          <button data-theme-toggle aria-label={`Switch to ${isLight ? "dark" : "light"} theme`} aria-pressed={isLight} onClick={toggleTheme} className="grid size-11 place-items-center rounded-full border border-black/10 dark:border-white/15">
             {isDark ? <Moon size={22} /> : <Sun size={22} />}
           </button>
         </div>
@@ -100,7 +108,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-holo-night/95 p-6 text-white lg:hidden">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-holo-night/95 p-6 text-white lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation">
           <div className="flex items-center justify-between">
             <Image src="/assets/holovise-logo.png" alt="Holovise" width={208} height={46} />
             <button aria-label="Close menu" onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-full border border-white/15"><X /></button>
@@ -182,7 +190,7 @@ export function Header() {
           </nav>
           <div className="mt-12 flex gap-3">
             <Button href="/contact-us">Get In Touch</Button>
-            <button data-theme-toggle onClick={toggleTheme} className="grid size-[60px] place-items-center rounded-full border border-white/20">{isDark ? <Moon /> : <Sun />}</button>
+            <button data-theme-toggle aria-label={`Switch to ${isLight ? "dark" : "light"} theme`} aria-pressed={isLight} onClick={toggleTheme} className="grid size-[60px] place-items-center rounded-full border border-white/20">{isDark ? <Moon /> : <Sun />}</button>
           </div>
         </div>
       )}

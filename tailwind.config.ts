@@ -21,6 +21,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sora)", "Arial", "sans-serif"],
+        inter: ["var(--font-inter)", "Arial", "sans-serif"],
+        bricolage: ["var(--font-bricolage)", "Arial", "sans-serif"],
       },
       fontSize: {
         eyebrow: ["20px", { lineHeight: "20px", fontWeight: "500" }],

@@ -34,7 +34,7 @@ export function ThemedHomepage() {
   const providerTheme = mounted && (theme === "light" || resolvedTheme === "light") ? "light" : "dark";
   const activeTheme = manualTheme ?? providerTheme;
 
-  if (viewportWidth <= 640) {
+  if (viewportWidth < 1440) {
     return <MobileHomepage theme={activeTheme} />;
   }
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { footerFrameLinks } from "@/components/figma/StaticFrameLinks";
+import { FloatingGetStarted } from "@/components/figma/FloatingGetStarted";
 import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
 import type { StaticFigmaPageProps } from "@/components/figma/StaticFigmaPage";
 import { useMounted } from "@/components/hooks/useMounted";
@@ -31,6 +32,7 @@ export function ThemeAwareStaticFigmaPage({
   contactFormTop,
   lightContactFormTop,
   disableGeneratedLightFilter = false,
+  showFloatingGetStarted,
 }: StaticFigmaPageProps) {
   const { theme, resolvedTheme } = useTheme();
   const pathname = usePathname();
@@ -56,37 +58,42 @@ export function ThemeAwareStaticFigmaPage({
           },
         ]
       : [];
-  const pageLinks =
+  const unfilteredPageLinks =
     pageHeight > 2000
       ? [...activeLinks, ...automaticBreadcrumbLinks, ...footerFrameLinks(pageHeight)]
       : activeLinks;
+  const railLinks = unfilteredPageLinks.filter(
+    (link) => link.label === "Get Started" && link.left >= 1380 && link.width <= 70 && link.height >= 160,
+  );
+  const pageLinks = unfilteredPageLinks.filter((link) => !railLinks.includes(link));
   const background = wantsLightTheme ? "#eaf0fe" : "#080d19";
   const needsGeneratedLightSurface = wantsLightTheme && !lightAsset;
   const pageImageFilter =
     needsGeneratedLightSurface && !disableGeneratedLightFilter
       ? { filter: "invert(1) hue-rotate(180deg)" }
       : undefined;
-  const lightFrameIncludesGetStarted =
-    pageAsset.includes("/blockchain-development/") ||
-    pageAsset.includes("/no-code-development/") ||
-    pageAsset.includes("/product-strategy-consulting/") ||
-    pageAsset.includes("/software-development-outsourcing/");
-  const hasCustomWhoWeAreRail =
-    pathname === "/about/who-we-are" || pathname === "/who-we-are";
-  const shouldGenerateLightRail =
-    wantsLightTheme &&
-    usesLightAsset &&
+  const isUtilityOrLegalRoute =
+    pathname === "/contact-us" ||
+    pathname === "/contact" ||
+    pathname === "/side-drawer" ||
+    pathname.includes("privacy") ||
+    pathname.includes("terms") ||
+    pathname.includes("cookie");
+  const shouldRenderFloatingGetStarted =
+    (showFloatingGetStarted ?? true) &&
     pageHeight > 2000 &&
-    pathname !== "/contact-us" &&
-    pathname !== "/contact" &&
-    !lightFrameIncludesGetStarted &&
-    !hasCustomWhoWeAreRail;
-  const generatedRailTop =
+    !isUtilityOrLegalRoute;
+  const fallbackFloatingGetStartedTop =
     pathname === "/portfolio" ||
     pathname === "/our-portfolio" ||
-    pathname === "/about"
+    pathname === "/about" ||
+    pathname === "/about/who-we-are" ||
+    pathname === "/who-we-are"
       ? 403
       : 203;
+  const floatingGetStartedTop = railLinks[0]?.top ?? fallbackFloatingGetStartedTop;
+  const shouldGenerateLightRail = false;
+  const generatedRailTop = floatingGetStartedTop;
   const shouldRenderContactForm =
     !disableAutoContactForm && (pageHeight > 4000 || contactFormTop !== undefined);
   const activeContactFormTop = usesLightAsset
@@ -104,6 +111,7 @@ export function ThemeAwareStaticFigmaPage({
           quality={85}
           priority
           fetchPriority="high"
+          unoptimized={pageHeight > 5000}
           className="select-none object-fill"
           style={pageImageFilter}
           draggable={false}
@@ -127,6 +135,7 @@ export function ThemeAwareStaticFigmaPage({
             </span>
           </Link>
         ) : null}
+        {shouldRenderFloatingGetStarted ? <FloatingGetStarted top={floatingGetStartedTop} /> : null}
         {pageLinks.map((link) => (
           <Link
             key={`${link.href}-${link.left}-${link.top}`}

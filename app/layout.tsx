@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { Sora } from "next/font/google";
+import { Bricolage_Grotesque, Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
@@ -7,6 +7,18 @@ const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "800"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: ["800"],
 });
 
 export const metadata: Metadata = {
@@ -49,9 +61,6 @@ const hydrationFallbackScript = `
     var root = tab.closest('[data-home-services-tabs]');
     if (!root) return;
 
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
     var key = tab.getAttribute('data-service-tab');
     var theme = root.getAttribute('data-services-theme') || 'dark';
     root.setAttribute('data-active-tab', key);
@@ -81,7 +90,7 @@ const hydrationFallbackScript = `
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={sora.variable} suppressHydrationWarning>
+    <html lang="en" className={`${sora.variable} ${inter.variable} ${bricolage.variable}`} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: hydrationFallbackScript }} />
         <ThemeProvider>

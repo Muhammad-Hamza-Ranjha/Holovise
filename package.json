@@ -7,6 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:home": "npm run build && playwright test tests/home.spec.ts",
+    "visual:capture": "node visual-tests/capture-home.mjs",
+    "visual:diff": "node visual-tests/diff-home.mjs",
+    "visual:qa": "npm run visual:capture && npm run visual:diff",
     "build:mcp": "esbuild node_modules/figma-mcp-server/mcpServer.ts --bundle --platform=node --format=esm --packages=external --outfile=node_modules/figma-mcp-server/mcpServer.js"
   },
   "dependencies": {
@@ -19,11 +23,15 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pngjs": "^6.0.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "figma-mcp-server": "^2.1.1",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.55.0",
+    "pngjs": "^7.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"

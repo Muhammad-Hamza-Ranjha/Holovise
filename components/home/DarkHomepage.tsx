@@ -1,10 +1,12 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
+import { FloatingGetStarted } from "@/components/figma/FloatingGetStarted";
 import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { LanguageMenu } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
 import { HomeServicesTabs } from "@/components/home/HomeServicesTabs";
+import { MeasuredContact, MeasuredTestimonials, MeasuredWhyChoose } from "@/components/home/MeasuredHomepageSections";
 import { ThemeToggleButton } from "@/components/navigation/ThemeToggleButton";
 import { socialLinks } from "@/components/config/socialLinks";
 
@@ -15,6 +17,7 @@ type BoxProps = {
   top: number;
   width: number;
   height?: number;
+  fullBleed?: boolean;
   id?: string;
   className?: string;
   style?: CSSProperties;
@@ -22,41 +25,32 @@ type BoxProps = {
 };
 
 const industries = [
-  ["Health Tech", "icon-heart-2.svg", "We build healthcare platforms, patient tools, and secure digital workflows for modern care teams."],
-  ["Ed Tech", "icon-pencil.svg", "Learning platforms, assessment tools, and education products that support teachers and students."],
-  ["Retail", "icon-shopping-bag.svg", "Commerce tools, order flows, and customer experiences for modern retail operations."],
-  ["FinTech", "icon-lightning-bolt.svg", "Secure fintech products, dashboards, payments, and financial workflow systems."],
-  ["Green Tech", "icon-share-1.svg", "Technology for sustainability teams, environmental data, and energy-focused products."],
-  ["IoT", "icon-filter-2.svg", "Connected device dashboards, monitoring, automation, and real-time data systems."],
-  ["E-Commerce", "icon-cart-1.svg", "Online storefronts, marketplaces, logistics flows, and personalized buying experiences."],
-  ["On-Demand Services", "icon-flag.svg", "Booking, dispatch, mobile workflows, and service marketplaces built to scale."],
-  ["Blockchain", "icon-box.svg", "Practical blockchain products with clear workflows, wallets, and secure transactions."],
-  ["Game Development", "icon-gaming-controller.svg", "Game platforms, mechanics, progression systems, and immersive digital experiences."],
-];
-
-const tweets = [
-  ["testimonial-avatar-1.png", "Sean Rose", "@seanrose", "Really, really liking Holovise so far. It is just the right amount of simple and fast for a product team that needs momentum."],
-  ["testimonial-avatar-q-f9bd42b4.png", "Ryan Delk", "@delk", "Do not take it from me: this team is magic."],
-  ["testimonial-avatar-q-5b9ee7a6.png", "Demetria Giles", "@drosewritings", "Playing around with the platform. So far, it is a knowledge worker's dream come true."],
-  ["testimonial-avatar-2.png", "Jeremy McPeak", "@jwmcpeak", "It is well thought out, and I can see this being our software partner going forward. Well done."],
-  ["testimonial-avatar-q-63640e93.png", "Fabrizio Rinaldi", "@linuz90", "Holovise stays open all the time for us now. It is rare to see one team work so well across both strategy and build."],
-  ["testimonial-avatar-3.png", "Jonathan Simcoe", "@jdsimcoe", "The speed, focus, and attention to detail have already made this a daily-driver partnership for our team."],
+  ["Health Tech", "icon-heart-2.svg", "We build intuitive tools that make your job easier and enhance patient care with precision."],
+  ["Ed Tech", "icon-pencil.svg", "Our solutions make learning interactive and impactful and help educators truly connect with their students."],
+  ["Retail", "icon-shopping-bag.svg", "We transform shopping into a smooth, enjoyable experience that keeps customers returning."],
+  ["FinTech", "icon-filter-2.svg", "We simplify your financial processes and secure transactions, easing the stress of managing money."],
+  ["Green Tech", "icon-lightning-bolt.svg", "Our tech makes sustainable practices easy and impactful, reducing your environmental footprint while saving costs."],
+  ["IoT", "icon-share-1.svg", "We connect your devices seamlessly, offering real-time insights that streamline your operations."],
+  ["E-Commerce", "icon-cart-1.svg", "We design user-friendly e-commerce systems that make online shopping effortless and enjoyable for your customers."],
+  ["On-Demand Services", "icon-flag.svg", "Our solutions guarantee timely and efficient service delivery, meeting customer needs with ease."],
+  ["Blockchain", "icon-box.svg", "We provide secure, transparent blockchain solutions that protect your data and build user trust."],
+  ["Game Development", "icon-gaming-controller.svg", "We build games that connect with players on a personal level, creating memorable experiences that keep them coming back for more."],
 ];
 
 const processSteps = [
-  ["01", "Market Research", "We analyze your market, users, and competitors to identify where the product should win."],
-  ["02", "Audit/Gathering Technologies", "We audit current systems and select the right technical foundation before build begins."],
-  ["03", "Interactive Prototyping", "Clickable flows make decisions visible and help teams validate direction early."],
-  ["04", "Agile Transparency", "Clear sprints, visible progress, and practical communication keep delivery moving."],
-  ["05", "Result-Driven Testing", "We test the product against business outcomes, reliability, and usability goals."],
-  ["06", "Continuous Launch Execution", "Launch is planned, measured, and supported with the right deployment discipline."],
-  ["07", "Continuous Improvement", "After release, we refine the product around feedback, analytics, and growth needs."],
+  ["01.", "Market\nImmersion", "We start by thoroughly exploring your market.\n\nOur research covers industry trends, competitor strategies, and customer behaviors to build a solid foundation that directs our approach."],
+  ["02.", "Joint Visioning Workshops", "We organize workshops with your team to develop strategic plans and technical outlines collaboratively.\n\nThese sessions align our development work with your long-term business goals and market positioning."],
+  ["03.", "Interactive\nPrototyping", "We create interactive prototypes to test real-world scenarios.\n\nFeedback from these prototypes allows us to refine features and make necessary improvements before proceeding to full development."],
+  ["04.", "Agile\nTransparency", "We keep our development process transparent.\n\nWith regular updates, live project dashboards, and direct feedback channels, we keep the project aligned with your needs and make adjustments as needed."],
+  ["05.", "Real-World\nTesting", "Before the final release, we conduct thorough testing with actual users.\n\nThis helps us verify that the product performs well under real conditions and identifies areas for enhancement based on user feedback."],
+  ["06.", "Coordinated\nLaunch Execution", "We plan and execute the launch in alignment with your marketing strategies and operational schedules.\n\nOur team collaborates closely with yours to ensure a smooth rollout and manage any challenges that may arise."],
+  ["07.", "Continuous Improvement", "Post-launch, we continuously monitor the product’s performance and make enhancements.\n\nMeasure user data and feedback, we optimize the product to meet your evolving business needs and market demands."],
 ];
 
 const blogCards = [
-  ["blog-image-element-1.webp", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
-  ["blog-image-element-2.webp", "Understanding MVP: Why startups might matter with the right MVP", "MVP"],
-  ["blog-image-element-3.webp", "Understanding MVP: Why startups might matter with the right MVP", "AI Systems"],
+  ["blog-image-element-1.webp", "6 ways to improve your wirefrimes with Master Wire tool for Figma"],
+  ["blog-image-element-2.webp", "6 ways to improve your wirefrimes with Master Wire tool for Figma"],
+  ["blog-image-element-3.webp", "6 ways to improve your wirefrimes with Master Wire tool for Figma"],
 ];
 
 const footerColumns = [
@@ -114,27 +108,36 @@ const topSocialLinks = [
 ] as const;
 
 const footerSocialLinks = [
+  { icon: "footer-social-fb-path-1.svg", href: socialLinks.instagram, label: "Open Holovise on Instagram" },
   { icon: "footer-social-in.svg", href: socialLinks.linkedin, label: "Open Holovise on LinkedIn" },
-  { icon: "footer-social-tw.svg", href: socialLinks.twitter, label: "Open Holovise on X" },
+  { icon: "__x__", href: socialLinks.twitter, label: "Open Holovise on X" },
   { icon: "footer-social-mail-1.svg", href: "/contact-us", label: "Contact Holovise by email" },
-  { icon: "footer-social-fb-path-1.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
+  { icon: "footer-social-tw.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
 ] as const;
 
 function a(name: string) {
   return `${assetRoot}/${name}`;
 }
 
-function Box({ left, top, width, height, id, className = "", style, children }: BoxProps) {
-  const deferredRenderStyle: CSSProperties =
-    top > 1200 && height !== undefined
-      ? { contentVisibility: "auto", containIntrinsicSize: `${height}px` }
-      : {};
+function Box({ left, top, width, height, fullBleed = false, id, className = "", style, children }: BoxProps) {
+  if (fullBleed) {
+    return (
+      <div
+        id={id}
+        className={`absolute ${className}`}
+        style={{ left: "calc((1440px - 100vw) / 2)", top, width: "100vw", ...(height === undefined ? {} : { height }), ...style }}
+        data-home-full-bleed
+      >
+        <div className="relative mx-auto h-full w-[1440px]">{children}</div>
+      </div>
+    );
+  }
 
   return (
     <div
       id={id}
       className={`absolute ${className}`}
-      style={{ left, top, width, ...(height === undefined ? {} : { height }), ...deferredRenderStyle, ...style }}
+      style={{ left, top, width, ...(height === undefined ? {} : { height }), ...style }}
     >
       {children}
     </div>
@@ -155,39 +158,10 @@ function Img({ name, alt = "", className = "", eager = false }: { name: string; 
   );
 }
 
-function Button({
-  children,
-  href = "/contact-us",
-  dark = false,
-  className = "",
-}: {
-  children: ReactNode;
-  href?: string;
-  dark?: boolean;
-  className?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      prefetch={false}
-      className={`inline-flex h-[60px] items-center justify-center gap-3 rounded-[10px] px-6 text-[16px] font-extrabold leading-6 ${
-        dark ? "border border-white text-white" : "bg-white text-[#141824]"
-      } ${className}`}
-    >
-      {children}
-      <Img name={dark ? "tabler-icon-arrow-down-right.svg" : "tabler-icon-arrow-right.svg"} className="h-5 w-5" />
-    </Link>
-  );
-}
-
-function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <p className={`text-center text-[13px] font-extrabold uppercase leading-5 text-[#00a7ff] ${className}`}>{children}</p>;
-}
-
 function Header() {
   return (
     <>
-      <Box left={0} top={0} width={1440} height={40} className="bg-[#3871f2] text-white">
+      <Box left={0} top={0} width={1440} height={40} fullBleed className="bg-[#3871f2] text-white">
         <p className="absolute left-[55px] top-[8px] text-[16px] leading-6 text-white">Vision Meets Technology</p>
         <div className="absolute left-[809px] top-[8px] flex h-6 items-center gap-[13px] text-[16px] leading-6 text-white">
           <Img name="tabler-icon-phone-calling.svg" className="h-[22px] w-[22px]" />
@@ -213,7 +187,7 @@ function Header() {
           ))}
         </div>
       </Box>
-      <Box left={0} top={40} width={1440} height={100} className="bg-[#171039] text-white">
+      <Box left={0} top={40} width={1440} height={100} fullBleed className="bg-[#171039] text-white">
         <Link href="/" className="absolute left-[55px] top-[27px] flex h-[46px] w-[208px] items-center gap-[13px]" aria-label="Holovise home">
           <Img name="holovise-logo-header.svg" className="h-[45.8px] w-[39.7px]" eager />
           <Img name="holovise-logo-mark.svg" className="h-[16.4px] w-[152.6px]" eager />
@@ -258,19 +232,17 @@ function Header() {
 function Hero() {
   return (
     <>
-      <Box
-        left={0}
-        top={0}
-        width={1440}
-        height={1319}
-        className="overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(circle at 46% 27%, rgba(153, 47, 255, 0.98) 0%, rgba(132, 52, 236, 0.94) 27%, rgba(51, 44, 152, 0.9) 52%, rgba(8, 13, 25, 1) 100%), linear-gradient(110deg, #3871f2 0%, #8b44ff 48%, #080d19 100%)",
-        }}
-      >
-        <div className="absolute left-0 top-[460px] h-[914px] w-[1440px] bg-[linear-gradient(180deg,rgba(8,13,25,0)_0%,#080d19_78%)]" />
-        <div className="absolute left-0 top-[520px] h-[799px] w-[344px] bg-[#35a7ff]/72 [clip-path:polygon(0_0,0_100%,100%_100%)]" />
+      <Box left={0} top={0} width={1440} height={1374} fullBleed className="overflow-hidden bg-[#080d19]">
+        {/* Decorative artwork exported from Figma's hero background group. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/homepage/shared/hero-artwork.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/2 top-0 h-[1319px] w-screen max-w-none -translate-x-1/2"
+          fetchPriority="high"
+        />
+        <div className="absolute left-1/2 top-[460px] h-[914px] w-screen -translate-x-1/2 bg-[linear-gradient(180deg,rgba(8,13,25,0)_0%,#080d19_57%)]" />
         <Img name="world-vector.svg" alt="World map illustration" className="absolute left-[865px] top-[107px] h-[809px] w-[730px] max-w-none object-contain" eager />
       </Box>
       <Header />
@@ -281,14 +253,14 @@ function Hero() {
         </span>
       </Box>
       <Box left={130} top={323} width={1180} height={235}>
-        <h1 className="text-[74px] font-extrabold leading-[78px] text-white">
+        <h1 className="text-[72px] font-extrabold leading-[78px] tracking-[-3.5px] text-white">
           <span className="block">Your Partner for</span>
           <span className="block whitespace-nowrap bg-[linear-gradient(90deg,#ffe96a_0%,#ff8428_100%)] bg-clip-text text-transparent">Comprehensive Software</span>
           <span className="block">Solutions</span>
         </h1>
       </Box>
       <Box left={130} top={570} width={684} height={72}>
-        <p className="text-[24px] leading-9 text-white">Developing Apps for Startups, Scaling Solutions for SMEs, and Modernizing Systems for Established Firms</p>
+        <p className="text-[22px] leading-9 text-white">Developing Apps for Startups, Scaling Solutions for SMEs, and Modernizing Systems for Established Firms</p>
       </Box>
       <Box left={130} top={667} width={297} height={60}>
         <Link
@@ -313,6 +285,7 @@ function Hero() {
           Get Started
         </span>
       </Link>
+      <FloatingGetStarted top={403} />
     </>
   );
 }
@@ -325,14 +298,13 @@ function Services() {
         <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#00a7ff]">Our Services</p>
       </Box>
       <Box left={330} top={1026} width={780} height={118}>
-        <h2 className="text-center text-[48px] font-bold leading-[58px] text-white">
-        Worried about project delays, data security, and tech overload?
+        <h2 className="text-center text-[48px] font-bold leading-[58px] tracking-[-1.5px] text-white">
+          Worried about project delays,<br /> data security, and tech overload?
         </h2>
       </Box>
       <Box left={230} top={1176} width={980} height={72}>
         <p className="text-center text-[22px] leading-[36px] text-white">
-          <br/>
-        We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
+          We are your trusted partner who takes these burdens off your shoulders, keeps your project on track, protects your data, and handles the tech expertly.
         </p>
       </Box>
       <Box left={129} top={1297} width={1181} height={731}>
@@ -344,12 +316,13 @@ function Services() {
 
 function CtaBand() {
   return (
-    <Box left={0} top={2571} width={1440} height={320} className="bg-[linear-gradient(106deg,#8b44ff_0%,#144ee3_100%)] text-white">
-      <div className="absolute left-[382px] top-0 h-[318px] w-[1058px] bg-[radial-gradient(circle_at_70%_50%,rgba(56,113,242,0.9),transparent_55%)]" />
+    <Box left={0} top={2571} width={1440} height={320} fullBleed className="bg-[#3871f2] text-white">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/assets/homepage/dark/primary-cta-overlay.png" alt="" aria-hidden="true" className="absolute left-[382px] top-0 h-[318px] w-[1058px] max-w-none" />
       <h2 className="absolute left-[129px] top-[99px] w-[581px] text-[36px] font-extrabold leading-10">Ready to Get Started?</h2>
       <p className="absolute left-[129px] top-[157px] w-[581px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges & keep everything running smoothly.</p>
-      <Button href="/contact-us" className="absolute left-[830px] top-[130px] w-[220px]">Get In Touch</Button>
-      <Button href="/about/who-we-are" dark className="absolute left-[1070px] top-[130px] w-[220px]">Know More!</Button>
+      <Link href="/contact-us" prefetch={false} className="absolute left-[830px] top-[130px] flex h-[60px] w-[220px] items-center justify-center rounded-[8px] bg-white text-[20px] font-semibold leading-6 text-black">Get In Touch</Link>
+      <Link href="/about/who-we-are" prefetch={false} className="absolute left-[1070px] top-[130px] flex h-[60px] w-[220px] items-center justify-center rounded-[8px] border border-white text-[20px] font-semibold leading-6 text-white">Know More!</Link>
     </Box>
   );
 }
@@ -357,29 +330,30 @@ function CtaBand() {
 function Industries() {
   return (
     <>
-      <Box left={0} top={2446} width={1440} height={2540} className="pointer-events-none overflow-hidden">
-        <div className="absolute left-[830px] top-[670px] h-[900px] w-[900px] rounded-full bg-[#8b44ff]/35 blur-[145px]" />
-        <div className="absolute left-[-360px] top-[1110px] h-[900px] w-[900px] rounded-full bg-[#144ee3]/25 blur-[145px]" />
+      <Box left={0} top={2446} width={1440} height={2540} fullBleed className="pointer-events-none overflow-hidden bg-[#080d19]">
+        <Img name="industries-glow.png" className="absolute left-1/2 top-[-250px] h-[2243px] w-screen max-w-none -translate-x-1/2" eager />
       </Box>
-      <Img name="chart-1.webp" alt="Market chart" className="absolute left-[910px] top-[3089px] h-[626px] w-[626px] max-w-none object-contain" />
+      <Img name="chart-1.webp" alt="Market chart" eager className="absolute left-[910px] top-[3089px] h-[626px] w-[626px] max-w-none object-contain" />
+      <Box left={130} top={3131} width={380} height={20}>
+        <p className="text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-white">Market Share</p>
+      </Box>
       <Box left={130} top={3175} width={680} height={470} className="text-white">
-        <Eyebrow className="text-left tracking-[7px]">Industries</Eyebrow>
-        <h2 className="mt-[22px] w-[680px] text-[56px] font-extrabold leading-[58px]">
+        <h2 className="absolute inset-x-0 top-0 bg-[linear-gradient(90deg,#fff759_0%,#e151ff_100%)] bg-clip-text text-[48px] font-bold leading-[58px] tracking-[-1.5px] text-transparent">
           Industries we empower with our software solutions!
         </h2>
-        <p className="mt-7 w-[680px] text-[22px] leading-9 text-white/75">
+        <p className="absolute inset-x-0 top-[144px] text-[22px] leading-9 text-white">
           Helping businesses in every field solve tough problems and grow with the right tech solutions, made just for them.
         </p>
-        <Button href="/about/who-we-are" dark className="mt-[54px] w-[272px]">How it Works?</Button>
-        <div className="mt-[36px] grid w-[680px] grid-cols-3 border-t border-white/25 pt-[30px]">
+        <Link href="/about/who-we-are" prefetch={false} className="absolute left-0 top-[251px] flex h-[60px] w-[272px] items-center justify-center rounded-[8px] border-[1.5px] border-white text-[20px] font-semibold leading-6 text-white">How it Works?</Link>
+        <div className="absolute inset-x-0 top-[358px] grid grid-cols-3 border-t border-white/50 pt-[35px]">
           {[
             ["300+", "Projects Delivered."],
             ["20+", "Technical Experts."],
-            ["50+", "Business Partners."],
+            ["50+", "Products Developed."],
           ].map(([value, label]) => (
-            <div key={label}>
-              <p className="text-[40px] font-extrabold leading-10">{value}</p>
-              <p className="mt-[13px] text-[18px] leading-6 text-white/72">{label}</p>
+            <div key={label} className="text-center">
+              <p className="font-inter text-[36px] font-extrabold leading-10 tracking-[-0.72px]">{value}</p>
+              <p className="mt-[13px] text-[16px] leading-6 tracking-[-0.24px]">{label}</p>
             </div>
           ))}
         </div>
@@ -388,14 +362,14 @@ function Industries() {
         {industries.map(([title, icon, copy], index) => {
           const tall = index === 9;
           return (
-            <article key={title} className={`relative w-[394px] border-r border-b border-[#253050] px-12 pt-9 ${tall ? "h-[332px]" : "h-[304px]"}`}>
+            <article key={title} className={`relative w-[394px] border-r border-b border-white/20 px-12 pt-8 ${tall ? "h-[332px]" : "h-[304px]"}`}>
               <div className="flex h-[88px] items-center gap-5">
-                <span className="flex h-[88px] w-[88px] items-center justify-center rounded-[8px] bg-[#111729]">
-                  <Img name={icon} className="h-10 w-10" />
+                <span className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-[15px] bg-[#111729]">
+                  <Img name={icon} className="h-12 w-12" />
                 </span>
-                <h3 className="text-[28px] font-extrabold leading-[30px]">{title}</h3>
+                <h3 className="text-[22px] font-bold leading-[30px] tracking-[-0.1px]">{title}</h3>
               </div>
-              <p className="mt-8 text-[16px] leading-7 text-white/64">{copy}</p>
+              <p className="mt-9 text-[18px] leading-7 text-white">{copy}</p>
             </article>
           );
         })}
@@ -405,271 +379,116 @@ function Industries() {
 }
 
 function Testimonials() {
-  return (
-    <>
-      <Box left={0} top={5275} width={1440} height={460} className="text-white">
-        <Eyebrow className="tracking-[8px]">Testimonials</Eyebrow>
-        <h2 className="mt-[26px] text-center text-[30px] font-extrabold leading-10">Check out what our clients are saying!</h2>
-        <div className="mt-[48px] grid grid-cols-3 gap-x-6 gap-y-6 px-[28px]">
-          {tweets.map(([avatar, name, handle, quote]) => (
-            <article key={name} className="h-[150px] rounded-[8px] border border-white/8 bg-[#111729]/72 p-6">
-              <div className="flex items-center gap-4">
-                <Img name={avatar} className="h-11 w-11 rounded-full object-cover" />
-                <div>
-                  <h3 className="text-[18px] font-bold leading-6">{name}</h3>
-                  <p className="text-[14px] leading-5 text-white/50">{handle}</p>
-                </div>
-              </div>
-              <p className="mt-5 text-[15px] leading-6 text-white/70">{quote}</p>
-            </article>
-          ))}
-        </div>
-      </Box>
-      <Box left={0} top={5723} width={1440} height={132} className="flex items-center gap-5 border-b border-[#131723] py-[30px]">
-        {["partner-logo-1.svg", "partner-logo-2.svg", "partner-logo-3.svg", "partner-logo-4.svg", "partner-logo-5.svg", "partner-logo-6.svg"].map((logo, index) => (
-          <div key={logo} className={`flex h-[72px] w-[223.333px] items-center justify-center px-[30px] ${index === 3 ? "opacity-100" : "opacity-25"}`}>
-            <Img name={logo} className="max-h-10 max-w-[118px]" />
-          </div>
-        ))}
-      </Box>
-    </>
-  );
+  return <MeasuredTestimonials theme="dark" />;
 }
 
 function Process() {
   return (
-    <Box left={0} top={6015} width={1440} height={1260} className="overflow-hidden text-white">
-      <div className="absolute left-[260px] top-[200px] h-[1140px] w-[1180px] rounded-full bg-[#7c31ff]/45 blur-[150px]" />
-      <Eyebrow className="relative tracking-[8px]">Our Process</Eyebrow>
-      <h2 className="relative mx-auto mt-[24px] w-[680px] text-center text-[36px] font-extrabold leading-10">Our Step-by-Step Approach to Execute Your Vision.</h2>
-      <p className="relative mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-white/70">
-        Our process is all about getting to the heart of your needs, working closely with you, and turning each idea into a product that grows.
-      </p>
-      <div className="relative mx-auto mt-[70px] grid w-[1180px] grid-cols-3 gap-6">
-        {processSteps.map(([num, title, copy]) => (
-          <article key={num} className="min-h-[214px] rounded-[8px] border border-white/12 bg-[#111729]/72 p-7">
-            <div className="flex items-center gap-4">
-              <span className="flex h-[42px] w-[42px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[18px] font-extrabold">{num}</span>
-              <h3 className="text-[21px] font-extrabold leading-7">{title}</h3>
-            </div>
-            <p className="mt-6 text-[15px] leading-7 text-white/68">{copy}</p>
-          </article>
-        ))}
-      </div>
-    </Box>
+    <>
+      <Img name="process-glow.png" className="pointer-events-none absolute left-1/2 top-[5703px] h-[2890px] w-screen max-w-none -translate-x-1/2" eager />
+      <Box left={530} top={5965} width={380} height={20}>
+        <p className="text-center text-[20px] font-medium uppercase leading-[19.6px] tracking-[10px] text-[#9c50ff]">How We Do It?</p>
+      </Box>
+      <Box left={410} top={6007} width={620} height={118}>
+        <h2 className="text-center text-[36px] font-bold leading-[58px] tracking-[-1.5px] text-white">Our Step-by-Step Approach to Execute Your Vision.</h2>
+      </Box>
+      <Box left={330} top={6136} width={780} height={72}>
+        <p className="text-center text-[22px] leading-9 text-white">Our process is all about getting to the heart of your needs, working closely with you, and creating solutions that fit perfectly.</p>
+      </Box>
+      {processSteps.map(([num, title, copy], index) => {
+        const column = index % 3;
+        const row = Math.floor(index / 3);
+        const left = 130 + column * 400;
+        const top = [6278, 6647, 7058][row];
+        return (
+          <Box key={num} left={left} top={top} width={380} height={row === 2 ? 340 : 330} className="text-white">
+            <span className="absolute left-0 top-0 flex h-[88px] w-[88px] items-center justify-center rounded-[15px] bg-[#111729] text-[32px] font-light leading-[30px] tracking-[-0.1px]">{num}</span>
+            <h3 className="absolute left-[108px] top-[14px] w-[272px] whitespace-pre-line text-[22px] font-bold leading-[30px] tracking-[-0.1px]">{title}</h3>
+            <p className="absolute left-0 top-[116px] w-[380px] whitespace-pre-line text-[18px] leading-7">{copy}</p>
+          </Box>
+        );
+      })}
+    </>
   );
 }
 
 function FitCta() {
   return (
-    <Box left={0} top={7585} width={1440} height={413} className="overflow-hidden bg-[linear-gradient(104deg,#8b44ff_0%,#144ee3_100%)] text-white">
-      <div className="absolute left-[650px] top-[-210px] h-[760px] w-[860px] rounded-full bg-[#35a7ff]/35 blur-[80px]" />
+    <Box left={0} top={7585} width={1440} height={413} fullBleed className="overflow-visible text-white">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/assets/homepage/dark/fit-cta-background.png" alt="" aria-hidden="true" className="absolute left-1/2 top-0 h-[413px] w-screen max-w-none -translate-x-1/2" />
       <div className="absolute left-[130px] top-[103px] w-[580px]">
-        <h2 className="text-[36px] font-extrabold leading-10">Find Us a Great Fit?</h2>
+        <h2 className="text-[36px] font-extrabold leading-10 tracking-[-0.72px]">Find Us a Great Fit?</h2>
         <p className="mt-[14px] text-[22px] leading-8">Let&apos;s talk about how we can handle your challenges & keep everything running smoothly.</p>
-        <Button href="/contact-us" dark className="mt-[31px] w-[272px]">Book a Free Session!</Button>
+        <Link href="/contact-us" prefetch={false} className="mt-[31px] flex h-[60px] w-[272px] items-center justify-center rounded-[10px] border border-white text-[20px] font-semibold leading-6 text-white">Book a Free Session!</Link>
       </div>
-      <Img name="dollar-rocket-3d.webp" alt="Rocket illustration" className="absolute left-[862px] top-[-36px] h-[520px] w-[520px] rotate-[30deg] object-contain animate-float" />
+      <Img name="dollar-rocket-3d.webp" alt="Rocket illustration" eager className="absolute left-[845px] top-[-113px] h-[448px] w-[448px] rotate-[30deg] object-contain" />
     </Box>
   );
 } 
 
 function WhyChoose() {
-  return (
-    <Box left={130} top={8280} width={1180} height={760} className="text-white">
-      <Eyebrow className="tracking-[8px]">Our Impact</Eyebrow>
-      <h2 className="mt-[22px] text-center text-[36px] font-extrabold leading-10">Why We are The Right Fit for You!</h2>
-      <p className="mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-white/70">
-        We get your industry, understand your unique needs, and deliver the results that make a real difference.
-      </p>
-      <p className="mx-auto mt-7 w-[760px] text-center text-[17px] leading-7 text-white/70">
-        Here&apos;s what we bring to the table while working for you.
-      </p>
-<div className="mt-[70px] grid grid-cols-2 gap-x-[70px] gap-y-[42px]">
-        {[
-          {
-            title: "Deep Industry Knowledge",
-            icon: "animated-emojies-512px-220.gif",
-            description: (
-              <>
-                We are experts in your sector in addition to <br />
-                technology. <br /> <br />Our team&apos;s extensive experience and industry
-                <br />knowledge enable us to provide solutions that are<br />  properly
-                matched to your particular requirements <br /> and standards.
-              </>
-            ),
-          },
-          {
-            title: "Tier Talent",
-            icon: "animated-emojies-512px-508.gif",
-            description: (
-              <>
-                Our experts aren&apos;t just skilled-they&apos;re exceptional. <br /> <br />
-                We&apos;ve assembled a team of professionals who<br />constantly  focus on quality and new ideas,so every<br /> project will benefit from their knowledge and <br /> enthusiasm.
-              </>
-            ),
-          },
-          {
-            title:(
-            <>
-            Flexible Engagement <br /> Models</>), 
-            icon: "animated-emojies-512px-26.gif",
-            description: (
-              <>
-                We provide a range of recruiting alternatives,<br/>depending on your needs: hourly rates, fixed-price <br /> projects, or committed team. <br/> <br />With this versatility, you may get excellent value<br/>and select the model that fits your needs.
-              </>
-            ),
-          },
-          {
-            title: "Reliable Delivery",
-            icon: "animated-emojies-512px-44.gif",
-            description: (
-              <>
-              Timeliness is core value. <br /> <br />
-              We commit to delivering high-quality solutions on <br/>schedule, keeping your project moving forward <br/> without sacrificing precision or attention to detail.
-              </>
-            ),
-          },
-        ].map(({ title, icon, description }) => (
-          <article
-            key={icon}
-            className="min-h-[210px] rounded-[8px] border border-white/10 bg-[#111729]/40 p-8"
-          >
-            <div className="flex items-center gap-5">
-              <Img name={icon} className="h-12 w-12" />
-              <h3 className="text-[24px] font-extrabold leading-8">{title}</h3>
-            </div>
-            <p className="mt-6 text-[16px] leading-7 text-white/64">
-              {description}
-            </p>
-          </article>
-        ))}
-      </div> 
-    </Box>
-  );
+  return <MeasuredWhyChoose theme="dark" />;
 }
 
 function Blog() {
   return (
-    <Box left={130} top={9360} width={1180} height={720} className="text-white">
-      <Eyebrow className="tracking-[8px]">Latest News</Eyebrow>
-      <h2 className="mt-[22px] text-center text-[36px] font-extrabold leading-10">What&apos;s happening in IT?</h2>
-      <div className="mt-[58px] grid grid-cols-3 gap-[30px]">
-        {blogCards.map(([image, title, badge]) => (
+    <Box left={0} top={9490} width={1440} height={729} className="text-white">
+      <p className="absolute left-[410px] top-0 w-[620px] text-center text-[20px] font-medium uppercase leading-[20px] tracking-[10px] text-[#9c50ff]">
+        Latest News
+      </p>
+      <h2 className="absolute left-[410px] top-[42px] w-[620px] text-center text-[36px] font-bold leading-[58px] tracking-[-1.5px]">
+        What&apos;s happening in IT?
+      </h2>
+      <div className="absolute left-[130px] top-[163px] grid grid-cols-[360px_360px_360px] gap-[50px]">
+        {blogCards.map(([image, title]) => (
           <Link
             key={image}
             href="/blog/2025-tools-to-create-real-performing-tokens"
             prefetch={false}
-            className="overflow-hidden rounded-[12px] border border-white/10 bg-[#111729]"
+            className="relative h-[442px] w-[360px]"
           >
-            <div className="relative h-[220px]">
-              <Img name={image} className="h-full w-full object-cover" />
-              <span className="absolute left-5 top-5 rounded-full bg-[#3871f2] px-4 py-1 text-[13px] font-bold">{badge}</span>
+            <div className="relative h-[270px] overflow-hidden rounded-[30px]">
+              <Img name={image} eager className="h-full w-full object-cover" />
+              <span className="absolute left-5 top-5 flex h-6 min-w-[51px] items-center justify-center rounded-2xl bg-[#3871f2] px-[9px] font-sans text-[12px] font-semibold leading-5 tracking-[1.2px] text-white">
+                NEW
+              </span>
             </div>
-            <div className="p-6">
-              <h3 className="text-[21px] font-extrabold leading-7">{title}</h3>
-              <div className="mt-5 flex items-center gap-3 text-[14px] text-white/55">
-                <Img name="blog-author-avatar.svg" className="h-6 w-6 rounded-full" />
-                <span>Chloe Williams</span>
-                <span>Oct 26, 2124</span>
-              </div>
+            <h3 className="mt-5 h-[108px] font-inter text-[24px] font-bold leading-9 tracking-[-0.48px]">{title}</h3>
+            <div className="mt-2 flex h-6 items-center text-white/50">
+              <Img name="blog-author-avatar.svg" eager className="h-6 w-6 rounded-lg" />
+              <span className="ml-[10px] text-[16px] font-medium leading-6">Chloe Williams</span>
+              <span className="ml-auto text-[12px] font-semibold leading-5">Oct 26, 2124</span>
             </div>
           </Link>
         ))}
       </div>
-      <Button href="/blog" className="absolute left-[454px] top-[640px] w-[272px]">Explore All News</Button>
+      <Link
+        href="/blog"
+        prefetch={false}
+        className="absolute left-[584px] top-[669px] flex h-[60px] w-[272px] items-center justify-center rounded-[10px] bg-[#3871f2] text-[20px] font-semibold leading-6 text-white"
+      >
+        Explore All News
+      </Link>
     </Box>
   );
 }
 
 function Contact() {
-  return (
-    <Box left={130} top={10368} width={1180} height={627} className="text-white" id="contact">
-      <div className="absolute left-0 top-[83px] w-[459px]">
-        <h2 className="text-[56px] font-extrabold leading-[56px]">Let&apos;s Make IT* [Things] Happen</h2>
-        <p className="mt-[19px] text-[22px] leading-7">Connect with us to explore how?</p>
-      </div>
-      <div className="absolute left-0 top-[321px] grid gap-[26px]">
-        {[
-          ["contact-send-group.svg", "Send us an email", "support@holovise.io"],
-          ["contact-phone-group.svg", "Give us a call", "+64 29 045 50469"],
-          ["contact-map-pin-group.svg", "Visit us in person", "5 Newland Grove, Henderson, Auckland 0610, New Zealand"],
-        ].map(([icon, label, value]) => (
-          <div key={label} className="flex min-h-[52px] w-[570px] gap-6">
-            <Img name={icon} className="h-[45px] w-[45px]" />
-            <div>
-              <p className="text-[16px] leading-5 text-white/60">{label}</p>
-              <p className="mt-2 max-w-[501px] text-[20px] leading-6">{value}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <form
-        action="mailto:support@holovise.io?subject=Holovise%20website%20enquiry"
-        method="post"
-        encType="text/plain"
-        className="absolute left-[610px] top-0 h-[627px] w-[570px] rounded-[8px] bg-[#111729] p-[30px]"
-      >
-        <input
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          className="h-[56px] w-[510px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none"
-          placeholder="Name"
-        />
-        <div className="mt-4 flex gap-[10px]">
-          <input
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none"
-            placeholder="Email"
-          />
-          <input
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            className="h-[56px] w-[250px] rounded-[6px] border border-white/12 bg-[#080d19] px-5 text-white outline-none"
-            placeholder="Phone"
-          />
-        </div>
-        <textarea
-          name="message"
-          required
-          className="mt-4 h-[135px] w-[510px] resize-none rounded-[6px] border border-white/12 bg-[#080d19] p-5 text-white outline-none"
-          placeholder="Message"
-        />
-        <label className="mt-4 flex items-center gap-2 text-[14px] leading-5 text-white/70 cursor-pointer">
-        <input
-        type="radio"
-        name="newsletter"
-        value="yes"
-        className="h-[22px] w-[22px] rounded-full border border-white/20 bg-transparent accent-white"
-      />
-          Sign me up for the newsletter
-      </label>
-        <button type="submit" className="mt-[55px] flex h-[60px] w-[510px] items-center justify-center rounded-[8px] bg-[#3871f2] text-[16px] font-extrabold">
-          Send Message
-        </button>
-        <p className="mt-6 text-[13px] leading-5 text-white/45">Praesent in mauris eu tortor porttitor accumsan aliquam ornare wisi eu metus. Lorem ipsum dolor tortor porttitor accumsan aliquam.</p>
-      </form>
-    </Box>
-  );
+  return <MeasuredContact theme="dark" />;
 }
 
 function Footer() {
   return (
-    <Box left={0} top={10995} width={1440} height={1501} className="overflow-hidden bg-[#080d19] text-white">
-      <div className="absolute left-[-492px] top-[1256px] h-[900px] w-[2000px] rounded-full bg-[#144ee3]/35 blur-[160px]" />
-      <div className="absolute left-[700px] top-[30px] h-[900px] w-[1100px] rounded-full bg-[#8b44ff]/22 blur-[150px]" />
-      <div className="absolute left-[571px] top-[150px] flex w-[299px] flex-col items-center gap-9">
+    <Box left={0} top={10995} width={1440} height={1501} fullBleed className="overflow-hidden bg-[#080d19] text-white">
+      <Img name="footer-purple.png" eager className="pointer-events-none absolute left-1/2 top-[-25px] h-[1552px] w-screen max-w-none -translate-x-1/2" />
+      <Img name="footer-blue.png" eager className="pointer-events-none absolute left-1/2 top-[50px] h-[1438px] w-screen max-w-none -translate-x-1/2" />
+      <div className="absolute left-[571px] top-[150px] flex w-[299px] flex-col items-center gap-10">
         <Img name="footer-logo-group-1.svg" className="h-[156px] w-[135px]" />
         <Img name="footer-logo-group-2.svg" className="h-[32px] w-[299px]" />
       </div>
       <p className="absolute left-[435px] top-[460px] w-[570px] text-center text-[16px] leading-5 tracking-[8px] text-white/80">Follow us</p>
-      <div className="absolute left-[585px] top-[508px] flex h-8 gap-[27px]">
+      <div className="absolute left-[563px] top-[505px] flex h-[39px] gap-[30px]">
         {footerSocialLinks.map(({ icon, href, label }) => (
           <Link
             key={icon}
@@ -678,18 +497,18 @@ function Footer() {
             aria-label={label}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="flex h-8 w-8 items-center justify-center"
+            className="flex h-[39px] w-[39px] items-center justify-center"
           >
-            <Img name={icon} className="max-h-8 max-w-8" />
+            {icon === "__x__" ? <span className="text-[34px] font-light leading-[39px] text-[#3871f2]">𝕏</span> : <Img name={icon} className="max-h-[39px] max-w-[39px]" />}
           </Link>
         ))}
       </div>
-      <div className="absolute left-[130px] top-[664px] grid w-[1180px] grid-cols-4 gap-[85px]">
+      <div className="absolute left-[130px] top-[664px] grid grid-cols-[215px_215px_215px_215px] gap-[85px]">
         {footerColumns.map((column) => (
           <div key={column.heading}>
-            <h3 className="text-[20px] font-extrabold leading-6">{column.heading}</h3>
+            <h3 className="text-[16px] font-semibold leading-6 tracking-[-0.16px]">{column.heading}</h3>
             <div className="mt-5 h-px w-[50px] bg-[#3871f2]" />
-            <div className="mt-4 grid gap-[15px] text-[16px] leading-5 text-white/62">
+            <div className="mt-4 grid gap-[18px] text-[16px] leading-5 text-white/75">
               {column.items.map(([label, href]) => (
                 <Link href={href} prefetch={false} key={label}>{label}</Link>
               ))}
@@ -698,9 +517,13 @@ function Footer() {
         ))}
       </div>
       <div className="absolute left-[55px] top-[1391px] h-px w-[1330px] bg-white/18" />
-      <p className="absolute left-[55px] top-[1431px] text-[14px] leading-5 text-white/55">&copy; 2024 all rights reserved by Holovise.</p>
-      <div className="absolute left-[1013px] top-[1427px] flex gap-6 text-[14px] leading-5 text-white/55">
-        <span>Sitemap</span>
+      <div className="absolute left-[55px] top-[1427px] flex h-[28px] items-center gap-2 text-[12px] leading-5 text-white">
+        <span>&copy; 2024 all rights reserved by</span>
+        <Img name="footer-logo-group-3.svg" className="h-[21px] w-[18px]" />
+        <Img name="footer-logo-group-2.svg" className="h-[12px] w-[112px]" />
+      </div>
+      <div className="absolute left-[1013px] top-[1427px] flex gap-6 text-[12px] leading-5 text-white/55">
+        <Link href="/sitemap.xml" prefetch={false}>Sitemap</Link>
         <Link href="/privacy-policy" prefetch={false}>Privacy Policy</Link>
         <Link href="/cookie-consent" prefetch={false}>Cookies</Link>
         <Link href="/terms-and-conditions" prefetch={false}>Terms & Conditions</Link>
@@ -711,19 +534,19 @@ function Footer() {
 
 export function DarkHomepage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#080d19] font-sans text-white">
-      <ResponsiveFigmaCanvas height={12496} background="#080d19" nodeId="192:5523">
-        <Hero />
-        <Services />
-        <CtaBand />
-        <Industries />
-        <Testimonials />
-        <Process />
-        <FitCta />
-        <WhyChoose />
-        <Blog />
-        <Contact />
-        <Footer />
+    <main className="w-full min-h-screen overflow-x-hidden bg-[#080d19] font-sans text-white">
+      <ResponsiveFigmaCanvas height={12496} background="#080d19" nodeId="192:5523" mode="responsive">
+          <Hero />
+          <Services />
+          <CtaBand />
+          <Industries />
+          <Testimonials />
+          <Process />
+          <FitCta />
+          <WhyChoose />
+          <Blog />
+          <Contact />
+          <Footer />
       </ResponsiveFigmaCanvas>
     </main>
   );

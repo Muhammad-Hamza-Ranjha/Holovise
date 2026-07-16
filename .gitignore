@@ -12,6 +12,15 @@
 
 # testing
 /coverage
+/playwright-report
+/test-results
+/visual-tests/current/
+/visual-tests/diffs/
+/visual-tests/reports/
+/.chrome-audit
+/.chrome-audit-2
+/.edge-audit
+/.tmp
 
 # next.js
 /.next/

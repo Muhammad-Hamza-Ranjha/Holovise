@@ -16,6 +16,10 @@ const eslintConfig = defineConfig([
     ".chrome-audit-2/**",
     ".edge-audit/**",
     ".tmp/**",
+    "coverage/**",
+    "dist/**",
+    "playwright-report/**",
+    "test-results/**",
   ]),
 ]);
 

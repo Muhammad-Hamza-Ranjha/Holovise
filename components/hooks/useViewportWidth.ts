@@ -7,7 +7,6 @@ function measureViewportWidth() {
     document.documentElement.clientWidth || 0,
     window.innerWidth || 0,
     Math.floor(window.visualViewport?.width ?? 0),
-    window.screen?.width || 0,
     1,
   );
 }
@@ -16,8 +15,16 @@ export function useViewportWidth() {
   const [viewportWidth, setViewportWidth] = useState(1440);
 
   useEffect(() => {
+    let frameId = 0;
+
     function updateViewportWidth() {
-      setViewportWidth(measureViewportWidth());
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      frameId = window.requestAnimationFrame(() => {
+        setViewportWidth(measureViewportWidth());
+      });
     }
 
     updateViewportWidth();
@@ -26,6 +33,9 @@ export function useViewportWidth() {
     window.visualViewport?.addEventListener("resize", updateViewportWidth);
 
     return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
       window.removeEventListener("resize", updateViewportWidth);
       window.removeEventListener("orientationchange", updateViewportWidth);
       window.visualViewport?.removeEventListener("resize", updateViewportWidth);
