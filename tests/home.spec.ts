@@ -16,13 +16,31 @@ async function prepare(page: Page, theme: "light" | "dark", width: number, heigh
   await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
   await page.addInitScript((selectedTheme) => localStorage.setItem("theme", selectedTheme), theme);
   await page.goto("/", { waitUntil: "networkidle" });
+  await page.waitForFunction(
+    ({ expectedTheme, desktop }) => {
+      const main = document.querySelector("main");
+      if (!(main instanceof HTMLElement)) return false;
+      const layoutReady = desktop
+        ? Boolean(document.querySelector('[data-responsive-canvas][data-canvas-mode="responsive"]'))
+        : main.matches('[data-home-layout="responsive"]');
+      return layoutReady && document.documentElement.classList.contains(expectedTheme);
+    },
+    { expectedTheme: theme, desktop: width >= 1440 },
+  );
   await page.evaluate(async () => {
     await document.fonts.ready;
     for (const image of document.images) image.loading = "eager";
-    window.scrollTo(0, document.documentElement.scrollHeight);
-    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    await Promise.all([...document.images].map((image) => image.decode().catch(() => undefined)));
+
+    const pageHeight = document.documentElement.scrollHeight;
+    const step = Math.max(320, Math.floor(window.innerHeight * 0.85));
+    for (let y = 0; y <= pageHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((resolve) => setTimeout(resolve, 45));
+    }
+    window.scrollTo(0, pageHeight);
+    await new Promise((resolve) => setTimeout(resolve, 250));
     window.scrollTo(0, 0);
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
   });
 }
 
@@ -45,7 +63,13 @@ for (const theme of ["light", "dark"] as const) {
       const diagnostics = await page.evaluate(() => ({
         htmlClass: document.documentElement.className,
         horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 1,
-        incompleteImages: [...document.images].filter((image) => !image.complete || image.naturalWidth === 0).map((image) => image.currentSrc || image.src),
+        incompleteImages: [...document.images]
+          .filter((image) => {
+            const bounds = image.getBoundingClientRect();
+            return bounds.right > 0 && bounds.left < window.innerWidth && bounds.bottom > 0 && bounds.top < window.innerHeight;
+          })
+          .filter((image) => !image.complete || image.naturalWidth === 0)
+          .map((image) => image.currentSrc || image.src),
       }));
 
       expect(diagnostics.htmlClass).toContain(theme);

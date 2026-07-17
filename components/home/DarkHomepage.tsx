@@ -316,7 +316,7 @@ function Services() {
 
 function CtaBand() {
   return (
-    <Box left={0} top={2571} width={1440} height={320} fullBleed className="bg-[#3871f2] text-white">
+    <Box left={0} top={2571} width={1440} height={320} fullBleed className="z-10 bg-[#3871f2] text-white">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/assets/homepage/dark/primary-cta-overlay.png" alt="" aria-hidden="true" className="absolute left-[382px] top-0 h-[318px] w-[1058px] max-w-none" />
       <h2 className="absolute left-[129px] top-[99px] w-[581px] text-[36px] font-extrabold leading-10">Ready to Get Started?</h2>

@@ -17,6 +17,7 @@
 /visual-tests/current/
 /visual-tests/diffs/
 /visual-tests/reports/
+/visual-tests/deployment-audit/
 /.chrome-audit
 /.chrome-audit-2
 /.edge-audit
