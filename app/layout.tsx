@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter, Sora } from "next/font/google";
 import "./globals.css";
+import { FloatingGetStarted } from "@/components/FloatingGetStarted";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const sora = Sora({
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: hydrationFallbackScript }} />
         <ThemeProvider>
           {children}
+          <FloatingGetStarted />
         </ThemeProvider>
       </body>
     </html>

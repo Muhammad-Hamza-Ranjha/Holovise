@@ -5,15 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { footerFrameLinks } from "@/components/figma/StaticFrameLinks";
-import { FloatingGetStarted } from "@/components/figma/FloatingGetStarted";
 import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
 import type { StaticFigmaPageProps } from "@/components/figma/StaticFigmaPage";
 import { useMounted } from "@/components/hooks/useMounted";
+import { FigmaContactForm } from "@/components/forms/FigmaContactForm";
 import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { FigmaLanguageDropdown } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
 import { ThemeToggleButton } from "@/components/navigation/ThemeToggleButton";
-import { FigmaContactForm } from "@/components/forms/FigmaContactForm";
 
 export function ThemeAwareStaticFigmaPage({
   asset,
@@ -32,7 +31,6 @@ export function ThemeAwareStaticFigmaPage({
   contactFormTop,
   lightContactFormTop,
   disableGeneratedLightFilter = false,
-  showFloatingGetStarted,
 }: StaticFigmaPageProps) {
   const { theme, resolvedTheme } = useTheme();
   const pathname = usePathname();
@@ -62,38 +60,15 @@ export function ThemeAwareStaticFigmaPage({
     pageHeight > 2000
       ? [...activeLinks, ...automaticBreadcrumbLinks, ...footerFrameLinks(pageHeight)]
       : activeLinks;
-  const railLinks = unfilteredPageLinks.filter(
-    (link) => link.label === "Get Started" && link.left >= 1380 && link.width <= 70 && link.height >= 160,
+  const pageLinks = unfilteredPageLinks.filter(
+    (link) => !(link.label === "Get Started" && link.left >= 1380 && link.width <= 70 && link.height >= 160),
   );
-  const pageLinks = unfilteredPageLinks.filter((link) => !railLinks.includes(link));
   const background = wantsLightTheme ? "#eaf0fe" : "#080d19";
   const needsGeneratedLightSurface = wantsLightTheme && !lightAsset;
   const pageImageFilter =
     needsGeneratedLightSurface && !disableGeneratedLightFilter
       ? { filter: "invert(1) hue-rotate(180deg)" }
       : undefined;
-  const isUtilityOrLegalRoute =
-    pathname === "/contact-us" ||
-    pathname === "/contact" ||
-    pathname === "/side-drawer" ||
-    pathname.includes("privacy") ||
-    pathname.includes("terms") ||
-    pathname.includes("cookie");
-  const shouldRenderFloatingGetStarted =
-    (showFloatingGetStarted ?? true) &&
-    pageHeight > 2000 &&
-    !isUtilityOrLegalRoute;
-  const fallbackFloatingGetStartedTop =
-    pathname === "/portfolio" ||
-    pathname === "/our-portfolio" ||
-    pathname === "/about" ||
-    pathname === "/about/who-we-are" ||
-    pathname === "/who-we-are"
-      ? 403
-      : 203;
-  const floatingGetStartedTop = railLinks[0]?.top ?? fallbackFloatingGetStartedTop;
-  const shouldGenerateLightRail = false;
-  const generatedRailTop = floatingGetStartedTop;
   const shouldRenderContactForm =
     !disableAutoContactForm && (pageHeight > 4000 || contactFormTop !== undefined);
   const activeContactFormTop = usesLightAsset
@@ -116,26 +91,6 @@ export function ThemeAwareStaticFigmaPage({
           style={pageImageFilter}
           draggable={false}
         />
-        {shouldGenerateLightRail ? (
-          <Link
-            href="/contact-us"
-            prefetch={false}
-            aria-label="Get Started"
-            className="absolute left-[1390px] z-[70] flex h-[200px] w-[50px] flex-col items-center rounded-l-[8px] bg-[#3871f2] pt-[17px] text-white shadow-[0_8px_24px_rgba(8,13,25,0.24)] hover:bg-[#285fda] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
-            style={{ top: generatedRailTop }}
-          >
-            <span aria-hidden="true" className="h-[24px] text-[18px] leading-[24px]">
-              🚀
-            </span>
-            <span
-              className="mt-[16px] whitespace-nowrap text-[16px] font-bold leading-[20px]"
-              style={{ writingMode: "vertical-rl" }}
-            >
-              Get Started
-            </span>
-          </Link>
-        ) : null}
-        {shouldRenderFloatingGetStarted ? <FloatingGetStarted top={floatingGetStartedTop} /> : null}
         {pageLinks.map((link) => (
           <Link
             key={`${link.href}-${link.left}-${link.top}`}

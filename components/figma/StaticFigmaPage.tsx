@@ -22,7 +22,6 @@ export type StaticFigmaPageProps = {
   contactFormTop?: number;
   lightContactFormTop?: number;
   disableGeneratedLightFilter?: boolean;
-  showFloatingGetStarted?: boolean;
 };
 
 export function StaticFigmaPage(props: StaticFigmaPageProps) {

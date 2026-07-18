@@ -85,7 +85,6 @@ export function WhoWeAreDark() {
       lightHeight={9317}
       renderChildrenInLight
       disableAutoContactForm
-      showFloatingGetStarted={false}
       links={[
         ...commonFrameLinks(9807).filter((link) => link.label !== "Get Started"),
         { href: "/", label: "Home breadcrumb", left: 579, top: 295, width: 95, height: 22 },
@@ -143,7 +142,7 @@ export function WhoWeAreDark() {
         href="/contact-us"
         prefetch={false}
         aria-label="Get Started"
-        className="absolute left-[1390px] top-[403px] z-[80] flex h-[200px] w-[50px] cursor-pointer flex-col items-center rounded-l-[8px] bg-[#3871f2] pt-[17px] text-white shadow-[0_8px_24px_rgba(8,13,25,0.24)] hover:bg-[#285fda] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+        className="hidden"
       >
         <span aria-hidden="true" className="h-[24px] text-[18px] leading-[24px]">
           🚀

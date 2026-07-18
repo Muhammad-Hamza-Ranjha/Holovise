@@ -1,7 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { ResponsiveFigmaCanvas } from "@/components/figma/ResponsiveFigmaCanvas";
-import { FloatingGetStarted } from "@/components/figma/FloatingGetStarted";
 import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { LanguageMenu } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
@@ -285,7 +284,6 @@ function Hero() {
           Get Started
         </span>
       </Link>
-      <FloatingGetStarted top={403} />
     </>
   );
 }
