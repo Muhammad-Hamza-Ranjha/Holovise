@@ -100,10 +100,11 @@ const footerColumns = [
 ] as const;
 
 const topSocialLinks = [
-  { icon: "social-fb-path-01.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
+  { icon: "social-tw-1.svg", href: socialLinks.facebook, label: "Open Holovise on Facebook" },
   { icon: "social-in.svg", href: socialLinks.linkedin, label: "Open Holovise on LinkedIn" },
-  { icon: "social-tw-1.svg", href: socialLinks.twitter, label: "Open Holovise on X" },
-  { icon: "social-mail-1.svg", href: "/contact-us", label: "Contact Holovise by email" },
+  { icon: "social-tw.svg", href: socialLinks.twitter, label: "Open Holovise on X" },
+  { icon: "social-mail-1.svg", href: "mailto:support@holovise.io", label: "Contact Holovise by email" },
+  { icon: "social-fb-path-01.svg", href: socialLinks.instagram, label: "Open Holovise on Instagram" },
 ] as const;
 
 const footerSocialLinks = [
@@ -161,12 +162,12 @@ function Header() {
   return (
     <>
       <Box left={0} top={0} width={1440} height={40} fullBleed className="bg-[#3871f2] text-white">
-        <p className="absolute left-[55px] top-[8px] text-[16px] leading-6 text-white">Vision Meets Technology</p>
-        <div className="absolute left-[809px] top-[8px] flex h-6 items-center gap-[13px] text-[16px] leading-6 text-white">
+        <p className="absolute left-[55px] top-[8px] text-[14px] font-semibold leading-6 tracking-[-0.14px] text-white">Vision Meets Technology</p>
+        <div className="absolute left-[809px] top-[8px] flex h-6 items-center gap-[13px] text-[14px] font-semibold leading-6 tracking-[-0.14px] text-white">
           <Img name="tabler-icon-phone-calling.svg" className="h-[22px] w-[22px]" />
           <span>(000) 666 555 444</span>
         </div>
-        <div className="absolute left-[999px] top-[8px] flex h-6 items-center gap-[13px] text-[16px] leading-6 text-white">
+        <div className="absolute left-[999px] top-[8px] flex h-6 items-center gap-[13px] text-[14px] font-semibold leading-6 tracking-[-0.14px] text-white">
           <Img name="tabler-icon-send.svg" className="h-[22px] w-[22px]" />
           <span>support@holovise.io</span>
         </div>
@@ -186,12 +187,12 @@ function Header() {
           ))}
         </div>
       </Box>
-      <Box left={0} top={40} width={1440} height={100} fullBleed className="bg-[#171039] text-white">
+      <Box left={0} top={40} width={1440} height={100} fullBleed className="bg-[rgba(8,13,26,0.75)] text-white backdrop-blur-[12px]">
         <Link href="/" className="absolute left-[55px] top-[27px] flex h-[46px] w-[208px] items-center gap-[13px]" aria-label="Holovise home">
           <Img name="holovise-logo-header.svg" className="h-[45.8px] w-[39.7px]" eager />
           <Img name="holovise-logo-mark.svg" className="h-[16.4px] w-[152.6px]" eager />
         </Link>
-        <nav className="absolute inset-0 text-[16px] font-medium leading-6">
+        <nav className="absolute inset-0 text-[18px] font-normal leading-6">
           <Link href="/about" className="absolute left-[533px] top-[36px] flex h-7 w-[103px] items-center gap-[10px] px-[10px] text-white">
             About
             <Img name="nav-polygon-5.svg" className="h-[7px] w-[10px]" />
@@ -207,7 +208,7 @@ function Header() {
             Careers
           </Link>
         </nav>
-        <Link href="/contact-us" className="absolute left-[1022px] top-[28px] flex h-11 w-[152px] items-center justify-center rounded-[8px] bg-[#8b44ff] text-[16px] font-extrabold leading-6">
+        <Link href="/contact-us" className="absolute left-[1022px] top-[28px] flex h-11 w-[152px] items-center justify-center rounded-[8px] bg-[#9C50FF] text-[16px] font-semibold leading-6">
           Get in Touch
         </Link>
         <LanguageMenu className="absolute left-[1191px] top-[28px]" />
@@ -271,19 +272,6 @@ function Hero() {
           <Img name="tabler-icon-arrow-down-right.svg" className="h-7 w-7 scale-x-[-1]" />
         </Link>
       </Box>
-      <Link
-        href="/contact-us"
-        prefetch={false}
-        aria-label="Get Started"
-        className="hidden"
-      >
-        <span aria-hidden="true" className="absolute left-[13px] top-[16px] h-[18px] w-[24px] text-[18px] leading-[24px]">
-          🚀
-        </span>
-        <span className="absolute left-[37px] top-[75px] origin-top-left rotate-90 whitespace-nowrap text-[18px] font-bold leading-[24px]">
-          Get Started
-        </span>
-      </Link>
     </>
   );
 }

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Button } from "./Button";
 import { aboutMenuItems, AboutMenuPanel } from "./navigation/AboutMenu";
 import { LanguageMenu } from "./navigation/LanguageMenu";
 import { serviceMenuItems, ServicesMenuPanel } from "./navigation/ServicesMenu";
@@ -48,13 +47,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur-xl dark:border-white/10 dark:bg-holo-night/88">
-      <div className="mx-auto flex h-[100px] w-full max-w-[1330px] items-center justify-between px-6">
+    <header className="sticky top-0 z-50 bg-[rgba(8,13,26,0.75)] text-white backdrop-blur-[12px]">
+      <div className="mx-auto flex h-[100px] w-full max-w-[1330px] items-center justify-between px-4 xl:px-0">
         <Link href="/" className="relative h-[46px] w-[208px] shrink-0">
           <Image src="/assets/holovise-logo.png" alt="Holovise" fill sizes="208px" className="object-contain" priority />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-[27px] lg:flex">
           {nav.map((item) =>
             item === "About" ? (
               <div key={item} className="group relative">
@@ -62,7 +61,7 @@ export function Header() {
                   href="/about"
                   prefetch={false}
                   aria-haspopup="true"
-                  className="flex items-center gap-2 text-[16px] font-medium text-holo-text/80 focus-visible:outline-none dark:text-white/82"
+                  className="flex h-[28px] items-center gap-[10px] px-[10px] text-[18px] font-normal leading-[24px] text-white focus-visible:outline-none"
                 >
                   About <ChevronDown size={15} />
                 </Link>
@@ -76,7 +75,7 @@ export function Header() {
                   href="/services/full-stack-development"
                   prefetch={false}
                   aria-haspopup="true"
-                  className="flex items-center gap-2 text-[16px] font-medium text-holo-text/80 hover:text-holo-violet focus-visible:outline-none dark:text-white/82 dark:hover:text-white"
+                  className="flex h-[28px] items-center gap-[10px] px-[10px] text-[18px] font-normal leading-[24px] text-white focus-visible:outline-none"
                 >
                   Services <ChevronDown size={15} />
                 </Link>
@@ -85,7 +84,7 @@ export function Header() {
                 </div>
               </div>
             ) : (
-              <Link key={item} href={navHref(item)} className="flex items-center gap-2 text-[16px] font-medium text-holo-text/80 hover:text-holo-violet dark:text-white/82 dark:hover:text-white">
+              <Link key={item} href={navHref(item)} className="flex h-[28px] items-center px-[10px] text-[18px] font-normal leading-[24px] text-white">
                 {item}
               </Link>
             ),
@@ -93,16 +92,22 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <Button href="/contact-us">Get In Touch</Button>
+          <Link
+            href="/contact-us"
+            prefetch={false}
+            className="inline-flex h-[44px] w-[152px] items-center justify-center rounded-[8px] bg-[#9C50FF] px-[20px] text-[16px] leading-[24px] font-semibold text-white"
+          >
+            Get in Touch
+          </Link>
           <div className="relative h-11 w-[86px]">
             <LanguageMenu className="absolute inset-0" />
           </div>
-          <button data-theme-toggle aria-label={`Switch to ${isLight ? "dark" : "light"} theme`} aria-pressed={isLight} onClick={toggleTheme} className="grid size-11 place-items-center rounded-full border border-black/10 dark:border-white/15">
+          <button data-theme-toggle aria-label={`Switch to ${isLight ? "dark" : "light"} theme`} aria-pressed={isLight} onClick={toggleTheme} className="grid size-11 place-items-center rounded-full border border-white/15">
             {isDark ? <Moon size={22} /> : <Sun size={22} />}
           </button>
         </div>
 
-        <button aria-label="Open menu" onClick={() => setOpen(true)} className="grid size-11 place-items-center rounded-full border border-black/10 lg:hidden dark:border-white/15">
+        <button aria-label="Open menu" onClick={() => setOpen(true)} className="grid size-11 place-items-center rounded-full border border-white/15 lg:hidden">
           <Menu />
         </button>
       </div>
@@ -189,7 +194,14 @@ export function Header() {
             )}
           </nav>
           <div className="mt-12 flex gap-3">
-            <Button href="/contact-us">Get In Touch</Button>
+            <Link
+              href="/contact-us"
+              prefetch={false}
+              onClick={() => setOpen(false)}
+              className="inline-flex h-[44px] w-[152px] items-center justify-center rounded-[8px] bg-[#9C50FF] px-[20px] text-[16px] leading-[24px] font-semibold text-white"
+            >
+              Get in Touch
+            </Link>
             <button data-theme-toggle aria-label={`Switch to ${isLight ? "dark" : "light"} theme`} aria-pressed={isLight} onClick={toggleTheme} className="grid size-[60px] place-items-center rounded-full border border-white/20">{isDark ? <Moon /> : <Sun />}</button>
           </div>
         </div>

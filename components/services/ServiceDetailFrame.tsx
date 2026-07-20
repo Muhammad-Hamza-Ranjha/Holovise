@@ -1,5 +1,6 @@
 import { commonFrameLinks, StaticFigmaPage, type StaticFrameLink } from "@/components/figma/StaticFigmaPage";
 import { ServiceInteractionLayers } from "@/components/services/ServiceInteractionLayers";
+import { WebAppPageHero } from "@/components/services/WebAppPageHero";
 
 export const serviceDetailFrames = {
   "mobile-app-development": {
@@ -535,6 +536,8 @@ export function ServiceDetailFrame({ slug }: { slug: ServiceDetailSlug }) {
       links={sharedPageLinks(frame.height, "dark")}
       lightLinks={lightHeight ? sharedPageLinks(lightHeight, "light") : undefined}
       renderChildrenInLight
+      beforeCanvas={slug === "web-app-development" ? <WebAppPageHero /> : undefined}
+      contentCropTop={slug === "web-app-development" ? 1000 : undefined}
     >
       <ServiceInteractionLayers slug={slug} />
     </StaticFigmaPage>

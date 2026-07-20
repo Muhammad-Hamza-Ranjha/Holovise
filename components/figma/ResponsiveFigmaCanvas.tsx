@@ -9,6 +9,8 @@ type ResponsiveFigmaCanvasProps = {
   background: string;
   nodeId: string;
   mode?: "legacy-scaled-frame" | "responsive";
+  cropTop?: number;
+  cropBottom?: number;
   children: ReactNode;
 };
 
@@ -18,13 +20,16 @@ export function ResponsiveFigmaCanvas({
   background,
   nodeId,
   mode = "legacy-scaled-frame",
+  cropTop = 0,
+  cropBottom = 0,
   children,
 }: ResponsiveFigmaCanvasProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(designWidth);
   const isLegacyFrame = mode === "legacy-scaled-frame";
   const scale = isLegacyFrame ? containerWidth / designWidth : 1;
-  const renderedHeight = isLegacyFrame ? Math.ceil(height * scale) : height;
+  const visibleHeight = Math.max(1, height - cropTop - cropBottom);
+  const renderedHeight = isLegacyFrame ? Math.ceil(visibleHeight * scale) : visibleHeight;
 
   useEffect(() => {
     const element = containerRef.current;
@@ -74,6 +79,7 @@ export function ResponsiveFigmaCanvas({
           height,
           background,
           marginInline: isLegacyFrame ? undefined : "auto",
+          top: isLegacyFrame ? -cropTop * scale : -cropTop,
           transform: isLegacyFrame ? `scale(${scale})` : undefined,
           willChange: isLegacyFrame ? "transform" : undefined,
         }}

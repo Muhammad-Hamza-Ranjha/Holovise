@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { commonFrameLinks, StaticFigmaPage } from "@/components/figma/StaticFigmaPage";
 import { FigmaContactForm } from "@/components/forms/FigmaContactForm";
 import { WhoWeArePortfolioCarousel } from "@/components/about/WhoWeArePortfolioCarousel";
@@ -138,22 +137,6 @@ export function WhoWeAreDark() {
     >
       <WhoWeAreMotion />
       <WhoWeArePortfolioCarousel />
-      <Link
-        href="/contact-us"
-        prefetch={false}
-        aria-label="Get Started"
-        className="hidden"
-      >
-        <span aria-hidden="true" className="h-[24px] text-[18px] leading-[24px]">
-          🚀
-        </span>
-        <span
-          className="mt-[16px] whitespace-nowrap text-[16px] font-bold leading-[20px]"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          Get Started
-        </span>
-      </Link>
       <div className="hidden dark:block">
         <FigmaContactForm
           ariaLabel="Who We Are contact form"

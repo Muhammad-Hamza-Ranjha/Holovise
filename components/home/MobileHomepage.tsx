@@ -125,11 +125,11 @@ export function MobileHomepage({ theme }: MobileHomepageProps) {
             <span className="hidden text-[14px] sm:block">Vision Meets Technology</span>
             <div className="flex w-full items-center justify-center gap-5 sm:w-auto sm:justify-end">
               {[
-                ["social-tw-1.svg", socialLinks.instagram, "Instagram"],
+                ["social-tw-1.svg", socialLinks.facebook, "Facebook"],
                 ["social-in.svg", socialLinks.linkedin, "LinkedIn"],
                 ["social-tw.svg", socialLinks.twitter, "X"],
-                ["social-mail-1.svg", "/contact-us", "Email"],
-                ["social-fb-path-01.svg", socialLinks.facebook, "Facebook"],
+                ["social-mail-1.svg", "mailto:support@holovise.io", "Email"],
+                ["social-fb-path-01.svg", socialLinks.instagram, "Instagram"],
               ].map(([icon, href, label]) => (
                 <Link key={label} href={href} aria-label={label} prefetch={false}>
                   <Image src={asset(theme, icon)} alt="" width={20} height={20} />

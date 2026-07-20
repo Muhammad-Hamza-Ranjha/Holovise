@@ -22,6 +22,9 @@ export type StaticFigmaPageProps = {
   contactFormTop?: number;
   lightContactFormTop?: number;
   disableGeneratedLightFilter?: boolean;
+  useSiteChrome?: boolean;
+  beforeCanvas?: ReactNode;
+  contentCropTop?: number;
 };
 
 export function StaticFigmaPage(props: StaticFigmaPageProps) {

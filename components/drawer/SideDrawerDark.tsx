@@ -13,6 +13,7 @@ export function SideDrawerDark() {
       lightHeight={960}
       renderChildrenInLight
       showNavigationOverlays={false}
+      useSiteChrome={false}
       links={[
         { href: "/", label: "Close menu", left: 1352, top: 38, width: 24, height: 24 },
         { href: "/privacy-policy", label: "Privacy Policy", left: 945, top: 823, width: 82, height: 28 },

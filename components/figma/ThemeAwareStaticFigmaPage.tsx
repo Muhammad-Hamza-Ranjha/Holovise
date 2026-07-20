@@ -13,6 +13,10 @@ import { FigmaAboutDropdown } from "@/components/navigation/AboutMenu";
 import { FigmaLanguageDropdown } from "@/components/navigation/LanguageMenu";
 import { FigmaServicesDropdown } from "@/components/navigation/ServicesMenu";
 import { ThemeToggleButton } from "@/components/navigation/ThemeToggleButton";
+import { SiteChrome } from "@/components/SiteChrome";
+
+const BAKED_HEADER_HEIGHT = 140;
+const BAKED_FOOTER_HEIGHT = 1501;
 
 export function ThemeAwareStaticFigmaPage({
   asset,
@@ -31,6 +35,9 @@ export function ThemeAwareStaticFigmaPage({
   contactFormTop,
   lightContactFormTop,
   disableGeneratedLightFilter = false,
+  useSiteChrome = true,
+  beforeCanvas,
+  contentCropTop,
 }: StaticFigmaPageProps) {
   const { theme, resolvedTheme } = useTheme();
   const pathname = usePathname();
@@ -41,6 +48,8 @@ export function ThemeAwareStaticFigmaPage({
   const pageAsset = usesLightAsset ? (lightAsset ?? asset) : asset;
   const pageNodeId = usesLightAsset ? (lightNodeId ?? nodeId) : nodeId;
   const activeLinks = usesLightAsset && lightLinks ? lightLinks : links;
+  const cropTop = useSiteChrome ? (contentCropTop ?? BAKED_HEADER_HEIGHT) : 0;
+  const cropBottom = useSiteChrome && pageHeight > 2000 ? BAKED_FOOTER_HEIGHT : 0;
   const hasBreadcrumbLinks = activeLinks.some((link) => link.top >= 240 && link.top <= 340);
   const automaticBreadcrumbLinks =
     pageHeight > 2000 && !hasBreadcrumbLinks
@@ -57,11 +66,14 @@ export function ThemeAwareStaticFigmaPage({
         ]
       : [];
   const unfilteredPageLinks =
-    pageHeight > 2000
+    pageHeight > 2000 && !useSiteChrome
       ? [...activeLinks, ...automaticBreadcrumbLinks, ...footerFrameLinks(pageHeight)]
-      : activeLinks;
+      : [...activeLinks, ...automaticBreadcrumbLinks];
   const pageLinks = unfilteredPageLinks.filter(
-    (link) => !(link.label === "Get Started" && link.left >= 1380 && link.width <= 70 && link.height >= 160),
+    (link) =>
+      !(link.label === "Get Started" && link.left >= 1380 && link.width <= 70 && link.height >= 160) &&
+      (!useSiteChrome ||
+        (link.top + link.height > cropTop && link.top < pageHeight - cropBottom)),
   );
   const background = wantsLightTheme ? "#eaf0fe" : "#080d19";
   const needsGeneratedLightSurface = wantsLightTheme && !lightAsset;
@@ -75,9 +87,16 @@ export function ThemeAwareStaticFigmaPage({
     ? (lightContactFormTop ?? contactFormTop ?? pageHeight - 2128)
     : (contactFormTop ?? pageHeight - 2128);
 
-  return (
+  const page = (
     <main className="min-h-screen overflow-x-hidden font-sans" style={{ background }}>
-      <ResponsiveFigmaCanvas height={pageHeight} background={background} nodeId={pageNodeId}>
+      {beforeCanvas}
+      <ResponsiveFigmaCanvas
+        height={pageHeight}
+        background={background}
+        nodeId={pageNodeId}
+        cropTop={cropTop}
+        cropBottom={cropBottom}
+      >
         <Image
           src={pageAsset}
           alt={alt}
@@ -86,7 +105,6 @@ export function ThemeAwareStaticFigmaPage({
           quality={85}
           priority
           fetchPriority="high"
-          unoptimized={pageHeight > 5000}
           className="select-none object-fill"
           style={pageImageFilter}
           draggable={false}
@@ -116,8 +134,10 @@ export function ThemeAwareStaticFigmaPage({
             top={activeContactFormTop}
           />
         ) : null}
-        <ThemeToggleButton className="absolute left-[1295px] top-[75px] z-[80] h-[31px] w-[31px]" />
-        {showNavigationOverlays ? (
+        {!useSiteChrome ? (
+          <ThemeToggleButton className="absolute left-[1295px] top-[75px] z-[80] h-[31px] w-[31px]" />
+        ) : null}
+        {!useSiteChrome && showNavigationOverlays ? (
           <>
             <FigmaAboutDropdown theme={wantsLightTheme ? "light" : "dark"} />
             <FigmaServicesDropdown theme={wantsLightTheme ? "light" : "dark"} />
@@ -127,4 +147,6 @@ export function ThemeAwareStaticFigmaPage({
       </ResponsiveFigmaCanvas>
     </main>
   );
+
+  return useSiteChrome ? <SiteChrome>{page}</SiteChrome> : page;
 }
